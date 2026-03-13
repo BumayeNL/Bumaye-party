@@ -566,7 +566,7 @@ const Navbar = () => {
   );
 };
 
-const Hero = () => {
+const Hero = ({ gallery }: { gallery: GalleryItem[] }) => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Background Elements */}
@@ -587,9 +587,11 @@ const Hero = () => {
             <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/80">Next Event: Rotterdam • July 25</span>
           </div>
           
-          <h1 className="font-display text-[18vw] md:text-[14vw] leading-[0.8] tracking-tighter uppercase mb-8 select-none">
+          <h1 className="font-display text-[12vw] md:text-[9vw] leading-[0.85] tracking-tighter uppercase mb-8 select-none">
             BUMAYE<br />
-            <span className="text-stroke opacity-50">AFRICA</span>
+            <span className="text-stroke opacity-50 text-[5vw] md:text-[3.5vw] tracking-normal mt-4 block leading-tight">
+              AFROBEATS • DANCEHALL<br/>HIPHOP • R&B
+            </span>
           </h1>
         </motion.div>
 
@@ -606,6 +608,47 @@ const Hero = () => {
             WATCH TEASER <Play size={20} className="fill-current" />
           </button>
         </motion.div>
+
+        {/* Hero Gallery Section */}
+        {gallery && gallery.length > 0 && (
+          <div className="mt-24 w-full text-left">
+            <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-8">
+              <h2 className="font-display text-4xl md:text-6xl uppercase tracking-tighter">THE VIBE</h2>
+              <a
+                href="https://www.instagram.com/bumaye.nl"
+                target="_blank"
+                rel="noreferrer"
+                className="group flex items-center gap-4 font-mono text-[10px] md:text-xs uppercase tracking-[0.4em] hover:text-bumaye-orange transition-colors"
+              >
+                Follow @bumaye.nl <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
+              </a>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+              {gallery.slice(0, 6).map((item, i) => (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8 + (i * 0.1) }}
+                  whileHover={{ scale: 1.05, rotate: i % 2 === 0 ? 1 : -1 }}
+                  className="aspect-[3/4] rounded-3xl overflow-hidden bg-white/5 border border-white/10"
+                >
+                  {item.url.startsWith('data:video') || item.url.endsWith('.mp4') ? (
+                    <video src={item.url} controls className="w-full h-full object-cover" />
+                  ) : (
+                    <img
+                      src={item.url}
+                      alt={`Gallery ${item.id}`}
+                      className="w-full h-full object-cover"
+                      referrerPolicy="no-referrer"
+                    />
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Scroll Indicator */}
@@ -1189,7 +1232,7 @@ export default function App() {
   return (
     <div className="min-h-screen selection:bg-bumaye-orange selection:text-white">
       <Navbar />
-      <Hero />
+      <Hero gallery={gallery} />
       <Marquee />
       <section id="events" className="py-32 px-6">
         <div className="max-w-7xl mx-auto">
@@ -1227,41 +1270,6 @@ export default function App() {
       </section>
 
       <AboutSection />
-
-      <section id="gallery" className="py-32 px-6">
-        <div className="max-w-7xl mx-auto mb-20 flex flex-col md:flex-row justify-between items-center gap-8">
-          <h2 className="font-display text-7xl md:text-9xl uppercase tracking-tighter">THE VIBE</h2>
-          <a
-            href="https://www.instagram.com/bumaye.nl"
-            target="_blank"
-            rel="noreferrer"
-            className="group flex items-center gap-4 font-mono text-xs uppercase tracking-[0.4em] hover:text-bumaye-orange transition-colors"
-          >
-            Follow @bumaye.nl <ArrowRight className="group-hover:translate-x-2 transition-transform" />
-          </a>
-        </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {gallery.map((item, i) => (
-            <motion.div
-              key={item.id}
-              whileHover={{ scale: 1.05, rotate: i % 2 === 0 ? 1 : -1 }}
-              className="aspect-[3/4] rounded-3xl overflow-hidden bg-white/5 border border-white/10"
-            >
-              {item.url.startsWith('data:video') || item.url.endsWith('.mp4') ? (
-                <video src={item.url} controls className="w-full h-full object-cover" />
-              ) : (
-                <img
-                  src={item.url}
-                  alt={`Gallery ${item.id}`}
-                  className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
-                />
-              )}
-            </motion.div>
-          ))}
-        </div>
-      </section>
 
       <Newsletter />
       <ContactSection />

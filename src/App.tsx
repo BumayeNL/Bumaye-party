@@ -1011,7 +1011,7 @@ export default function App() {
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [loginError, setLoginError] = useState(false);
-  const [gallery, setGallery] = useState<GalleryItem[]>([]);
+  const [gallery, setGallery] = useState<GalleryItem[]>(GALLERY);
   const [logoUrl, setLogoUrl] = useState<string>('');
 
   // Admin wachtwoord (voor demo, zet dit in env of backend voor productie!)
@@ -1120,9 +1120,14 @@ export default function App() {
     const { data, error } = await supabase
       .from('gallery')
       .select('*')
-      .order('display_order', { ascending: true });
+      .order('display_order', { ascending: true, nullsFirst: false });
 
-    if (!error && data) {
+    if (error) {
+      console.error('Error fetching gallery:', error);
+      return;
+    }
+
+    if (data && data.length > 0) {
       setGallery(data);
     }
   };

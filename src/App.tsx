@@ -8,6 +8,7 @@ import { motion, AnimatePresence, Reorder } from 'motion/react';
 import { ArrowRight, Play, Instagram, Menu, X, Plus, Trash2, Camera, Check, AlertCircle, Save, LogOut, ChevronLeft, ChevronRight, Globe, Lock, Music2, Share2, Youtube, ExternalLink, Ticket, Calendar, MapPin, Users, Mail, Send, Clock, Settings, Edit2, Database, RefreshCw, ChevronUp, ChevronDown, GripVertical, Palette, Copy, Download } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 import bannerImage from './assets/bumaye-banner.png';
+import heroBannerNew from './assets/hero-banner-new.png';
 import { EVENTS as INITIAL_EVENTS, GALLERY, type Event, type GalleryItem } from './constants';
 import { supabase, isSupabaseConfigured } from './lib/supabase';
 
@@ -934,7 +935,10 @@ const Navbar = ({ logoUrl }: { logoUrl?: string }) => {
 
 const Hero = ({ gallery, firstEvent }: { gallery: GalleryItem[], firstEvent?: Event }) => {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-start md:justify-center pt-32 pb-20 bg-hero-banner">
+    <section 
+      className="relative min-h-screen flex flex-col items-center justify-start md:justify-center pt-32 pb-20 bg-cover bg-center"
+      style={{ backgroundImage: `url(${heroBannerNew})` }}
+    >
       {/* Background Elements */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-noise mix-blend-overlay opacity-10" />

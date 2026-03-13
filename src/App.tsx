@@ -30,7 +30,7 @@ const TicketModal = ({ url, isOpen, onClose }: { url: string; isOpen: boolean; o
 
   const absoluteUrl = ensureAbsoluteUrl(url);
   const lowUrl = absoluteUrl.toLowerCase();
-  
+
   // Sites that usually block being in an iframe
   const isBlocked = [
     'linktr.ee',
@@ -42,28 +42,28 @@ const TicketModal = ({ url, isOpen, onClose }: { url: string; isOpen: boolean; o
 
   return (
     <AnimatePresence>
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10"
       >
         <div className="absolute inset-0 bg-bumaye-black/90 backdrop-blur-xl" onClick={onClose} />
-        <motion.div 
+        <motion.div
           initial={{ scale: 0.9, y: 20 }}
           animate={{ scale: 1, y: 0 }}
           exit={{ scale: 0.9, y: 20 }}
           className="relative w-full max-w-5xl h-[80vh] bg-white rounded-[2rem] overflow-hidden shadow-2xl"
         >
           <div className="absolute top-4 right-4 z-10">
-            <button 
+            <button
               onClick={onClose}
               className="p-2 bg-bumaye-black/10 hover:bg-bumaye-black/20 rounded-full transition-colors text-bumaye-black"
             >
               <X size={24} />
             </button>
           </div>
-          
+
           <div className="w-full h-full pt-12">
             {isBlocked ? (
               <div className="w-full h-full flex flex-col items-center justify-center p-12 text-center bg-bumaye-black">
@@ -74,9 +74,9 @@ const TicketModal = ({ url, isOpen, onClose }: { url: string; isOpen: boolean; o
                 <p className="text-white/40 max-w-sm mb-12 text-lg leading-relaxed">
                   This shop requires a dedicated browser window for a secure checkout experience.
                 </p>
-                <a 
-                  href={absoluteUrl} 
-                  target="_blank" 
+                <a
+                  href={absoluteUrl}
+                  target="_blank"
                   rel="noreferrer"
                   onClick={onClose}
                   className="px-12 py-5 bg-white text-bumaye-black rounded-2xl font-bold text-xl hover:bg-bumaye-orange hover:text-white transition-all transform hover:scale-105"
@@ -85,14 +85,14 @@ const TicketModal = ({ url, isOpen, onClose }: { url: string; isOpen: boolean; o
                 </a>
               </div>
             ) : (
-              <iframe 
-                src={absoluteUrl} 
+              <iframe
+                src={absoluteUrl}
                 className="w-full h-full border-none"
                 title="Ticket Shop"
               />
             )}
           </div>
-          
+
           <div className="absolute bottom-0 left-0 w-full p-4 bg-white border-t border-black/5 flex justify-between items-center">
             <p className="text-[10px] font-mono uppercase tracking-widest text-black/40">Secure Checkout via Ticket Provider</p>
             <a href={absoluteUrl} target="_blank" rel="noreferrer" className="text-[10px] font-mono uppercase tracking-widest text-bumaye-orange flex items-center gap-1 hover:underline">
@@ -105,7 +105,7 @@ const TicketModal = ({ url, isOpen, onClose }: { url: string; isOpen: boolean; o
   );
 };
 
-const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gallery = [], onGalleryAdd, onGalleryRemove, onGalleryReorder, logoUrl, onLogoUpload }: { 
+const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gallery = [], onGalleryAdd, onGalleryRemove, onGalleryReorder, logoUrl, onLogoUpload }: {
   events: Event[];
   onAdd: (e: Omit<Event, 'id'>) => Promise<void>;
   onUpdate: (id: string, e: Omit<Event, 'id'>) => Promise<void>;
@@ -119,46 +119,46 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
   logoUrl?: string;
   onLogoUpload?: (file: File) => Promise<void>;
 }) => {
-    // Gallery manager state
-    const [galleryInput, setGalleryInput] = useState('');
-    const [galleryFiles, setGalleryFiles] = useState<File[]>([]);
-    const [galleryError, setGalleryError] = useState('');
-    const [isGalleryUploading, setIsGalleryUploading] = useState(false);
+  // Gallery manager state
+  const [galleryInput, setGalleryInput] = useState('');
+  const [galleryFiles, setGalleryFiles] = useState<File[]>([]);
+  const [galleryError, setGalleryError] = useState('');
+  const [isGalleryUploading, setIsGalleryUploading] = useState(false);
 
-    const handleGalleryAddSubmit = async () => {
-      if (!galleryInput && galleryFiles.length === 0) {
-        setGalleryError('Voer een URL in of selecteer bestanden');
-        return;
-      }
-      setIsGalleryUploading(true);
-      if (onGalleryAdd) {
-        await onGalleryAdd(galleryFiles, galleryInput);
-      }
+  const handleGalleryAddSubmit = async () => {
+    if (!galleryInput && galleryFiles.length === 0) {
+      setGalleryError('Voer een URL in of selecteer bestanden');
+      return;
+    }
+    setIsGalleryUploading(true);
+    if (onGalleryAdd) {
+      await onGalleryAdd(galleryFiles, galleryInput);
+    }
+    setGalleryFiles([]);
+    setGalleryInput('');
+    setGalleryError('');
+    setIsGalleryUploading(false);
+  };
+
+  const handleGalleryFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files && files.length > 0) {
+      setGalleryFiles(Array.from(files));
+    } else {
       setGalleryFiles([]);
-      setGalleryInput('');
-      setGalleryError('');
-      setIsGalleryUploading(false);
-    };
+    }
+  };
 
-    const handleGalleryFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const files = e.target.files;
-      if (files && files.length > 0) {
-        setGalleryFiles(Array.from(files));
-      } else {
-        setGalleryFiles([]);
-      }
-    };
+  const handleGalleryRemoveClick = async (id: string) => {
+    if (onGalleryRemove) await onGalleryRemove(id);
+  };
 
-    const handleGalleryRemoveClick = async (id: string) => {
-      if (onGalleryRemove) await onGalleryRemove(id);
-    };
-
-    const handleLogoFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
-      const file = e.target.files?.[0];
-      if (file && onLogoUpload) {
-        await onLogoUpload(file);
-      }
-    };
+  const handleLogoFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file && onLogoUpload) {
+      await onLogoUpload(file);
+    }
+  };
   const [editingId, setEditingId] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -283,7 +283,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <button 
+            <button
               onClick={onRefresh}
               disabled={isRefreshing}
               className="flex items-center gap-2 px-4 py-2 bg-black/5 hover:bg-black/10 rounded-xl transition-all font-mono text-[10px] uppercase tracking-widest disabled:opacity-50"
@@ -303,7 +303,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                   {editingId ? 'Edit Event' : 'Add New Event'}
                 </h3>
                 {editingId && (
-                  <button 
+                  <button
                     onClick={handleCancelEdit}
                     className="text-[10px] font-mono uppercase tracking-widest text-bumaye-orange hover:underline"
                   >
@@ -312,59 +312,59 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                 )}
               </div>
               <form onSubmit={handleSubmit} className="space-y-4">
-                <input 
-                  placeholder="Event Title" 
+                <input
+                  placeholder="Event Title"
                   value={newEvent.title}
-                  onChange={e => setNewEvent({...newEvent, title: e.target.value})}
+                  onChange={e => setNewEvent({ ...newEvent, title: e.target.value })}
                   className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
                   required
                 />
-                <textarea 
-                  placeholder="Description" 
+                <textarea
+                  placeholder="Description"
                   value={newEvent.description}
-                  onChange={e => setNewEvent({...newEvent, description: e.target.value})}
+                  onChange={e => setNewEvent({ ...newEvent, description: e.target.value })}
                   className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange resize-none"
                   rows={3}
                 />
                 <div className="grid grid-cols-2 gap-4">
-                  <input 
-                    placeholder="Date (e.g. JULY 25, 2026)" 
+                  <input
+                    placeholder="Date (e.g. March 27, 2026)"
                     value={newEvent.date}
-                    onChange={e => setNewEvent({...newEvent, date: e.target.value})}
+                    onChange={e => setNewEvent({ ...newEvent, date: e.target.value })}
                     className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
                     required
                   />
-                  <input 
-                    placeholder="Time (e.g. 23:00 - 05:00)" 
+                  <input
+                    placeholder="Time (e.g. 23:00 - 05:00)"
                     value={newEvent.time}
-                    onChange={e => setNewEvent({...newEvent, time: e.target.value})}
+                    onChange={e => setNewEvent({ ...newEvent, time: e.target.value })}
                     className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
-                  <input 
-                    placeholder="Location" 
+                  <input
+                    placeholder="Location"
                     value={newEvent.location}
-                    onChange={e => setNewEvent({...newEvent, location: e.target.value})}
+                    onChange={e => setNewEvent({ ...newEvent, location: e.target.value })}
                     className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
                     required
                   />
-                  <input 
-                    placeholder="City" 
+                  <input
+                    placeholder="City"
                     value={newEvent.city}
-                    onChange={e => setNewEvent({...newEvent, city: e.target.value})}
+                    onChange={e => setNewEvent({ ...newEvent, city: e.target.value })}
                     className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
                     required
                   />
                 </div>
-                <input 
-                  placeholder="Ticket URL" 
+                <input
+                  placeholder="Ticket URL"
                   value={newEvent.ticketUrl}
-                  onChange={e => setNewEvent({...newEvent, ticketUrl: e.target.value})}
+                  onChange={e => setNewEvent({ ...newEvent, ticketUrl: e.target.value })}
                   className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
                   required
                 />
-                <button 
+                <button
                   disabled={isSubmitting}
                   className="w-full bg-bumaye-orange text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-bumaye-black transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 >
@@ -393,14 +393,14 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <button 
+                      <button
                         onClick={() => handleEdit(event)}
                         className="p-2 text-bumaye-orange hover:bg-bumaye-orange/10 rounded-lg transition-colors"
                         title="Edit Event"
                       >
                         <Edit2 size={18} />
                       </button>
-                      <button 
+                      <button
                         onClick={() => handleDelete(event.id)}
                         disabled={deletingId === event.id}
                         className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors disabled:opacity-50"
@@ -446,15 +446,15 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                   {isGalleryUploading ? 'Uploading...' : 'Toevoegen'}
                 </button>
               </div>
-              <Reorder.Group 
-                axis="x" 
-                values={gallery} 
-                onReorder={onGalleryReorder || (() => {})} 
+              <Reorder.Group
+                axis="x"
+                values={gallery}
+                onReorder={onGalleryReorder || (() => { })}
                 className="flex overflow-x-auto gap-4 mt-6 pb-4 hide-scrollbar"
               >
                 {gallery.map((item) => (
-                  <Reorder.Item 
-                    key={item.id} 
+                  <Reorder.Item
+                    key={item.id}
                     value={item}
                     className="relative flex-none w-[120px] aspect-[3/4] rounded-2xl overflow-hidden bg-black/5 border border-black/5 group"
                   >
@@ -463,7 +463,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                     ) : (
                       <img src={item.url} alt="" className="w-full h-full object-cover pointer-events-none" />
                     )}
-                    
+
                     {/* Drag Handle Indicator */}
                     <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-grab active:cursor-grabbing">
                       <GripVertical className="text-white" size={24} />
@@ -508,11 +508,11 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                     )}
                   </div>
                   <div className="relative group">
-                    <input 
-                      type="file" 
-                      accept="image/*" 
+                    <input
+                      type="file"
+                      accept="image/*"
                       onChange={handleLogoFile}
-                      className="absolute inset-0 opacity-0 cursor-pointer w-full h-full z-10" 
+                      className="absolute inset-0 opacity-0 cursor-pointer w-full h-full z-10"
                     />
                     <button className="bg-bumaye-black text-white px-8 py-3 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-bumaye-orange transition-all flex items-center gap-3">
                       <Camera size={18} /> {logoUrl ? 'Change Logo' : 'Upload Logo'}
@@ -535,7 +535,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
 const Marquee = () => {
   return (
     <div className="bg-bumaye-orange py-4 overflow-hidden whitespace-nowrap border-y border-black/10 mt-20">
-      <motion.div 
+      <motion.div
         animate={{ x: [0, -1000] }}
         transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
         className="inline-block"
@@ -570,7 +570,7 @@ const Navbar = ({ logoUrl }: { logoUrl?: string }) => {
             <span className="font-display text-3xl tracking-tighter text-bumaye-orange">BUMAYE</span>
           )}
         </a>
-        
+
         <div className="hidden md:flex items-center gap-8 font-display text-sm uppercase tracking-[0.15em]">
           <a href="#events" className="hover:text-bumaye-orange transition-colors">Events</a>
           <a href="#about" className="hover:text-bumaye-orange transition-colors">About</a>
@@ -593,19 +593,19 @@ const Navbar = ({ logoUrl }: { logoUrl?: string }) => {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 bg-bumaye-black/95 backdrop-blur-2xl z-50 flex flex-col items-center justify-center text-center p-6 sm:p-10"
           >
-            <button 
-              className="absolute top-8 right-8 text-white/40 hover:text-bumaye-orange transition-colors" 
+            <button
+              className="absolute top-8 right-8 text-white/40 hover:text-bumaye-orange transition-colors"
               onClick={() => setIsOpen(false)}
             >
               <X size={40} />
             </button>
-            
+
             <div className="flex flex-col gap-6 sm:gap-8 font-display text-4xl sm:text-6xl uppercase tracking-tighter">
               {['Events', 'About', 'Gallery', 'Contact'].map((item, i) => (
                 <motion.a
@@ -622,7 +622,7 @@ const Navbar = ({ logoUrl }: { logoUrl?: string }) => {
               ))}
             </div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
@@ -631,11 +631,11 @@ const Navbar = ({ logoUrl }: { logoUrl?: string }) => {
               <button className="w-full bg-bumaye-orange text-white py-5 rounded-3xl font-bold text-xl hover:scale-105 transition-transform shadow-2xl shadow-bumaye-orange/40">
                 TICKETS KOPEN
               </button>
-              
+
               <div className="flex gap-6">
-                <a 
-                  href="https://www.instagram.com/bumaye.nl" 
-                  target="_blank" 
+                <a
+                  href="https://www.instagram.com/bumaye.nl"
+                  target="_blank"
                   rel="noreferrer"
                   className="p-5 glass rounded-full text-bumaye-orange hover:bg-bumaye-orange hover:text-white transition-all"
                 >
@@ -652,7 +652,7 @@ const Navbar = ({ logoUrl }: { logoUrl?: string }) => {
 
 const Hero = ({ gallery, firstEvent }: { gallery: GalleryItem[], firstEvent?: Event }) => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-flyer-gradient">
+    <section className="relative min-h-screen flex flex-col items-center justify-start md:justify-center pt-32 pb-20 bg-flyer-gradient">
       {/* Background Elements */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-noise mix-blend-overlay opacity-10" />
@@ -669,9 +669,9 @@ const Hero = ({ gallery, firstEvent }: { gallery: GalleryItem[], firstEvent?: Ev
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/20 backdrop-blur-md rounded-full mb-8 border border-white/20">
             <span className="w-2 h-2 bg-white rounded-full animate-ping" />
-            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white">Next Event: Rotterdam • July 25</span>
+            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white">Next Event: Rotterdam • March 27</span>
           </div>
-          
+
           <div className="relative mb-8 md:mb-12">
             <motion.div
               initial={{ y: 20, opacity: 0 }}
@@ -679,14 +679,14 @@ const Hero = ({ gallery, firstEvent }: { gallery: GalleryItem[], firstEvent?: Ev
               transition={{ delay: 0.3 }}
               className="relative inline-block"
             >
-              <img 
-                src={bannerImage} 
-                alt="BUMAYE!" 
+              <img
+                src={bannerImage}
+                alt="BUMAYE!"
                 className="w-[85vw] md:w-[50vw] max-w-[800px] h-auto drop-shadow-[0_20px_50px_rgba(251,27,129,0.4)] transform -rotate-1 select-none pointer-events-none"
               />
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ y: 10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.6 }}
@@ -720,7 +720,7 @@ const Hero = ({ gallery, firstEvent }: { gallery: GalleryItem[], firstEvent?: Ev
         {/* Hero Gallery Section */}
         {gallery && gallery.length > 0 && (
           <div className="mt-20 md:mt-40 w-full text-left">
-            <div className="flex flex-col md:flex-row justify-between items-end gap-6 md:gap-8 mb-8">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 md:gap-8 mb-8">
               <h2 className="font-display text-3xl sm:text-4xl md:text-6xl uppercase tracking-tighter text-white drop-shadow-md">THE VIBE</h2>
               <a
                 href="https://www.instagram.com/bumaye.nl"
@@ -767,7 +767,7 @@ const FeaturedEvent: React.FC<{ event: Event; onBook: (url: string) => void }> =
   const [showFlyer, setShowFlyer] = useState(false);
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -775,9 +775,9 @@ const FeaturedEvent: React.FC<{ event: Event; onBook: (url: string) => void }> =
     >
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <div className="aspect-square lg:aspect-auto relative overflow-hidden">
-          <img 
-            src={event.image} 
-            alt={event.title} 
+          <img
+            src={event.image}
+            alt={event.title}
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
           />
@@ -789,8 +789,8 @@ const FeaturedEvent: React.FC<{ event: Event; onBook: (url: string) => void }> =
           </div>
         </div>
 
-    <div className="p-8 md:p-16 flex flex-col justify-center">
-      <div className="flex items-center gap-4 sm:gap-6 mb-6 md:mb-8">
+        <div className="p-8 md:p-16 flex flex-col justify-center">
+          <div className="flex items-center gap-4 sm:gap-6 mb-6 md:mb-8">
             <div className="flex items-center gap-2 text-bumaye-orange font-mono text-xs uppercase tracking-widest">
               <Calendar size={16} />
               {event.date}
@@ -819,20 +819,19 @@ const FeaturedEvent: React.FC<{ event: Event; onBook: (url: string) => void }> =
           )}
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <button 
+            <button
               onClick={() => event.status !== 'sold-out' && onBook(event.ticketUrl)}
-              className={`flex-1 py-6 rounded-2xl font-bold flex items-center justify-center gap-3 transition-all text-lg ${
-                event.status === 'sold-out' 
-                ? 'bg-white/5 text-white/20 cursor-not-allowed' 
-                : 'bg-white text-bumaye-black hover:bg-bumaye-orange hover:text-white'
-              }`}
+              className={`flex-1 py-6 rounded-2xl font-bold flex items-center justify-center gap-3 transition-all text-lg ${event.status === 'sold-out'
+                  ? 'bg-white/5 text-white/20 cursor-not-allowed'
+                  : 'bg-white text-bumaye-black hover:bg-bumaye-orange hover:text-white'
+                }`}
             >
               <Ticket size={24} />
               {event.status === 'sold-out' ? 'JOIN WAITLIST' : 'SECURE TICKETS'}
             </button>
-            
+
             {event.flyerUrl && (
-              <button 
+              <button
                 onClick={() => setShowFlyer(true)}
                 className="px-10 py-6 rounded-2xl font-bold border border-white/10 hover:bg-white/5 transition-all flex items-center justify-center gap-3 text-white uppercase tracking-widest text-sm"
               >
@@ -845,28 +844,28 @@ const FeaturedEvent: React.FC<{ event: Event; onBook: (url: string) => void }> =
 
       <AnimatePresence>
         {showFlyer && event.flyerUrl && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[110] flex items-center justify-center p-4 md:p-10"
           >
             <div className="absolute inset-0 bg-bumaye-black/95 backdrop-blur-2xl" onClick={() => setShowFlyer(false)} />
-            <motion.div 
+            <motion.div
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
               className="relative w-full max-w-6xl aspect-[21/9] bg-bumaye-black rounded-[3rem] overflow-hidden shadow-2xl border border-white/10"
             >
-              <button 
+              <button
                 onClick={() => setShowFlyer(false)}
                 className="absolute top-8 right-8 z-20 p-3 bg-black/50 hover:bg-bumaye-orange rounded-full transition-colors text-white"
               >
                 <X size={32} />
               </button>
-              <img 
-                src={event.flyerUrl} 
-                alt={`${event.title} Flyer`} 
+              <img
+                src={event.flyerUrl}
+                alt={`${event.title} Flyer`}
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
               />
@@ -889,9 +888,9 @@ const Newsletter = () => {
           Subscribe to get early access to tickets, exclusive line-up reveals, and special discounts.
         </p>
         <form className="flex flex-col md:flex-row gap-4 max-w-md mx-auto">
-          <input 
-            type="email" 
-            placeholder="YOUR EMAIL ADDRESS" 
+          <input
+            type="email"
+            placeholder="YOUR EMAIL ADDRESS"
             className="flex-1 bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-bumaye-orange transition-colors font-mono text-sm"
           />
           <button className="bg-white text-bumaye-black px-8 py-4 rounded-2xl font-bold hover:bg-bumaye-orange hover:text-white transition-all flex items-center justify-center gap-2">
@@ -913,7 +912,7 @@ const ContactSection = () => {
           <p className="text-white/60 text-xl mb-12 leading-relaxed">
             Whether you're a DJ, promoter, or brand looking to partner with the hottest Afrobeats event in the NL, we'd love to hear from you.
           </p>
-          
+
           <div className="space-y-8">
             <div className="flex items-center gap-6">
               <div className="w-14 h-14 glass rounded-2xl flex items-center justify-center text-bumaye-orange">
@@ -978,9 +977,9 @@ const AboutSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center mb-32">
           <div className="relative group">
             <div className="aspect-[4/5] rounded-[3rem] overflow-hidden">
-              <img 
-                src="https://images.unsplash.com/photo-1545128485-c400e7702796?auto=format&fit=crop&q=80&w=800" 
-                alt="Bumaye Crowd" 
+              <img
+                src="https://images.unsplash.com/photo-1545128485-c400e7702796?auto=format&fit=crop&q=80&w=800"
+                alt="Bumaye Crowd"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
                 referrerPolicy="no-referrer"
               />
@@ -1028,7 +1027,7 @@ const Footer = ({ onAdminClick }: { onAdminClick: () => void }) => {
               </a>
             </div>
           </div>
-          
+
           <div>
             <h4 className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/40 mb-8">Quick Links</h4>
             <ul className="space-y-4 font-bold uppercase text-sm tracking-widest">
@@ -1048,7 +1047,7 @@ const Footer = ({ onAdminClick }: { onAdminClick: () => void }) => {
             </ul>
           </div>
         </div>
-        
+
         <div className="border-t border-white/5 pt-10 flex flex-col md:flex-row justify-between items-center gap-6 text-white/20 text-[10px] font-mono uppercase tracking-[0.4em]">
           <p>© 2026 BUMAYE EVENTS • ALL RIGHTS RESERVED</p>
           <div className="flex gap-8">
@@ -1111,7 +1110,7 @@ export default function App() {
     );
   };
 
-// Helper function to compress images and handle transparency
+  // Helper function to compress images and handle transparency
   const compressImage = (file: File): Promise<string> => new Promise((resolve) => {
     // Skip processing for SVG or if transparency is absolutely critical and we don't want to risk it
     if (file.type === 'image/svg+xml') {
@@ -1143,14 +1142,14 @@ export default function App() {
           ctx.clearRect(0, 0, width, height);
           ctx.drawImage(img, 0, 0, width, height);
         }
-        
+
         // Preserve transparency for PNGs by using image/png
         const isPng = file.type === 'image/png';
         const mimeType = isPng ? 'image/png' : 'image/jpeg';
         const quality = isPng ? 1.0 : 0.6; // High quality for PNG to keep details
-        
+
         const dataUrl = canvas.toDataURL(mimeType, quality);
-        
+
         // Final sanity check: if the compressed version is somehow way larger (rare), maybe return original
         // For now, we trust the transparency fix
         resolve(dataUrl);
@@ -1194,7 +1193,7 @@ export default function App() {
         .from('gallery')
         .select('*')
         .order('created_at', { ascending: false });
-      
+
       if (!fallback.error && fallback.data) {
         setGallery(fallback.data);
       }
@@ -1303,19 +1302,19 @@ export default function App() {
   const handleAppGalleryAdd = async (files: File[], url: string) => {
     const newItems: Partial<GalleryItem>[] = [];
     const maxOrder = gallery.length > 0 ? Math.max(...gallery.map(g => g.display_order || 0)) : 0;
-    
+
     let currentOrder = maxOrder + 1;
     for (const file of files) {
-      newItems.push({ 
-        id: Math.random().toString(36).substring(2, 9), 
+      newItems.push({
+        id: Math.random().toString(36).substring(2, 9),
         url: await compressImage(file),
         display_order: currentOrder++
       });
     }
-    
+
     if (url) {
-      newItems.push({ 
-        id: Math.random().toString(36).substring(2, 9), 
+      newItems.push({
+        id: Math.random().toString(36).substring(2, 9),
         url,
         display_order: currentOrder++
       });
@@ -1331,7 +1330,7 @@ export default function App() {
       .from('gallery')
       .insert(newItems.map(item => ({ url: item.url, display_order: item.display_order })))
       .select();
-      
+
     if (insertResult.error && insertResult.error.message.includes('display_order')) {
       // Fallback: try inserting without display_order if the column doesn't exist yet
       insertResult = await supabase
@@ -1353,7 +1352,7 @@ export default function App() {
       ...item,
       display_order: index + 1
     }));
-    
+
     setGallery(updatedGallery);
 
     // Sync to database if configured
@@ -1364,7 +1363,7 @@ export default function App() {
 
   const syncGalleryOrder = async (orderedGallery: GalleryItem[]) => {
     // Perform updates in parallel
-    const updates = orderedGallery.map((item) => 
+    const updates = orderedGallery.map((item) =>
       supabase
         .from('gallery')
         .update({ display_order: item.display_order })
@@ -1381,7 +1380,7 @@ export default function App() {
   const handleLogoUpload = async (file: File) => {
     // Reuse compressImage for logo too
     const compressedDataUrl = await compressImage(file);
-    
+
     if (!isSupabaseConfigured) {
       setLogoUrl(compressedDataUrl);
       return;

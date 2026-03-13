@@ -1040,6 +1040,29 @@ export default function App() {
   const [gallery, setGallery] = useState<GalleryItem[]>(GALLERY);
   const [logoUrl, setLogoUrl] = useState<string>('');
 
+  // Handle booking click - check if URL is embeddable or needs new tab
+  const handleBook = (url: string) => {
+    if (!url) return;
+    
+    const absUrl = ensureAbsoluteUrl(url);
+    const lowUrl = absUrl.toLowerCase();
+    
+    // Sites that usually block being in an iframe
+    const blocksIframe = [
+      'linktr.ee',
+      'instagram.com',
+      'facebook.com',
+      'tiktok.com',
+      'spotify.com'
+    ].some(site => lowUrl.includes(site));
+
+    if (blocksIframe) {
+      window.open(absUrl, '_blank', 'noreferrer');
+    } else {
+      setTicketUrl(absUrl);
+    }
+  };
+
   // Admin wachtwoord (voor demo, zet dit in env of backend voor productie!)
   const ADMIN_PASSWORD = 'bumaye2026';
 
@@ -1390,7 +1413,7 @@ export default function App() {
           </div>
 
           {events.length > 0 ? (
-            <FeaturedEvent event={events[0]} onBook={setTicketUrl} />
+            <FeaturedEvent event={events[0]} onBook={handleBook} />
           ) : (
             <div className="text-center py-32 glass rounded-[3rem] border border-dashed border-white/10">
               <p className="font-mono text-white/20 uppercase tracking-widest">No upcoming events scheduled</p>

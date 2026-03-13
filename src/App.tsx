@@ -495,7 +495,7 @@ const Marquee = () => {
       >
         {[...Array(10)].map((_, i) => (
           <span key={i} className="font-display text-4xl md:text-6xl text-white mx-8 uppercase tracking-tighter">
-            AFROBEATS • DANCEHALL • HIPHOP • R&B •
+            AFROBEATS • DANCEHALL • HIPHOP • R&B • &nbsp;
           </span>
         ))}
       </motion.div>
@@ -599,13 +599,13 @@ const Hero = ({ gallery, firstEvent }: { gallery: GalleryItem[], firstEvent?: Ev
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
-          className="flex flex-col md:flex-row items-center justify-center gap-6"
+          className="flex flex-col md:flex-row items-center justify-center gap-4"
         >
-          <a href={firstEvent ? firstEvent.ticketUrl : "#"} target={firstEvent ? "_blank" : "_self"} rel="noreferrer" className="group bg-bumaye-orange text-white px-12 py-5 rounded-full font-bold text-lg flex items-center gap-3 hover:bg-white hover:text-bumaye-black transition-all shadow-2xl shadow-bumaye-orange/30">
-            GET TICKETS <ArrowRight className="group-hover:translate-x-2 transition-transform" />
+          <a href={firstEvent ? firstEvent.ticketUrl : "#"} target={firstEvent ? "_blank" : "_self"} rel="noreferrer" className="group bg-bumaye-orange text-white px-8 py-3.5 rounded-full font-bold text-base flex items-center gap-3 hover:bg-white hover:text-bumaye-black transition-all shadow-2xl shadow-bumaye-orange/30">
+            GET TICKETS <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
           </a>
-          <button className="group glass text-white px-12 py-5 rounded-full font-bold text-lg flex items-center gap-3 hover:bg-white/10 transition-all">
-            WATCH TEASER <Play size={20} className="fill-current" />
+          <button className="group glass text-white px-8 py-3.5 rounded-full font-bold text-base flex items-center gap-3 hover:bg-white/10 transition-all">
+            WATCH TEASER <Play size={18} className="fill-current" />
           </button>
         </motion.div>
 
@@ -873,13 +873,6 @@ const ContactSection = () => {
 };
 
 const AboutSection = () => {
-  const residents = [
-    { name: 'HENRY X', role: 'AFROBEATS MASTER' },
-    { name: 'RUDY LIMA', role: 'URBAN VIBES' },
-    { name: 'MC GARY BLACK', role: 'THE VOICE' },
-    { name: 'DJ WEF', role: 'DANCEHALL QUEEN' }
-  ];
-
   return (
     <section id="about" className="py-32 px-6 bg-white text-bumaye-black rounded-[4rem] mx-4 my-8">
       <div className="max-w-7xl mx-auto">
@@ -893,16 +886,11 @@ const AboutSection = () => {
                 referrerPolicy="no-referrer"
               />
             </div>
-            <div className="absolute -bottom-12 -right-12 w-72 h-72 bg-bumaye-orange rounded-[3rem] p-10 flex flex-col justify-end text-white shadow-2xl shadow-bumaye-orange/40 hidden md:flex">
-              <Users size={48} className="mb-6" />
-              <span className="font-display text-5xl leading-none uppercase tracking-tighter">100K+</span>
-              <span className="font-mono text-[10px] uppercase tracking-[0.3em] opacity-80 mt-2">Global Community</span>
-            </div>
           </div>
 
           <div>
             <span className="font-mono text-bumaye-orange text-xs tracking-[0.4em] uppercase mb-6 block">The Movement</span>
-            <h2 className="font-display text-7xl md:text-8xl uppercase mb-10 leading-[0.9] tracking-tighter">CULTURE IN<br />MOTION</h2>
+            <h2 className="font-display text-7xl md:text-8xl uppercase mb-10 leading-[0.9] tracking-tighter">WHAT IS<br />BUMAYE?</h2>
             <div className="space-y-8 text-xl leading-relaxed text-bumaye-black/70">
               <p>
                 Bumaye isn't just an event; it's a celebration of the African diaspora's global influence on music and dance. We bring the soul of Lagos, the heat of Kingston, and the pulse of London to the heart of the Netherlands.
@@ -927,24 +915,6 @@ const AboutSection = () => {
                 <p className="text-sm text-bumaye-black/50">Capturing every moment with premium visual production.</p>
               </div>
             </div>
-          </div>
-        </div>
-
-        <div className="border-t border-bumaye-black/5 pt-24">
-          <h3 className="font-display text-5xl uppercase mb-12 text-center">RESIDENT VIBE MAKERS</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {residents.map((dj, i) => (
-              <div key={i} className="text-center group">
-                <div className="aspect-square rounded-full bg-bumaye-black/5 mb-6 overflow-hidden relative">
-                  <div className="absolute inset-0 bg-bumaye-orange opacity-0 group-hover:opacity-20 transition-opacity" />
-                  <div className="w-full h-full flex items-center justify-center text-bumaye-black/10 group-hover:text-bumaye-orange transition-colors">
-                    <Music2 size={64} />
-                  </div>
-                </div>
-                <h4 className="font-display text-2xl uppercase tracking-tighter">{dj.name}</h4>
-                <p className="font-mono text-[10px] uppercase tracking-widest text-bumaye-black/40">{dj.role}</p>
-              </div>
-            ))}
           </div>
         </div>
       </div>

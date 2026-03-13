@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, Reorder } from 'motion/react';
-import { ArrowRight, Play, Instagram, Menu, X, Plus, Trash2, Camera, Check, AlertCircle, Save, LogOut, ChevronLeft, ChevronRight, Globe, Lock, Music2, Share2, Youtube, ExternalLink, Ticket, Calendar, MapPin, Users, Mail, Send, Clock, Settings, Edit2, Database, RefreshCw, ChevronUp, ChevronDown } from 'lucide-react';
+import { ArrowRight, Play, Instagram, Menu, X, Plus, Trash2, Camera, Check, AlertCircle, Save, LogOut, ChevronLeft, ChevronRight, Globe, Lock, Music2, Share2, Youtube, ExternalLink, Ticket, Calendar, MapPin, Users, Mail, Send, Clock, Settings, Edit2, Database, RefreshCw, ChevronUp, ChevronDown, GripVertical } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 import bannerImage from './assets/bumaye-banner.png';
 import { EVENTS as INITIAL_EVENTS, GALLERY, type Event, type GalleryItem } from './constants';
@@ -411,7 +411,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                   <Reorder.Item 
                     key={item.id} 
                     value={item}
-                    className="relative flex-none w-[120px] aspect-[3/4] rounded-2xl overflow-hidden bg-black/5 border border-black/5 group cursor-grab active:cursor-grabbing"
+                    className="relative flex-none w-[120px] aspect-[3/4] rounded-2xl overflow-hidden bg-black/5 border border-black/5 group"
                   >
                     {item.url.startsWith('data:video') || item.url.endsWith('.mp4') ? (
                       <video src={item.url} className="w-full h-full object-cover pointer-events-none" />
@@ -419,9 +419,15 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                       <img src={item.url} alt="" className="w-full h-full object-cover pointer-events-none" />
                     )}
                     
+                    {/* Drag Handle Indicator */}
+                    <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-grab active:cursor-grabbing">
+                      <GripVertical className="text-white" size={24} />
+                    </div>
+
                     {/* Remove Control */}
-                    <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="absolute top-2 right-2 z-10">
                       <button
+                        onPointerDown={(e) => e.stopPropagation()}
                         onClick={(e) => {
                           e.stopPropagation();
                           handleGalleryRemoveClick(item.id);
@@ -430,15 +436,6 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                       >
                         <Trash2 size={12} />
                       </button>
-                    </div>
-
-                    {/* Drag Handle Indicator */}
-                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-black/20 backdrop-blur-sm px-2 py-0.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                      <div className="flex gap-1">
-                        <div className="w-1 h-1 bg-white/60 rounded-full" />
-                        <div className="w-1 h-1 bg-white/60 rounded-full" />
-                        <div className="w-1 h-1 bg-white/60 rounded-full" />
-                      </div>
                     </div>
                   </Reorder.Item>
                 ))}
@@ -1127,8 +1124,8 @@ export default function App() {
       return;
     }
 
-    if (data && data.length > 0) {
-      setGallery(data);
+    if (data) {
+      setGallery(data.length > 0 ? data : []);
     }
   };
 

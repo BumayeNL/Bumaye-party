@@ -539,14 +539,14 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                     )}
                   </div>
                   <div className="relative group">
-                    <input 
-                      type="file" 
-                      accept="image/*" 
+                    <input
+                      type="file"
+                      accept="image/*"
                       onChange={(e) => {
                         const file = e.target.files?.[0];
                         if (file) onAboutImageUpload(file);
                       }}
-                      className="absolute inset-0 opacity-0 cursor-pointer w-full h-full z-10" 
+                      className="absolute inset-0 opacity-0 cursor-pointer w-full h-full z-10"
                     />
                     <button className="bg-bumaye-black text-white px-8 py-3 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-bumaye-orange transition-all flex items-center gap-3">
                       <Camera size={18} /> {aboutImageUrl ? 'Change Image' : 'Upload Image'}
@@ -856,8 +856,8 @@ const FeaturedEvent: React.FC<{ event: Event; onBook: (url: string) => void }> =
             <button
               onClick={() => event.status !== 'sold-out' && onBook(event.ticketUrl)}
               className={`flex-1 py-6 rounded-2xl font-bold flex items-center justify-center gap-3 transition-all text-lg ${event.status === 'sold-out'
-                  ? 'bg-white/5 text-white/20 cursor-not-allowed'
-                  : 'bg-white text-bumaye-black hover:bg-bumaye-orange hover:text-white'
+                ? 'bg-white/5 text-white/20 cursor-not-allowed'
+                : 'bg-white text-bumaye-black hover:bg-bumaye-orange hover:text-white'
                 }`}
             >
               <Ticket size={24} />
@@ -1025,10 +1025,11 @@ const AboutSection = ({ imageUrl }: { imageUrl?: string }) => {
             <h2 className="font-display text-5xl sm:text-6xl md:text-7xl uppercase mb-8 leading-[0.9] tracking-tighter">WHAT IS<br />BUMAYE?</h2>
             <div className="space-y-6 text-lg leading-relaxed text-bumaye-black/70 font-light">
               <p>
-                Bumaye isn't just an event; it's a celebration of the African diaspora's global influence on music and dance. We bring the soul of Lagos, the heat of Kingston, and the pulse of London to the heart of the Netherlands.
+                Bumaye is more than an event — it's a feeling.
+                A space where good energy, love and freedom hit different. Where you walk in as a stranger and leave as family.
               </p>
               <p>
-                Our mission is to create a safe, high-energy space where music lovers can connect, dance, and experience the best of Afrobeats, Dancehall, and Urban culture.
+                Come as you are. Dance like nobody's watching. From Afrobeats to Dancehall, R&B to Amapiano — we keep the vibes high and the love higher. See you on the next one ♥.
               </p>
             </div>
           </div>

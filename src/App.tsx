@@ -1111,7 +1111,7 @@ export default function App() {
           <div className="flex flex-col items-center text-center mb-24 relative">
             <span className="font-mono text-bumaye-orange text-xs tracking-[0.6em] uppercase mb-6 block">The Main Event</span>
             <h2 className="font-display text-8xl md:text-[12rem] uppercase leading-[0.75] tracking-tighter mb-8">
-              <span className="inline-flex gap-8 items-center">NEXT <span>UP</span></span>
+              NEXT<br />VIBE
             </h2>
             <p className="max-w-xl text-white/40 font-light leading-relaxed text-xl mb-12">
               We focus on one massive experience at a time. Quality over quantity. This is what's coming next to the dancefloor.

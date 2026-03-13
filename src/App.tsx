@@ -79,7 +79,7 @@ const TicketModal = ({ url, isOpen, onClose }: { url: string; isOpen: boolean; o
   );
 };
 
-const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose }: { 
+const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gallery, setGallery }: { 
   events: Event[];
   onAdd: (e: Omit<Event, 'id'>) => Promise<void>;
   onUpdate: (id: string, e: Omit<Event, 'id'>) => Promise<void>;
@@ -189,6 +189,28 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose }: {
     }
   };
 
+  const handleRefresh = async () => {
+    setIsRefreshing(true);
+    try {
+      await onRefresh();
+    } catch (error) {
+      console.error('Refresh error:', error);
+    } finally {
+      setIsRefreshing(false);
+    }
+  };
+
+  const handleDelete = async (id: string) => {
+    setDeletingId(id);
+    try {
+      await onDelete(id);
+    } catch (error) {
+      console.error('Delete error:', error);
+    } finally {
+      setDeletingId(null);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -214,106 +236,39 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose }: {
     } catch (error) {
       console.error('Submit error:', error);
     } finally {
-      return (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-bumaye-black/95 backdrop-blur-md" onClick={onClose} />
-          <div className="relative w-full max-w-4xl max-h-[90vh] bg-white rounded-[2.5rem] overflow-hidden flex flex-col text-bumaye-black">
-            <div className="p-8 border-b border-black/5 flex justify-between items-center">
-              <div className="flex items-center gap-4">
-                <h2 className="font-display text-4xl uppercase tracking-tighter">Event Manager</h2>
-                <div className={`flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-widest ${isSupabaseConfigured ? 'bg-green-100 text-green-600' : 'bg-amber-100 text-amber-600'}`}>
-                  <Database size={12} />
-                  {isSupabaseConfigured ? 'Supabase Connected' : 'Local Mode'}
-                </div>
-              </div>
-              <div className="flex items-center gap-4">
-                <button 
-                  onClick={handleRefresh}
-                  disabled={isRefreshing}
-                  className="flex items-center gap-2 px-4 py-2 bg-black/5 hover:bg-black/10 rounded-xl transition-all font-mono text-[10px] uppercase tracking-widest disabled:opacity-50"
-                >
-                  <RefreshCw size={14} className={isRefreshing ? 'animate-spin' : ''} />
-                  {isRefreshing ? 'Syncing...' : 'Sync Now'}
-                </button>
-                <button onClick={onClose} className="p-2 hover:bg-black/5 rounded-full transition-colors"><X size={24} /></button>
-              </div>
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+      <div className="absolute inset-0 bg-bumaye-black/95 backdrop-blur-md" onClick={onClose} />
+      <div className="relative z-10 w-full max-w-4xl max-h-[90vh] bg-white rounded-[2.5rem] overflow-hidden flex flex-col text-bumaye-black">
+        <div className="p-8 border-b border-black/5 flex justify-between items-center">
+          <div className="flex items-center gap-4">
+            <h2 className="font-display text-4xl uppercase tracking-tighter">Event Manager</h2>
+            <div className={`flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-widest ${isSupabaseConfigured ? 'bg-green-100 text-green-600' : 'bg-amber-100 text-amber-600'}`}>
+              <Database size={12} />
+              {isSupabaseConfigured ? 'Supabase Connected' : 'Local Mode'}
             </div>
-
-            <div className="flex-1 overflow-y-auto p-8 grid grid-cols-1 lg:grid-cols-2 gap-12">
-              <div>
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="font-mono text-[10px] uppercase tracking-[0.3em] text-black/40">
-                    {editingId ? 'Edit Event' : 'Add New Event'}
-                  </h3>
-                  {editingId && (
-                    <button 
-                      onClick={handleCancelEdit}
-                      className="text-[10px] font-mono uppercase tracking-widest text-bumaye-orange hover:underline"
-                    >
-                      Cancel Edit
-                    </button>
-                  )}
-                </div>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  ...existing code...
-                </form>
-              </div>
-
-              <div>
-                <h3 className="font-mono text-[10px] uppercase tracking-[0.3em] text-black/40 mb-6">Existing Events</h3>
-                <div className="space-y-4">
-                  ...existing code...
-                </div>
-              </div>
-            </div>
-
-            {/* Gallery Manager */}
-            {gallery && setGallery && (
-              <div className="border-t border-black/10 p-8">
-                <h2 className="font-display text-3xl mb-6 uppercase tracking-tighter">Gallery Manager</h2>
-                <div className="flex gap-4 mb-4">
-                  <input
-                    type="text"
-                    placeholder="Afbeelding/video URL"
-                    value={galleryInput}
-                    onChange={e => setGalleryInput(e.target.value)}
-                    className="flex-1 bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
-                  />
-                  <label className="cursor-pointer bg-black/5 border border-black/10 rounded-xl px-4 py-3 hover:bg-black/10 transition-colors flex items-center justify-center">
-                    <Camera size={20} />
-                    <input type="file" className="hidden" accept="image/*,video/*" onChange={handleGalleryFile} />
-                  </label>
-                  <button
-                    onClick={handleGalleryAdd}
-                    className="bg-bumaye-orange text-white px-6 py-3 rounded-xl font-bold hover:bg-bumaye-black transition-all"
-                  >
-                    Toevoegen
-                  </button>
-                </div>
-                {galleryError && <div className="text-red-500 text-xs mb-2">{galleryError}</div>}
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mt-6">
-                  {gallery.map((item, idx) => (
-                    <div key={idx} className="relative aspect-[3/4] rounded-3xl overflow-hidden bg-white/5 border border-white/10">
-                      {item.startsWith('data:video') || item.endsWith('.mp4') ? (
-                        <video src={item} controls className="w-full h-full object-cover" />
-                      ) : (
-                        <img src={item} alt={`Gallery ${idx}`} className="w-full h-full object-cover" />
-                      )}
-                      <button
-                        onClick={() => handleGalleryRemove(idx)}
-                        className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2 hover:bg-red-700"
-                        title="Verwijder"
-                      >
-                        <Trash2 size={16} />
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+          </div>
+          <div className="flex items-center gap-4">
+            <button 
+              onClick={handleRefresh}
+              disabled={isRefreshing}
+              className="flex items-center gap-2 px-4 py-2 bg-black/5 hover:bg-black/10 rounded-xl transition-all font-mono text-[10px] uppercase tracking-widest disabled:opacity-50"
+            >
+              <RefreshCw size={14} className={isRefreshing ? 'animate-spin' : ''} />
+              {isRefreshing ? 'Syncing...' : 'Sync Now'}
+            </button>
+            <button onClick={onClose} className="p-2 hover:bg-black/5 rounded-full transition-colors"><X size={24} /></button>
           </div>
         </div>
-      );
+
+        <div className="flex-1 overflow-y-auto p-8 grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div>
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="font-mono text-[10px] uppercase tracking-[0.3em] text-black/40">
                 {editingId ? 'Edit Event' : 'Add New Event'}
               </h3>
               {editingId && (
@@ -482,6 +437,51 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose }: {
             </div>
           </div>
         </div>
+
+        {/* Gallery Manager */}
+        {gallery && setGallery && (
+          <div className="border-t border-black/10 p-8">
+            <h2 className="font-display text-3xl mb-6 uppercase tracking-tighter">Gallery Manager</h2>
+            <div className="flex gap-4 mb-4">
+              <input
+                type="text"
+                placeholder="Afbeelding/video URL"
+                value={galleryInput}
+                onChange={e => setGalleryInput(e.target.value)}
+                className="flex-1 bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
+              />
+              <label className="cursor-pointer bg-black/5 border border-black/10 rounded-xl px-4 py-3 hover:bg-black/10 transition-colors flex items-center justify-center">
+                <Camera size={20} />
+                <input type="file" className="hidden" accept="image/*,video/*" onChange={handleGalleryFile} />
+              </label>
+              <button
+                onClick={handleGalleryAdd}
+                className="bg-bumaye-orange text-white px-6 py-3 rounded-xl font-bold hover:bg-bumaye-black transition-all"
+              >
+                Toevoegen
+              </button>
+            </div>
+            {galleryError && <div className="text-red-500 text-xs mb-2">{galleryError}</div>}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mt-6">
+              {gallery.map((item, idx) => (
+                <div key={idx} className="relative aspect-[3/4] rounded-3xl overflow-hidden bg-white/5 border border-white/10">
+                  {item.startsWith('data:video') || item.endsWith('.mp4') ? (
+                    <video src={item} controls className="w-full h-full object-cover" />
+                  ) : (
+                    <img src={item} alt={`Gallery ${idx}`} className="w-full h-full object-cover" />
+                  )}
+                  <button
+                    onClick={() => handleGalleryRemove(idx)}
+                    className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2 hover:bg-red-700"
+                    title="Verwijder"
+                  >
+                    <Trash2 size={16} />
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -1026,7 +1026,7 @@ export default function App() {
       return;
     }
 
-    if (data && data.length > 0) {
+    if (data) {
       setEvents(data);
     }
   };

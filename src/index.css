@@ -21,8 +21,10 @@
 }
 
 @layer utilities {
-  .bg-flyer-gradient {
-    background: linear-gradient(135deg, var(--color-bumaye-yellow-flyer) 0%, var(--color-bumaye-orange-flyer) 50%, var(--color-bumaye-pink) 100%);
+  .bg-hero-banner {
+    background-image: url('./assets/hero-banner-new.png');
+    background-size: cover;
+    background-position: center;
   }
   
   .bg-noise {

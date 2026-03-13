@@ -934,13 +934,13 @@ const Navbar = ({ logoUrl }: { logoUrl?: string }) => {
 
 const Hero = ({ gallery, firstEvent }: { gallery: GalleryItem[], firstEvent?: Event }) => {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-start md:justify-center pt-32 pb-20 bg-flyer-gradient">
+    <section className="relative min-h-screen flex flex-col items-center justify-start md:justify-center pt-32 pb-20 bg-hero-banner">
       {/* Background Elements */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-noise mix-blend-overlay opacity-10" />
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.3),transparent_60%)]" />
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_0%,rgba(0,0,0,0.3),transparent_70%)]" />
         {/* Smooth transition to next section */}
-        <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-bumaye-black to-transparent" />
+        <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-bumaye-black via-bumaye-black/60 to-transparent" />
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">

@@ -488,7 +488,7 @@ const Marquee = () => {
       >
         {[...Array(10)].map((_, i) => (
           <span key={i} className="font-display text-4xl md:text-6xl text-white mx-8 uppercase tracking-tighter">
-            AFROBEATS • DANCEHALL • HIPHOP • R&B • &nbsp;
+            AFROBEATS • DANCEHALL • HIPHOP • R&B
           </span>
         ))}
       </motion.div>
@@ -565,9 +565,10 @@ const Hero = ({ gallery, firstEvent }: { gallery: GalleryItem[], firstEvent?: Ev
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-flyer-gradient">
       {/* Background Elements */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-noise mix-blend-overlay opacity-20" />
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.4),transparent_50%)]" />
-        <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-noise mix-blend-overlay opacity-10" />
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.3),transparent_60%)]" />
+        {/* Smooth transition to next section */}
+        <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-bumaye-black to-transparent" />
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
@@ -588,14 +589,11 @@ const Hero = ({ gallery, firstEvent }: { gallery: GalleryItem[], firstEvent?: Ev
               transition={{ delay: 0.3 }}
               className="inline-block relative"
             >
-              <div className="bg-bumaye-pink text-white px-8 md:px-12 py-4 md:py-6 rounded-2xl shadow-[0_20px_50px_rgba(251,27,129,0.3)] transform -rotate-2">
-                <h1 className="font-display text-[14vw] md:text-[10vw] leading-none tracking-tighter uppercase select-none italic">
+              <div className="bg-bumaye-pink text-white px-8 md:px-12 py-4 md:py-6 rounded-2xl shadow-[0_10px_40px_rgba(251,27,129,0.25)] transform -rotate-1 border-4 border-white">
+                <h1 className="font-display text-[14vw] md:text-[10vw] leading-none tracking-tighter uppercase select-none italic text-white drop-shadow-[0_4px_0_rgba(0,0,0,0.1)]">
                   BUMAYE!
                 </h1>
               </div>
-              {/* Decorative elements to match flyer vibe */}
-              <div className="absolute -top-6 -left-6 w-12 h-12 bg-white/20 rounded-full blur-xl" />
-              <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-bumaye-yellow-flyer/30 rounded-full blur-xl" />
             </motion.div>
 
             <motion.div 
@@ -1066,7 +1064,11 @@ export default function App() {
         canvas.height = height;
         const ctx = canvas.getContext('2d');
         if (ctx) ctx.drawImage(img, 0, 0, width, height);
-        resolve(canvas.toDataURL('image/jpeg', 0.6));
+        
+        // Preserve transparency for PNGs
+        const mimeType = file.type === 'image/png' ? 'image/png' : 'image/jpeg';
+        const quality = file.type === 'image/png' ? 1.0 : 0.6;
+        resolve(canvas.toDataURL(mimeType, quality));
       };
       img.src = e.target?.result as string;
     };

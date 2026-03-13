@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, Reorder } from 'motion/react';
-import { ArrowRight, Play, Instagram, Menu, X, Plus, Trash2, Camera, Check, AlertCircle, Save, LogOut, ChevronLeft, ChevronRight, Globe, Lock, Music2, Share2, Youtube, ExternalLink, Ticket, Calendar, MapPin, Users, Mail, Send, Clock, Settings, Edit2, Database, RefreshCw, ChevronUp, ChevronDown, GripVertical } from 'lucide-react';
+import { ArrowRight, Play, Instagram, Menu, X, Plus, Trash2, Camera, Check, AlertCircle, Save, LogOut, ChevronLeft, ChevronRight, Globe, Lock, Music2, Share2, Youtube, ExternalLink, Ticket, Calendar, MapPin, Users, Mail, Send, Clock, Settings, Edit2, Database, RefreshCw, ChevronUp, ChevronDown, GripVertical, Palette } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 import bannerImage from './assets/bumaye-banner.png';
 import { EVENTS as INITIAL_EVENTS, GALLERY, type Event, type GalleryItem } from './constants';
@@ -105,7 +105,7 @@ const TicketModal = ({ url, isOpen, onClose }: { url: string; isOpen: boolean; o
   );
 };
 
-const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gallery = [], onGalleryAdd, onGalleryRemove, onGalleryReorder, logoUrl, onLogoUpload, aboutImageUrl, onAboutImageUpload }: {
+const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gallery = [], onGalleryAdd, onGalleryRemove, onGalleryReorder, logoUrl, onLogoUpload, aboutImageUrl, onAboutImageUpload, subscribers = [], contactMessages = [], onSubscriberDelete, onMessageDelete, onMessageRead }: {
   events: Event[];
   onAdd: (e: Omit<Event, 'id'>) => Promise<void>;
   onUpdate: (id: string, e: Omit<Event, 'id'>) => Promise<void>;
@@ -120,7 +120,13 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
   onLogoUpload?: (file: File) => Promise<void>;
   aboutImageUrl?: string;
   onAboutImageUpload?: (file: File) => Promise<void>;
+  subscribers?: { id: string; email: string; created_at: string }[];
+  contactMessages?: { id: string; name: string; email: string; subject: string; message: string; is_read: boolean; created_at: string }[];
+  onSubscriberDelete?: (id: string) => Promise<void>;
+  onMessageDelete?: (id: string) => Promise<void>;
+  onMessageRead?: (id: string) => Promise<void>;
 }) => {
+  const [activeTab, setActiveTab] = useState<'events' | 'gallery' | 'branding' | 'inbox'>('events');
   // Gallery manager state
   const [galleryInput, setGalleryInput] = useState('');
   const [galleryFiles, setGalleryFiles] = useState<File[]>([]);
@@ -297,7 +303,28 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
           </div>
         </div>
 
+        <div className="px-8 flex border-b border-black/5">
+          {[
+            { id: 'events', label: 'Events', icon: <Calendar size={14} /> },
+            { id: 'gallery', label: 'Gallery', icon: <Camera size={14} /> },
+            { id: 'branding', label: 'Branding', icon: <Palette size={14} /> },
+            { id: 'inbox', label: 'Inbox', icon: <Mail size={14} />, count: (subscribers.length + contactMessages.filter(m => !m.is_read).length) }
+          ].map(tab => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id as any)}
+              className={`px-6 py-4 font-mono text-[10px] uppercase tracking-widest flex items-center gap-2 border-b-2 transition-all ${activeTab === tab.id ? 'border-bumaye-orange text-bumaye-orange' : 'border-transparent text-black/40 hover:text-black'}`}
+            >
+              {tab.icon} {tab.label}
+              {tab.count !== undefined && tab.count > 0 && (
+                <span className="bg-bumaye-orange text-white px-2 py-0.5 rounded-full text-[8px]">{tab.count}</span>
+              )}
+            </button>
+          ))}
+        </div>
+
         <div className="flex-1 overflow-y-auto">
+          {activeTab === 'events' && (
           <div className="p-8 grid grid-cols-1 lg:grid-cols-2 gap-12 border-b border-black/5">
             <div>
               <div className="flex items-center justify-between mb-6">
@@ -420,9 +447,9 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
               </div>
             </div>
           </div>
+          )}
 
-          {/* Gallery Manager */}
-          {gallery && onGalleryAdd && onGalleryRemove && (
+          {activeTab === 'gallery' && gallery && onGalleryAdd && onGalleryRemove && (
             <div className="p-8 border-b border-black/5">
               <h3 className="font-mono text-[10px] uppercase tracking-[0.3em] text-black/40 mb-6">Gallery Manager</h3>
               <div className="flex gap-4 mb-4">
@@ -495,71 +522,147 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
             </div>
           )}
 
-          {/* Branding Manager */}
-          <div className="p-8">
-            <h3 className="font-mono text-[10px] uppercase tracking-[0.3em] text-black/40 mb-6">Branding</h3>
-            <div className="space-y-4">
+          {activeTab === 'branding' && (
+            <div className="p-8 space-y-12">
               <div>
-                <label className="font-mono text-[10px] uppercase tracking-widest text-black/40 mb-2 block">Site Logo</label>
-                <div className="flex items-center gap-6">
-                  <div className="h-16 bg-black/5 rounded-2xl p-4 flex items-center justify-center border border-black/5 min-w-[120px]">
-                    {logoUrl ? (
-                      <img src={logoUrl} alt="Current Logo" className="h-full object-contain" />
-                    ) : (
-                      <span className="text-[10px] font-mono text-black/20">NO LOGO</span>
-                    )}
+                <h3 className="font-mono text-[10px] uppercase tracking-[0.3em] text-black/40 mb-8">Branding Settings</h3>
+                {/* Site Logo */}
+                <div className="mb-12">
+                  <label className="font-mono text-[10px] uppercase tracking-widest text-black/40 mb-2 block">Site Logo</label>
+                  <div className="flex items-center gap-6">
+                    <div className="h-16 bg-black/5 rounded-2xl p-4 flex items-center justify-center border border-black/5 min-w-[120px]">
+                      {logoUrl ? (
+                        <img src={logoUrl} alt="Current Logo" className="h-full object-contain" />
+                      ) : (
+                        <span className="text-[10px] font-mono text-black/20">NO LOGO</span>
+                      )}
+                    </div>
+                    <div className="relative group">
+                      <input 
+                        type="file" 
+                        accept="image/*" 
+                        onChange={handleLogoFile}
+                        className="absolute inset-0 opacity-0 cursor-pointer w-full h-full z-10" 
+                      />
+                      <button className="bg-bumaye-black text-white px-8 py-3 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-bumaye-orange transition-all flex items-center gap-3">
+                        <Camera size={18} /> {logoUrl ? 'Change Logo' : 'Upload Logo'}
+                      </button>
+                    </div>
                   </div>
-                  <div className="relative group">
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={handleLogoFile}
-                      className="absolute inset-0 opacity-0 cursor-pointer w-full h-full z-10"
-                    />
-                    <button className="bg-bumaye-black text-white px-8 py-3 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-bumaye-orange transition-all flex items-center gap-3">
-                      <Camera size={18} /> {logoUrl ? 'Change Logo' : 'Upload Logo'}
-                    </button>
-                  </div>
+                  <p className="mt-4 text-[10px] font-mono text-black/40 leading-relaxed uppercase tracking-[0.2em]">
+                    Recommended: PNG or SVG with transparent background.<br />
+                    Maintain a horizontal ratio. Max height: 60px.
+                  </p>
                 </div>
-                <p className="mt-4 text-[10px] font-mono text-black/40 leading-relaxed uppercase tracking-[0.2em]">
-                  Recommended: PNG or SVG with transparent background.<br />
-                  Maintain a horizontal ratio. Max height: 60px.
-                </p>
-              </div>
 
-              {/* About Image Setting */}
-              <div>
-                <label className="font-mono text-[10px] uppercase tracking-widest text-black/40 mb-2 block">About Section Image</label>
-                <div className="flex items-center gap-6">
-                  <div className="h-24 w-20 bg-black/5 rounded-2xl overflow-hidden border border-black/5">
-                    {aboutImageUrl ? (
-                      <img src={aboutImageUrl} alt="Current About" className="w-full h-full object-cover" />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-black/5 text-black/20 font-mono text-[8px] text-center p-2">NO IMAGE</div>
-                    )}
+                {/* About Image Setting */}
+                <div>
+                  <label className="font-mono text-[10px] uppercase tracking-widest text-black/40 mb-2 block">About Section Image</label>
+                  <div className="flex items-center gap-6">
+                    <div className="h-24 w-20 bg-black/5 rounded-2xl overflow-hidden border border-black/5">
+                      {aboutImageUrl ? (
+                        <img src={aboutImageUrl} alt="Current About" className="w-full h-full object-cover" />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center bg-black/5 text-black/20 font-mono text-[8px] text-center p-2">NO IMAGE</div>
+                      )}
+                    </div>
+                    <div className="relative group">
+                      <input 
+                        type="file" 
+                        accept="image/*" 
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) onAboutImageUpload(file);
+                        }}
+                        className="absolute inset-0 opacity-0 cursor-pointer w-full h-full z-10" 
+                      />
+                      <button className="bg-bumaye-black text-white px-8 py-3 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-bumaye-orange transition-all flex items-center gap-3">
+                        <Camera size={18} /> {aboutImageUrl ? 'Change Image' : 'Upload Image'}
+                      </button>
+                    </div>
                   </div>
-                  <div className="relative group">
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={(e) => {
-                        const file = e.target.files?.[0];
-                        if (file) onAboutImageUpload(file);
-                      }}
-                      className="absolute inset-0 opacity-0 cursor-pointer w-full h-full z-10"
-                    />
-                    <button className="bg-bumaye-black text-white px-8 py-3 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-bumaye-orange transition-all flex items-center gap-3">
-                      <Camera size={18} /> {aboutImageUrl ? 'Change Image' : 'Upload Image'}
-                    </button>
-                  </div>
+                  <p className="mt-4 text-[10px] font-mono text-black/40 leading-relaxed uppercase tracking-[0.2em]">
+                    This image appears in the "What is Bumaye?" section.<br />
+                    Recommended: Vertical 4:5 ratio image.
+                  </p>
                 </div>
-                <p className="mt-4 text-[10px] font-mono text-black/40 leading-relaxed uppercase tracking-[0.2em]">
-                  This image appears in the "What is Bumaye?" section.<br />
-                  Recommended: Vertical 4:5 ratio image.
-                </p>
               </div>
             </div>
-          </div>
+          )}
+
+          {activeTab === 'inbox' && (
+            <div className="p-8">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                {/* Contact Messages */}
+                <div>
+                  <h3 className="font-display text-4xl mb-6 uppercase tracking-tight">Messages</h3>
+                  <div className="space-y-4">
+                    {!contactMessages || contactMessages.length === 0 ? (
+                      <div className="p-12 text-center border border-dashed border-black/10 rounded-3xl">
+                        <Mail className="mx-auto mb-4 text-black/10" size={32} />
+                        <p className="text-black/40 font-mono text-xs uppercase tracking-widest">No messages yet</p>
+                      </div>
+                    ) : (
+                      contactMessages.map(msg => (
+                        <div 
+                          key={msg.id} 
+                          className={`p-6 rounded-3xl border transition-all ${msg.is_read ? 'bg-black/5 border-transparent' : 'bg-white border-bumaye-orange shadow-lg'}`}
+                          onMouseEnter={() => !msg.is_read && onMessageRead?.(msg.id)}
+                        >
+                          <div className="flex justify-between items-start mb-4">
+                            <div>
+                              <h4 className="font-bold uppercase text-sm mb-1">{msg.name}</h4>
+                              <p className="text-[10px] font-mono text-black/40 uppercase tracking-widest">{msg.email}</p>
+                            </div>
+                            <button 
+                              onClick={() => onMessageDelete?.(msg.id)}
+                              className="text-black/20 hover:text-red-500 transition-colors"
+                            >
+                              <Trash2 size={16} />
+                            </button>
+                          </div>
+                          <div className="bg-black/5 p-4 rounded-xl mb-4">
+                            <p className="text-[10px] font-mono font-bold uppercase tracking-widest mb-1 text-bumaye-orange">Subject: {msg.subject}</p>
+                            <p className="text-sm leading-relaxed">{msg.message}</p>
+                          </div>
+                          <p className="text-[8px] font-mono text-black/20 uppercase text-right">
+                            {new Date(msg.created_at).toLocaleString()}
+                          </p>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                </div>
+
+                {/* Newsletter Subscribers */}
+                <div>
+                  <h3 className="font-display text-4xl mb-6 uppercase tracking-tight">Subscribers</h3>
+                  <div className="bg-black/5 rounded-[2.5rem] p-6">
+                    {!subscribers || subscribers.length === 0 ? (
+                      <div className="py-12 text-center">
+                        <Users className="mx-auto mb-4 text-black/10" size={32} />
+                        <p className="text-black/40 font-mono text-xs uppercase tracking-widest">No subscribers yet</p>
+                      </div>
+                    ) : (
+                      <div className="space-y-2">
+                        {subscribers.map(sub => (
+                          <div key={sub.id} className="flex items-center justify-between p-4 bg-white rounded-2xl">
+                            <p className="text-xs font-mono font-bold">{sub.email}</p>
+                            <button 
+                              onClick={() => onSubscriberDelete?.(sub.id)}
+                              className="text-black/10 hover:text-red-500 transition-colors"
+                            >
+                              <Trash2 size={14} />
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -912,31 +1015,102 @@ const FeaturedEvent: React.FC<{ event: Event; onBook: (url: string) => void }> =
 };
 
 const Newsletter = () => {
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    setStatus('loading');
+
+    const { error } = await supabase
+      .from('subscribers')
+      .insert([{ email }]);
+
+    if (error) {
+      if (error.code === '23505') { // Unique violation
+        setStatus('success'); // Assume already subscribed as success
+      } else {
+        setStatus('error');
+      }
+      return;
+    }
+
+    setStatus('success');
+    setEmail('');
+  };
+
   return (
     <section className="py-20 px-6">
-      <div className="max-w-5xl mx-auto glass rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden">
+      <div className="max-w-5xl mx-auto glass rounded-[2.5rem] p-12 md:p-16 text-center relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-bumaye-orange/5 -z-10" />
-        <Mail className="mx-auto mb-8 text-bumaye-orange" size={48} />
-        <h2 className="font-display text-5xl md:text-7xl uppercase mb-6 leading-none">JOIN THE TRIBE</h2>
-        <p className="text-white/60 max-w-lg mx-auto mb-10 text-lg">
+        <Mail className="mx-auto mb-6 text-bumaye-orange" size={40} />
+        <h2 className="font-display text-4xl md:text-6xl uppercase mb-4 leading-none">JOIN THE TRIBE</h2>
+        <p className="text-white/40 max-w-lg mx-auto mb-10 text-base">
           Subscribe to get early access to tickets, exclusive line-up reveals, and special discounts.
         </p>
-        <form className="flex flex-col md:flex-row gap-4 max-w-md mx-auto">
-          <input
-            type="email"
-            placeholder="YOUR EMAIL ADDRESS"
-            className="flex-1 bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-bumaye-orange transition-colors font-mono text-sm"
-          />
-          <button className="bg-white text-bumaye-black px-8 py-4 rounded-2xl font-bold hover:bg-bumaye-orange hover:text-white transition-all flex items-center justify-center gap-2">
-            JOIN <Send size={18} />
-          </button>
-        </form>
+
+        {status === 'success' ? (
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-bumaye-orange/20 text-bumaye-orange py-4 px-8 rounded-2xl inline-block font-bold"
+          >
+            WELCOME TO THE FAMILY! CHECK YOUR INBOX SOON.
+          </motion.div>
+        ) : (
+          <form onSubmit={handleSubmit} className="flex flex-col md:flex-row gap-4 max-w-md mx-auto">
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="YOUR EMAIL ADDRESS"
+              className="flex-1 bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-bumaye-orange transition-colors font-mono text-sm"
+              disabled={status === 'loading'}
+            />
+            <button 
+              type="submit"
+              disabled={status === 'loading'}
+              className="bg-white text-bumaye-black px-8 py-4 rounded-2xl font-bold hover:bg-bumaye-orange hover:text-white transition-all flex items-center justify-center gap-2"
+            >
+              {status === 'loading' ? 'SUBMITTING...' : 'JOIN'} <Send size={18} />
+            </button>
+          </form>
+        )}
+        {status === 'error' && (
+          <p className="text-red-500 mt-4 text-xs font-mono">Something went wrong. Please try again.</p>
+        )}
       </div>
     </section>
   );
 };
 
 const ContactSection = () => {
+  const [formData, setFormData] = useState({ name: '', email: '', subject: 'General Inquiry', message: '' });
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('loading');
+
+    const { error } = await supabase
+      .from('contact_messages')
+      .insert([formData]);
+
+    if (error) {
+      console.error('Error sending message:', error);
+      setStatus('error');
+      return;
+    }
+
+    setStatus('success');
+    setFormData({ name: '', email: '', subject: 'General Inquiry', message: '' });
+    
+    // Reset success message after 5 seconds
+    setTimeout(() => setStatus('idle'), 5000);
+  };
+
   return (
     <section id="contact" className="py-32 px-6">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20">
@@ -969,21 +1143,56 @@ const ContactSection = () => {
           </div>
         </div>
 
-        <div className="glass rounded-[3rem] p-10 md:p-12">
-          <form className="space-y-6">
+        <div className="glass rounded-[3.5rem] p-10 md:p-12 relative overflow-hidden">
+          {status === 'success' && (
+            <div className="absolute inset-0 z-10 bg-bumaye-black/90 backdrop-blur-xl flex flex-col items-center justify-center text-center p-8">
+              <div className="w-20 h-20 bg-bumaye-orange/20 rounded-full flex items-center justify-center mb-6">
+                <Send size={32} className="text-bumaye-orange" />
+              </div>
+              <h3 className="font-display text-4xl mb-4 uppercase">MESSAGE SENT!</h3>
+              <p className="text-white/60 mb-8 max-w-xs">We've received your inquiry and will get back to you shortly.</p>
+              <button 
+                onClick={() => setStatus('idle')}
+                className="text-bumaye-orange font-mono text-xs tracking-widest uppercase hover:underline"
+              >
+                Send another message
+              </button>
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="font-mono text-[10px] uppercase tracking-widest text-white/40 ml-2">Name</label>
-                <input type="text" className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-bumaye-orange transition-colors" />
+                <input 
+                  required
+                  type="text" 
+                  value={formData.name}
+                  onChange={e => setFormData({...formData, name: e.target.value})}
+                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-bumaye-orange transition-colors" 
+                  disabled={status === 'loading'}
+                />
               </div>
               <div className="space-y-2">
                 <label className="font-mono text-[10px] uppercase tracking-widest text-white/40 ml-2">Email</label>
-                <input type="email" className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-bumaye-orange transition-colors" />
+                <input 
+                  required
+                  type="email" 
+                  value={formData.email}
+                  onChange={e => setFormData({...formData, email: e.target.value})}
+                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-bumaye-orange transition-colors" 
+                  disabled={status === 'loading'}
+                />
               </div>
             </div>
             <div className="space-y-2">
               <label className="font-mono text-[10px] uppercase tracking-widest text-white/40 ml-2">Subject</label>
-              <select className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-bumaye-orange transition-colors appearance-none">
+              <select 
+                value={formData.subject}
+                onChange={e => setFormData({...formData, subject: e.target.value})}
+                className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-bumaye-orange transition-colors appearance-none"
+                disabled={status === 'loading'}
+              >
                 <option className="bg-bumaye-black">General Inquiry</option>
                 <option className="bg-bumaye-black">DJ / Artist Booking</option>
                 <option className="bg-bumaye-black">Partnership</option>
@@ -992,11 +1201,25 @@ const ContactSection = () => {
             </div>
             <div className="space-y-2">
               <label className="font-mono text-[10px] uppercase tracking-widest text-white/40 ml-2">Message</label>
-              <textarea rows={4} className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-bumaye-orange transition-colors resize-none"></textarea>
+              <textarea 
+                required
+                rows={4} 
+                value={formData.message}
+                onChange={e => setFormData({...formData, message: e.target.value})}
+                className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-bumaye-orange transition-colors resize-none"
+                disabled={status === 'loading'}
+              ></textarea>
             </div>
-            <button className="w-full bg-bumaye-orange text-white py-5 rounded-2xl font-bold text-lg hover:bg-white hover:text-bumaye-black transition-all">
-              SEND MESSAGE
+            <button 
+              type="submit"
+              disabled={status === 'loading'}
+              className="w-full bg-bumaye-orange text-white py-5 rounded-2xl font-bold text-lg hover:bg-white hover:text-bumaye-black transition-all flex items-center justify-center gap-3"
+            >
+              {status === 'loading' ? 'SENDING...' : 'SEND MESSAGE'} <Send size={20} />
             </button>
+            {status === 'error' && (
+              <p className="text-red-500 text-center text-xs font-mono">Failed to send. Please try again.</p>
+            )}
           </form>
         </div>
       </div>
@@ -1107,6 +1330,8 @@ export default function App() {
   const [gallery, setGallery] = useState<GalleryItem[]>(GALLERY);
   const [logoUrl, setLogoUrl] = useState<string>('');
   const [aboutImageUrl, setAboutImageUrl] = useState<string>('');
+  const [subscribers, setSubscribers] = useState<{ id: string; email: string; created_at: string }[]>([]);
+  const [messages, setMessages] = useState<{ id: string; name: string; email: string; subject: string; message: string; is_read: boolean; created_at: string }[]>([]);
 
   // Handle booking click - check if URL is embeddable or needs new tab
   const handleBook = (url: string) => {
@@ -1199,7 +1424,20 @@ export default function App() {
     fetchEvents();
     fetchGallery();
     fetchSettings();
+    fetchInbox();
   }, []);
+
+  const fetchInbox = async () => {
+    if (!isSupabaseConfigured) return;
+
+    const [subs, msgs] = await Promise.all([
+      supabase.from('subscribers').select('*').order('created_at', { ascending: false }),
+      supabase.from('contact_messages').select('*').order('created_at', { ascending: false })
+    ]);
+
+    if (subs.data) setSubscribers(subs.data);
+    if (msgs.data) setMessages(msgs.data);
+  };
 
   const fetchSettings = async () => {
     if (!isSupabaseConfigured) return;
@@ -1459,6 +1697,24 @@ export default function App() {
     setAboutImageUrl(compressedDataUrl);
   };
 
+  const handleSubscriberDelete = async (id: string) => {
+    if (!isSupabaseConfigured) return;
+    const { error } = await supabase.from('subscribers').delete().eq('id', id);
+    if (!error) setSubscribers(subscribers.filter(s => s.id !== id));
+  };
+
+  const handleMessageDelete = async (id: string) => {
+    if (!isSupabaseConfigured) return;
+    const { error } = await supabase.from('contact_messages').delete().eq('id', id);
+    if (!error) setMessages(messages.filter(m => m.id !== id));
+  };
+
+  const handleMessageRead = async (id: string) => {
+    if (!isSupabaseConfigured) return;
+    const { error } = await supabase.from('contact_messages').update({ is_read: true }).eq('id', id);
+    if (!error) setMessages(messages.map(m => m.id === id ? { ...m, is_read: true } : m));
+  };
+
   const handleAppGalleryRemove = async (id: string) => {
     if (!isSupabaseConfigured) {
       setGallery(gallery.filter(g => g.id !== id));
@@ -1483,7 +1739,7 @@ export default function App() {
               NEXT UP
             </h2>
             <p className="max-w-xl text-white/40 font-light leading-relaxed text-xl mb-12">
-              We focus on one massive experience at a time. Quality over quantity. This is what's coming next to the dancefloor.
+              where genres blend & nations fuse.
             </p>
           </div>
 
@@ -1550,6 +1806,11 @@ export default function App() {
           onLogoUpload={handleLogoUpload}
           aboutImageUrl={aboutImageUrl}
           onAboutImageUpload={handleAboutImageUpload}
+          subscribers={subscribers}
+          contactMessages={messages}
+          onSubscriberDelete={handleSubscriberDelete}
+          onMessageDelete={handleMessageDelete}
+          onMessageRead={handleMessageRead}
         />
       )}
     </div>

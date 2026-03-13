@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, Reorder } from 'motion/react';
 import { ArrowRight, Play, Instagram, Menu, X, Plus, Trash2, Camera, Check, AlertCircle, Save, LogOut, ChevronLeft, ChevronRight, Globe, Lock, Music2, Share2, Youtube, ExternalLink, Ticket, Calendar, MapPin, Users, Mail, Send, Clock, Settings, Edit2, Database, RefreshCw, ChevronUp, ChevronDown } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 import bannerImage from './assets/bumaye-banner.png';
@@ -70,7 +70,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
   gallery?: GalleryItem[];
   onGalleryAdd?: (files: File[], url: string) => Promise<void>;
   onGalleryRemove?: (id: string) => Promise<void>;
-  onGalleryReorder?: (id: string, direction: 'up' | 'down') => Promise<void>;
+  onGalleryReorder?: (newGallery: GalleryItem[]) => void;
   logoUrl?: string;
   onLogoUpload?: (file: File) => Promise<void>;
 }) => {
@@ -401,45 +401,48 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                   {isGalleryUploading ? 'Uploading...' : 'Toevoegen'}
                 </button>
               </div>
-              <div className="grid grid-cols-4 md:grid-cols-6 gap-4 mt-6">
-                {gallery.map((item, index) => (
-                  <div key={item.id} className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-black/5 border border-black/5 group">
+              <Reorder.Group 
+                axis="x" 
+                values={gallery} 
+                onReorder={onGalleryReorder || (() => {})} 
+                className="flex overflow-x-auto gap-4 mt-6 pb-4 hide-scrollbar"
+              >
+                {gallery.map((item) => (
+                  <Reorder.Item 
+                    key={item.id} 
+                    value={item}
+                    className="relative flex-none w-[120px] aspect-[3/4] rounded-2xl overflow-hidden bg-black/5 border border-black/5 group cursor-grab active:cursor-grabbing"
+                  >
                     {item.url.startsWith('data:video') || item.url.endsWith('.mp4') ? (
-                      <video src={item.url} className="w-full h-full object-cover" />
+                      <video src={item.url} className="w-full h-full object-cover pointer-events-none" />
                     ) : (
-                      <img src={item.url} alt="" className="w-full h-full object-cover" />
+                      <img src={item.url} alt="" className="w-full h-full object-cover pointer-events-none" />
                     )}
                     
-                    {/* Reorder & Remove Controls */}
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2">
-                       <div className="flex gap-2">
-                        <button
-                          onClick={() => onGalleryReorder?.(item.id, 'up')}
-                          disabled={index === 0}
-                          className="bg-white/20 hover:bg-white/40 text-white rounded-lg p-2 disabled:opacity-20"
-                          title="Move Up"
-                        >
-                          <ChevronUp size={16} />
-                        </button>
-                        <button
-                          onClick={() => onGalleryReorder?.(item.id, 'down')}
-                          disabled={index === gallery.length - 1}
-                          className="bg-white/20 hover:bg-white/40 text-white rounded-lg p-2 disabled:opacity-20"
-                          title="Move Down"
-                        >
-                          <ChevronDown size={16} />
-                        </button>
-                      </div>
+                    {/* Remove Control */}
+                    <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
                       <button
-                        onClick={() => handleGalleryRemoveClick(item.id)}
-                        className="bg-red-500 text-white rounded-lg px-3 py-1.5 hover:bg-red-600 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest mt-2"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleGalleryRemoveClick(item.id);
+                        }}
+                        className="bg-red-500 text-white rounded-full p-1.5 hover:bg-red-600 shadow-lg"
                       >
-                        <Trash2 size={12} /> Delete
+                        <Trash2 size={12} />
                       </button>
                     </div>
-                  </div>
+
+                    {/* Drag Handle Indicator */}
+                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-black/20 backdrop-blur-sm px-2 py-0.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                      <div className="flex gap-1">
+                        <div className="w-1 h-1 bg-white/60 rounded-full" />
+                        <div className="w-1 h-1 bg-white/60 rounded-full" />
+                        <div className="w-1 h-1 bg-white/60 rounded-full" />
+                      </div>
+                    </div>
+                  </Reorder.Item>
                 ))}
-              </div>
+              </Reorder.Group>
             </div>
           )}
 
@@ -1252,36 +1255,34 @@ export default function App() {
     }
   };
 
-  const handleAppGalleryReorder = async (id: string, direction: 'up' | 'down') => {
-    const index = gallery.findIndex(g => g.id === id);
-    if (index === -1) return;
-    if (direction === 'up' && index === 0) return;
-    if (direction === 'down' && index === gallery.length - 1) return;
-
-    const newIndex = direction === 'up' ? index - 1 : index + 1;
-    const newGallery = [...gallery];
-    const itemA = newGallery[index];
-    const itemB = newGallery[newIndex];
-
-    // Swap locally
-    newGallery[index] = itemB;
-    newGallery[newIndex] = itemA;
-
-    // Swap display orders
-    const orderA = itemA.display_order || 0;
-    const orderB = itemB.display_order || 0;
+  const handleAppGalleryReorder = (newGallery: GalleryItem[]) => {
+    // Update local state immediately for responsiveness
+    const updatedGallery = newGallery.map((item, index) => ({
+      ...item,
+      display_order: index + 1
+    }));
     
-    itemA.display_order = orderB;
-    itemB.display_order = orderA;
+    setGallery(updatedGallery);
 
-    setGallery(newGallery);
-
+    // Sync to database if configured
     if (isSupabaseConfigured) {
-      // Update both in database
-      await Promise.all([
-        supabase.from('gallery').update({ display_order: orderB }).eq('id', itemA.id),
-        supabase.from('gallery').update({ display_order: orderA }).eq('id', itemB.id)
-      ]);
+      syncGalleryOrder(updatedGallery);
+    }
+  };
+
+  const syncGalleryOrder = async (orderedGallery: GalleryItem[]) => {
+    // Perform updates in parallel
+    const updates = orderedGallery.map((item) => 
+      supabase
+        .from('gallery')
+        .update({ display_order: item.display_order })
+        .eq('id', item.id)
+    );
+
+    const results = await Promise.all(updates);
+    const errors = results.filter(r => r.error);
+    if (errors.length > 0) {
+      console.error('Error syncing gallery order:', errors);
     }
   };
 

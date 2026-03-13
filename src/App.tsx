@@ -562,12 +562,12 @@ const Navbar = ({ logoUrl }: { logoUrl?: string }) => {
 
 const Hero = ({ gallery, firstEvent }: { gallery: GalleryItem[], firstEvent?: Event }) => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-flyer-gradient">
       {/* Background Elements */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(255,107,0,0.15),transparent_70%)]" />
-        <div className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-bumaye-orange/10 blur-[150px] rounded-full animate-pulse" />
-        <div className="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-bumaye-yellow/5 blur-[150px] rounded-full animate-pulse" style={{ animationDelay: '2s' }} />
+        <div className="absolute inset-0 bg-noise mix-blend-overlay opacity-20" />
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.4),transparent_50%)]" />
+        <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black/20 to-transparent" />
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
@@ -576,29 +576,55 @@ const Hero = ({ gallery, firstEvent }: { gallery: GalleryItem[], firstEvent?: Ev
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 glass rounded-full mb-8">
-            <span className="w-2 h-2 bg-bumaye-orange rounded-full animate-ping" />
-            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/80">Next Event: Rotterdam • July 25</span>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/20 backdrop-blur-md rounded-full mb-8 border border-white/20">
+            <span className="w-2 h-2 bg-white rounded-full animate-ping" />
+            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white">Next Event: Rotterdam • July 25</span>
           </div>
           
-          <h1 className="font-display text-[12vw] md:text-[9vw] leading-[0.8] tracking-tighter uppercase mb-6 select-none">
-            BUMAYE<br />
-            <span className="text-stroke opacity-50 text-[3.5vw] md:text-[2.5vw] tracking-[0.2em] mt-6 block leading-none">
-              AFROBEATS • DANCEHALL • HIPHOP • R&B
-            </span>
-          </h1>
+          <div className="relative mb-12">
+            <motion.div
+              initial={{ x: -20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="inline-block relative"
+            >
+              <div className="bg-bumaye-pink text-white px-8 md:px-12 py-4 md:py-6 rounded-2xl shadow-[0_20px_50px_rgba(251,27,129,0.3)] transform -rotate-2">
+                <h1 className="font-display text-[14vw] md:text-[10vw] leading-none tracking-tighter uppercase select-none italic">
+                  BUMAYE!
+                </h1>
+              </div>
+              {/* Decorative elements to match flyer vibe */}
+              <div className="absolute -top-6 -left-6 w-12 h-12 bg-white/20 rounded-full blur-xl" />
+              <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-bumaye-yellow-flyer/30 rounded-full blur-xl" />
+            </motion.div>
+
+            <motion.div 
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="mt-8 font-display text-[3.5vw] md:text-[2.2vw] tracking-[0.15em] uppercase text-white drop-shadow-lg flex items-center justify-center gap-4 flex-wrap"
+            >
+              <span>HIPHOP</span>
+              <span className="text-white/40">X</span>
+              <span>R&B</span>
+              <span className="text-white/40">X</span>
+              <span>AFRO</span>
+              <span className="text-white/40">X</span>
+              <span>DANCEHALL</span>
+            </motion.div>
+          </div>
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
+          transition={{ delay: 0.8, duration: 0.8 }}
           className="flex flex-col md:flex-row items-center justify-center gap-4"
         >
-          <a href={firstEvent ? firstEvent.ticketUrl : "#"} target={firstEvent ? "_blank" : "_self"} rel="noreferrer" className="group bg-bumaye-orange text-white px-8 py-3.5 rounded-full font-bold text-base flex items-center gap-3 hover:bg-white hover:text-bumaye-black transition-all shadow-2xl shadow-bumaye-orange/30">
+          <a href={firstEvent ? firstEvent.ticketUrl : "#"} target={firstEvent ? "_blank" : "_self"} rel="noreferrer" className="group bg-white text-bumaye-black px-8 py-3.5 rounded-full font-bold text-base flex items-center gap-3 hover:bg-bumaye-pink hover:text-white transition-all shadow-2xl shadow-black/20">
             GET TICKETS <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
           </a>
-          <button className="group glass text-white px-8 py-3.5 rounded-full font-bold text-base flex items-center gap-3 hover:bg-white/10 transition-all">
+          <button className="group bg-black/10 backdrop-blur-md text-white border border-white/20 px-8 py-3.5 rounded-full font-bold text-base flex items-center gap-3 hover:bg-white/10 transition-all">
             WATCH TEASER <Play size={18} className="fill-current" />
           </button>
         </motion.div>
@@ -607,7 +633,7 @@ const Hero = ({ gallery, firstEvent }: { gallery: GalleryItem[], firstEvent?: Ev
         {gallery && gallery.length > 0 && (
           <div className="mt-40 w-full text-left">
             <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-8">
-              <h2 className="font-display text-4xl md:text-6xl uppercase tracking-tighter">THE VIBE</h2>
+              <h2 className="font-display text-4xl md:text-6xl uppercase tracking-tighter text-white drop-shadow-md">THE VIBE</h2>
               <a
                 href="https://www.instagram.com/bumaye.nl"
                 target="_blank"

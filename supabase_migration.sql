@@ -45,3 +45,26 @@ create policy "Alleen authenticated users mogen gallery aanpassen"
   on public.gallery for all
   using (true)
   with check (true);
+
+-- Bumaye Settings tabel (voor logo etc)
+create table if not exists public.settings (
+  key text primary key,
+  value text not null,
+  updated_at timestamptz default now()
+);
+
+alter table public.settings enable row level security;
+
+create policy "Settings zijn publiek leesbaar"
+  on public.settings for select
+  using (true);
+
+create policy "Alleen authenticated users mogen settings aanpassen"
+  on public.settings for all
+  using (true)
+  with check (true);
+
+-- Voeg standaard logo placeholder toe (optioneel, kan ook in code)
+insert into public.settings (key, value) 
+values ('logo_url', '')
+on conflict (key) do nothing;

@@ -79,7 +79,7 @@ const TicketModal = ({ url, isOpen, onClose }: { url: string; isOpen: boolean; o
   );
 };
 
-const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gallery, onGalleryAdd, onGalleryRemove }: { 
+const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gallery, onGalleryAdd, onGalleryRemove, logoUrl, onLogoUpload }: { 
   events: Event[];
   onAdd: (e: Omit<Event, 'id'>) => Promise<void>;
   onUpdate: (id: string, e: Omit<Event, 'id'>) => Promise<void>;
@@ -89,6 +89,8 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
   gallery?: GalleryItem[];
   onGalleryAdd?: (files: File[], url: string) => Promise<void>;
   onGalleryRemove?: (id: string) => Promise<void>;
+  logoUrl?: string;
+  onLogoUpload?: (file: File) => Promise<void>;
 }) => {
     // Gallery manager state
     const [galleryInput, setGalleryInput] = useState('');
@@ -122,6 +124,13 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
 
     const handleGalleryRemoveClick = async (id: string) => {
       if (onGalleryRemove) await onGalleryRemove(id);
+    };
+
+    const handleLogoFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+      const file = e.target.files?.[0];
+      if (file && onLogoUpload) {
+        await onLogoUpload(file);
+      }
     };
   const [editingId, setEditingId] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -240,7 +249,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
       <div className="relative z-10 w-full max-w-4xl max-h-[90vh] bg-white rounded-[2.5rem] overflow-hidden flex flex-col text-bumaye-black">
         <div className="p-8 border-b border-black/5 flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <h2 className="font-display text-4xl uppercase tracking-tighter">Event Manager</h2>
+            <h2 className="font-display text-4xl uppercase tracking-tighter">Admin Panel</h2>
             <div className={`flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-widest ${isSupabaseConfigured ? 'bg-green-100 text-green-600' : 'bg-amber-100 text-amber-600'}`}>
               <Database size={12} />
               {isSupabaseConfigured ? 'Supabase Connected' : 'Local Mode'}
@@ -248,7 +257,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
           </div>
           <div className="flex items-center gap-4">
             <button 
-              onClick={handleRefresh}
+              onClick={onRefresh}
               disabled={isRefreshing}
               className="flex items-center gap-2 px-4 py-2 bg-black/5 hover:bg-black/10 rounded-xl transition-all font-mono text-[10px] uppercase tracking-widest disabled:opacity-50"
             >
@@ -259,227 +268,211 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
           </div>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-8 grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div>
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="font-mono text-[10px] uppercase tracking-[0.3em] text-black/40">
-                {editingId ? 'Edit Event' : 'Add New Event'}
-              </h3>
-              {editingId && (
-                <button 
-                  onClick={handleCancelEdit}
-                  className="text-[10px] font-mono uppercase tracking-widest text-bumaye-orange hover:underline"
-                >
-                  Cancel Edit
-                </button>
-              )}
-            </div>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <input 
-                placeholder="Event Title" 
-                value={newEvent.title}
-                onChange={e => setNewEvent({...newEvent, title: e.target.value})}
-                className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
-                required
-              />
-              <textarea 
-                placeholder="Description" 
-                value={newEvent.description}
-                onChange={e => setNewEvent({...newEvent, description: e.target.value})}
-                className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange resize-none"
-                rows={3}
-              />
-              <div className="grid grid-cols-2 gap-4">
-                <input 
-                  placeholder="Date (e.g. JULY 25, 2026)" 
-                  value={newEvent.date}
-                  onChange={e => setNewEvent({...newEvent, date: e.target.value})}
-                  className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
-                  required
-                />
-                <input 
-                  placeholder="Time (e.g. 23:00 - 05:00)" 
-                  value={newEvent.time}
-                  onChange={e => setNewEvent({...newEvent, time: e.target.value})}
-                  className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
-                />
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <input 
-                  placeholder="Location" 
-                  value={newEvent.location}
-                  onChange={e => setNewEvent({...newEvent, location: e.target.value})}
-                  className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
-                  required
-                />
-                <input 
-                  placeholder="City" 
-                  value={newEvent.city}
-                  onChange={e => setNewEvent({...newEvent, city: e.target.value})}
-                  className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
-                  required
-                />
-              </div>
-              <input 
-                placeholder="Ticket URL" 
-                value={newEvent.ticketUrl}
-                onChange={e => setNewEvent({...newEvent, ticketUrl: e.target.value})}
-                className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
-                required
-              />
-              <div className="space-y-4">
-                <div className="space-y-2">
-                  <label className="font-mono text-[10px] uppercase tracking-widest text-black/40 ml-2">Main Image</label>
-                  <div className="flex gap-4">
-                    <input 
-                      type="text"
-                      placeholder="Image URL" 
-                      value={newEvent.image}
-                      onChange={e => setNewEvent({...newEvent, image: e.target.value})}
-                      className="flex-1 bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
-                    />
-                    <label className="cursor-pointer bg-black/5 border border-black/10 rounded-xl px-4 py-3 hover:bg-black/10 transition-colors flex items-center justify-center">
-                      <Camera size={20} />
-                      <input type="file" className="hidden" accept="image/*" onChange={e => handleFileUpload(e, 'image')} />
-                    </label>
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="font-mono text-[10px] uppercase tracking-widest text-black/40 ml-2">Flyer Banner (Wide)</label>
-                  <div className="flex gap-4">
-                    <input 
-                      type="text"
-                      placeholder="Flyer URL" 
-                      value={newEvent.flyerUrl}
-                      onChange={e => setNewEvent({...newEvent, flyerUrl: e.target.value})}
-                      className="flex-1 bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
-                    />
-                    <label className="cursor-pointer bg-black/5 border border-black/10 rounded-xl px-4 py-3 hover:bg-black/10 transition-colors flex items-center justify-center">
-                      <Plus size={20} />
-                      <input type="file" className="hidden" accept="image/*" onChange={e => handleFileUpload(e, 'flyerUrl')} />
-                    </label>
-                  </div>
-                  {newEvent.flyerUrl && (
-                    <div className="mt-2 aspect-[21/9] rounded-xl overflow-hidden border border-black/10">
-                      <img src={newEvent.flyerUrl} alt="Flyer Preview" className="w-full h-full object-cover" />
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              <select 
-                value={newEvent.status}
-                onChange={e => setNewEvent({...newEvent, status: e.target.value as any})}
-                className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange appearance-none"
-              >
-                <option value="upcoming">Upcoming</option>
-                <option value="sold-out">Sold Out</option>
-                <option value="past">Past</option>
-              </select>
-              <button 
-                disabled={isSubmitting}
-                className="w-full bg-bumaye-orange text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-bumaye-black transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? (
-                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                ) : (
-                  editingId ? <Edit2 size={20} /> : <Plus size={20} />
+        <div className="flex-1 overflow-y-auto">
+          <div className="p-8 grid grid-cols-1 lg:grid-cols-2 gap-12 border-b border-black/5">
+            <div>
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="font-mono text-[10px] uppercase tracking-[0.3em] text-black/40">
+                  {editingId ? 'Edit Event' : 'Add New Event'}
+                </h3>
+                {editingId && (
+                  <button 
+                    onClick={handleCancelEdit}
+                    className="text-[10px] font-mono uppercase tracking-widest text-bumaye-orange hover:underline"
+                  >
+                    Cancel Edit
+                  </button>
                 )}
-                {isSubmitting ? 'SAVING...' : (editingId ? 'UPDATE EVENT' : 'CREATE EVENT')}
-              </button>
-            </form>
+              </div>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <input 
+                  placeholder="Event Title" 
+                  value={newEvent.title}
+                  onChange={e => setNewEvent({...newEvent, title: e.target.value})}
+                  className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
+                  required
+                />
+                <textarea 
+                  placeholder="Description" 
+                  value={newEvent.description}
+                  onChange={e => setNewEvent({...newEvent, description: e.target.value})}
+                  className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange resize-none"
+                  rows={3}
+                />
+                <div className="grid grid-cols-2 gap-4">
+                  <input 
+                    placeholder="Date (e.g. JULY 25, 2026)" 
+                    value={newEvent.date}
+                    onChange={e => setNewEvent({...newEvent, date: e.target.value})}
+                    className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
+                    required
+                  />
+                  <input 
+                    placeholder="Time (e.g. 23:00 - 05:00)" 
+                    value={newEvent.time}
+                    onChange={e => setNewEvent({...newEvent, time: e.target.value})}
+                    className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
+                  />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <input 
+                    placeholder="Location" 
+                    value={newEvent.location}
+                    onChange={e => setNewEvent({...newEvent, location: e.target.value})}
+                    className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
+                    required
+                  />
+                  <input 
+                    placeholder="City" 
+                    value={newEvent.city}
+                    onChange={e => setNewEvent({...newEvent, city: e.target.value})}
+                    className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
+                    required
+                  />
+                </div>
+                <input 
+                  placeholder="Ticket URL" 
+                  value={newEvent.ticketUrl}
+                  onChange={e => setNewEvent({...newEvent, ticketUrl: e.target.value})}
+                  className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
+                  required
+                />
+                <button 
+                  disabled={isSubmitting}
+                  className="w-full bg-bumaye-orange text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-bumaye-black transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? (
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  ) : (
+                    editingId ? <Edit2 size={20} /> : <Plus size={20} />
+                  )}
+                  {isSubmitting ? 'SAVING...' : (editingId ? 'UPDATE EVENT' : 'CREATE EVENT')}
+                </button>
+              </form>
+            </div>
+
+            <div>
+              <h3 className="font-mono text-[10px] uppercase tracking-[0.3em] text-black/40 mb-6">Existing Events</h3>
+              <div className="space-y-4">
+                {events.map(event => (
+                  <div key={event.id} className="flex items-center justify-between p-4 bg-black/5 rounded-2xl group">
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0">
+                        <img src={event.image} alt="" className="w-full h-full object-cover" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-sm uppercase">{event.title}</h4>
+                        <p className="text-[10px] text-black/40 uppercase">{event.city} • {event.date}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <button 
+                        onClick={() => handleEdit(event)}
+                        className="p-2 text-bumaye-orange hover:bg-bumaye-orange/10 rounded-lg transition-colors"
+                        title="Edit Event"
+                      >
+                        <Edit2 size={18} />
+                      </button>
+                      <button 
+                        onClick={() => handleDelete(event.id)}
+                        disabled={deletingId === event.id}
+                        className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors disabled:opacity-50"
+                        title="Delete Event"
+                      >
+                        {deletingId === event.id ? (
+                          <div className="w-4 h-4 border-2 border-red-500/30 border-t-red-500 rounded-full animate-spin" />
+                        ) : (
+                          <Trash2 size={18} />
+                        )}
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
-          <div>
-            <h3 className="font-mono text-[10px] uppercase tracking-[0.3em] text-black/40 mb-6">Existing Events</h3>
-            <div className="space-y-4">
-              {events.map(event => (
-                <div key={event.id} className="flex items-center justify-between p-4 bg-black/5 rounded-2xl group">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0">
-                      <img src={event.image} alt="" className="w-full h-full object-cover" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-sm uppercase">{event.title}</h4>
-                      <p className="text-[10px] text-black/40 uppercase">{event.city} • {event.date}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <button 
-                      onClick={() => handleEdit(event)}
-                      className="p-2 text-bumaye-orange hover:bg-bumaye-orange/10 rounded-lg transition-colors"
-                      title="Edit Event"
+          {/* Gallery Manager */}
+          {gallery && onGalleryAdd && onGalleryRemove && (
+            <div className="p-8 border-b border-black/5">
+              <h3 className="font-mono text-[10px] uppercase tracking-[0.3em] text-black/40 mb-6">Gallery Manager</h3>
+              <div className="flex gap-4 mb-4">
+                <input
+                  type="text"
+                  placeholder="Afbeelding/video URL"
+                  value={galleryInput}
+                  onChange={e => setGalleryInput(e.target.value)}
+                  className="flex-1 bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
+                />
+                <label className="cursor-pointer bg-black/5 border border-black/10 rounded-xl px-4 py-3 hover:bg-black/10 transition-colors flex items-center justify-center relative">
+                  <Camera size={20} />
+                  {galleryFiles.length > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-bumaye-orange text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center">{galleryFiles.length}</span>
+                  )}
+                  <input type="file" multiple className="hidden" accept="image/*,video/*" onChange={handleGalleryFile} />
+                </label>
+                <button
+                  onClick={handleGalleryAddSubmit}
+                  disabled={isGalleryUploading}
+                  className="bg-bumaye-orange text-white px-6 py-3 rounded-xl font-bold hover:bg-bumaye-black transition-all disabled:opacity-50"
+                >
+                  {isGalleryUploading ? 'Uploading...' : 'Toevoegen'}
+                </button>
+              </div>
+              <div className="grid grid-cols-4 md:grid-cols-6 gap-4 mt-6">
+                {gallery.map((item) => (
+                  <div key={item.id} className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-black/5 border border-black/5 group">
+                    {item.url.startsWith('data:video') || item.url.endsWith('.mp4') ? (
+                      <video src={item.url} className="w-full h-full object-cover" />
+                    ) : (
+                      <img src={item.url} alt="" className="w-full h-full object-cover" />
+                    )}
+                    <button
+                      onClick={() => handleGalleryRemoveClick(item.id)}
+                      className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1.5 hover:bg-red-700 opacity-0 group-hover:opacity-100 transition-opacity"
                     >
-                      <Edit2 size={18} />
+                      <Trash2 size={14} />
                     </button>
-                    <button 
-                      onClick={() => handleDelete(event.id)}
-                      disabled={deletingId === event.id}
-                      className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors disabled:opacity-50"
-                      title="Delete Event"
-                    >
-                      {deletingId === event.id ? (
-                        <div className="w-4 h-4 border-2 border-red-500/30 border-t-red-500 rounded-full animate-spin" />
-                      ) : (
-                        <Trash2 size={18} />
-                      )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Branding Manager */}
+          <div className="p-8">
+            <h3 className="font-mono text-[10px] uppercase tracking-[0.3em] text-black/40 mb-6">Branding</h3>
+            <div className="space-y-4">
+              <div>
+                <label className="font-mono text-[10px] uppercase tracking-widest text-black/40 mb-2 block">Site Logo</label>
+                <div className="flex items-center gap-6">
+                  <div className="h-16 bg-black/5 rounded-2xl p-4 flex items-center justify-center border border-black/5 min-w-[120px]">
+                    {logoUrl ? (
+                      <img src={logoUrl} alt="Current Logo" className="h-full object-contain" />
+                    ) : (
+                      <span className="text-[10px] font-mono text-black/20">NO LOGO</span>
+                    )}
+                  </div>
+                  <div className="relative group">
+                    <input 
+                      type="file" 
+                      accept="image/*" 
+                      onChange={handleLogoFile}
+                      className="absolute inset-0 opacity-0 cursor-pointer w-full h-full z-10" 
+                    />
+                    <button className="bg-bumaye-black text-white px-8 py-3 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-bumaye-orange transition-all flex items-center gap-3">
+                      <Camera size={18} /> {logoUrl ? 'Change Logo' : 'Upload Logo'}
                     </button>
                   </div>
                 </div>
-              ))}
+                <p className="mt-4 text-[10px] font-mono text-black/40 leading-relaxed uppercase tracking-[0.2em]">
+                  Recommended: PNG or SVG with transparent background.<br />
+                  Maintain a horizontal ratio. Max height: 60px.
+                </p>
+              </div>
             </div>
           </div>
         </div>
-
-        {/* Gallery Manager */}
-        {gallery && onGalleryAdd && onGalleryRemove && (
-          <div className="border-t border-black/10 p-8">
-            <h2 className="font-display text-3xl mb-6 uppercase tracking-tighter">Gallery Manager</h2>
-            <div className="flex gap-4 mb-4">
-              <input
-                type="text"
-                placeholder="Afbeelding/video URL"
-                value={galleryInput}
-                onChange={e => setGalleryInput(e.target.value)}
-                className="flex-1 bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
-              />
-              <label className="cursor-pointer bg-black/5 border border-black/10 rounded-xl px-4 py-3 hover:bg-black/10 transition-colors flex items-center justify-center relative">
-                <Camera size={20} />
-                {galleryFiles.length > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-bumaye-orange text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center">{galleryFiles.length}</span>
-                )}
-                <input type="file" multiple className="hidden" accept="image/*,video/*" onChange={handleGalleryFile} />
-              </label>
-              <button
-                onClick={handleGalleryAddSubmit}
-                disabled={isGalleryUploading}
-                className="bg-bumaye-orange text-white px-6 py-3 rounded-xl font-bold hover:bg-bumaye-black transition-all disabled:opacity-50"
-              >
-                {isGalleryUploading ? 'Uploading...' : 'Toevoegen'}
-              </button>
-            </div>
-            {galleryError && <div className="text-red-500 text-xs mb-2">{galleryError}</div>}
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mt-6">
-              {gallery.map((item) => (
-                <div key={item.id} className="relative aspect-[3/4] rounded-3xl overflow-hidden bg-white/5 border border-white/10 group">
-                  {item.url.startsWith('data:video') || item.url.endsWith('.mp4') ? (
-                    <video src={item.url} controls className="w-full h-full object-cover" />
-                  ) : (
-                    <img src={item.url} alt={`Gallery ${item.id}`} className="w-full h-full object-cover" />
-                  )}
-                  <button
-                    onClick={() => handleGalleryRemoveClick(item.id)}
-                    className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2 hover:bg-red-700 opacity-0 group-hover:opacity-100 transition-opacity"
-                    title="Verwijder"
-                  >
-                    <Trash2 size={16} />
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );
@@ -503,7 +496,7 @@ const Marquee = () => {
   );
 };
 
-const Navbar = () => {
+const Navbar = ({ logoUrl }: { logoUrl?: string }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -516,14 +509,15 @@ const Navbar = () => {
   return (
     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-bumaye-black/90 backdrop-blur-xl py-4 border-b border-white/5' : 'bg-transparent py-6'}`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        <a href="#" className="font-display text-3xl tracking-tighter text-bumaye-orange flex items-center gap-2">
-          <div className="w-8 h-8 bg-bumaye-orange rounded-lg flex items-center justify-center text-white">
-            <Music2 size={20} />
-          </div>
-          BUMAYE
+        <a href="#" className="flex items-center gap-2 h-8 md:h-10">
+          {logoUrl ? (
+            <img src={logoUrl} alt="BUMAYE" className="h-full object-contain" />
+          ) : (
+            <span className="font-display text-3xl tracking-tighter text-bumaye-orange">BUMAYE</span>
+          )}
         </a>
         
-        <div className="hidden md:flex items-center gap-8 font-mono text-[10px] uppercase tracking-[0.2em]">
+        <div className="hidden md:flex items-center gap-8 font-display text-sm uppercase tracking-[0.15em]">
           <a href="#events" className="hover:text-bumaye-orange transition-colors">Events</a>
           <a href="#about" className="hover:text-bumaye-orange transition-colors">About</a>
           <a href="#gallery" className="hover:text-bumaye-orange transition-colors">Gallery</a>
@@ -986,7 +980,8 @@ export default function App() {
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [loginError, setLoginError] = useState(false);
-  const [gallery, setGallery] = useState<GalleryItem[]>(GALLERY);
+  const [gallery, setGallery] = useState<GalleryItem[]>([]);
+  const [logoUrl, setLogoUrl] = useState<string>('');
 
   // Admin wachtwoord (voor demo, zet dit in env of backend voor productie!)
   const ADMIN_PASSWORD = 'bumaye2026';
@@ -1019,10 +1014,58 @@ export default function App() {
     );
   };
 
+  // Helper function to compress images
+  const compressImage = (file: File): Promise<string> => new Promise((resolve) => {
+    if (!file.type.startsWith('image/')) {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result as string);
+      reader.readAsDataURL(file);
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        let { width, height } = img;
+        const MAX = 1200;
+        if (width > height && width > MAX) {
+          height = Math.round(height * (MAX / width));
+          width = MAX;
+        } else if (height > MAX) {
+          width = Math.round(width * (MAX / height));
+          height = MAX;
+        }
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        if (ctx) ctx.drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL('image/jpeg', 0.6));
+      };
+      img.src = e.target?.result as string;
+    };
+    reader.readAsDataURL(file);
+  });
+
   useEffect(() => {
     fetchEvents();
     fetchGallery();
+    fetchSettings();
   }, []);
+
+  const fetchSettings = async () => {
+    if (!isSupabaseConfigured) return;
+
+    const { data, error } = await supabase
+      .from('settings')
+      .select('*');
+
+    if (!error && data) {
+      const settingsMap: Record<string, string> = {};
+      data.forEach((s: any) => { settingsMap[s.key] = s.value; });
+      if (settingsMap.logo_url) setLogoUrl(settingsMap.logo_url);
+    }
+  };
 
   const fetchGallery = async () => {
     if (!isSupabaseConfigured) return;
@@ -1129,39 +1172,6 @@ export default function App() {
   const handleAppGalleryAdd = async (files: File[], url: string) => {
     const newItems: GalleryItem[] = [];
     
-    // Compress image or read video directly
-    const compressImage = (file: File): Promise<string> => new Promise((resolve) => {
-      if (!file.type.startsWith('image/')) {
-        const reader = new FileReader();
-        reader.onloadend = () => resolve(reader.result as string);
-        reader.readAsDataURL(file);
-        return;
-      }
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const img = new Image();
-        img.onload = () => {
-          const canvas = document.createElement('canvas');
-          let { width, height } = img;
-          const MAX = 1200;
-          if (width > height && width > MAX) {
-            height = Math.round(height * (MAX / width));
-            width = MAX;
-          } else if (height > MAX) {
-            width = Math.round(width * (MAX / height));
-            height = MAX;
-          }
-          canvas.width = width;
-          canvas.height = height;
-          const ctx = canvas.getContext('2d');
-          if (ctx) ctx.drawImage(img, 0, 0, width, height);
-          resolve(canvas.toDataURL('image/jpeg', 0.6));
-        };
-        img.src = e.target?.result as string;
-      };
-      reader.readAsDataURL(file);
-    });
-
     for (const file of files) {
       newItems.push({ id: Math.random().toString(36).substring(2, 9), url: await compressImage(file) });
     }
@@ -1184,8 +1194,31 @@ export default function App() {
     if (error) {
       alert("Error: Database upload exceeded limits or failed. Max 1MB allowed without bucket. Upload fewer files at once.\n" + error.message);
     } else if (data) {
-      fetchGallery();
+      setGallery([data[0], ...gallery]);
     }
+  };
+
+  const handleLogoUpload = async (file: File) => {
+    // Reuse compressImage for logo too
+    const compressedDataUrl = await compressImage(file);
+    
+    if (!isSupabaseConfigured) {
+      setLogoUrl(compressedDataUrl);
+      return;
+    }
+
+    const { error } = await supabase
+      .from('settings')
+      .upsert({ key: 'logo_url', value: compressedDataUrl })
+      .select();
+
+    if (error) {
+      console.error('Error uploading logo:', error);
+      alert('Er is iets misgegaan bij het uploaden van het logo.');
+      return;
+    }
+
+    setLogoUrl(compressedDataUrl);
   };
 
   const handleAppGalleryRemove = async (id: string) => {
@@ -1201,7 +1234,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen selection:bg-bumaye-orange selection:text-white">
-      <Navbar />
+      <Navbar logoUrl={logoUrl} />
       <Hero gallery={gallery} firstEvent={events[0]} />
       <Marquee />
       <section id="events" className="py-32 px-6">
@@ -1281,6 +1314,8 @@ export default function App() {
           gallery={gallery}
           onGalleryAdd={handleAppGalleryAdd}
           onGalleryRemove={handleAppGalleryRemove}
+          logoUrl={logoUrl}
+          onLogoUpload={handleLogoUpload}
         />
       )}
     </div>

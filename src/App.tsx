@@ -1116,15 +1116,41 @@ export default function App() {
   const handleAppGalleryAdd = async (files: File[], url: string) => {
     const newItems: GalleryItem[] = [];
     
-    // Convert files to Data URLs or Upload to Storage (Using Data URL for simplicity)
-    const readFile = (file: File): Promise<string> => new Promise((resolve) => {
+    // Compress image or read video directly
+    const compressImage = (file: File): Promise<string> => new Promise((resolve) => {
+      if (!file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result as string);
+        reader.readAsDataURL(file);
+        return;
+      }
       const reader = new FileReader();
-      reader.onloadend = () => resolve(reader.result as string);
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          let { width, height } = img;
+          const MAX = 1200;
+          if (width > height && width > MAX) {
+            height = Math.round(height * (MAX / width));
+            width = MAX;
+          } else if (height > MAX) {
+            width = Math.round(width * (MAX / height));
+            height = MAX;
+          }
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          if (ctx) ctx.drawImage(img, 0, 0, width, height);
+          resolve(canvas.toDataURL('image/jpeg', 0.6));
+        };
+        img.src = e.target?.result as string;
+      };
       reader.readAsDataURL(file);
     });
 
     for (const file of files) {
-      newItems.push({ id: Math.random().toString(36).substring(2, 9), url: await readFile(file) });
+      newItems.push({ id: Math.random().toString(36).substring(2, 9), url: await compressImage(file) });
     }
     
     if (url) {
@@ -1142,9 +1168,9 @@ export default function App() {
       .insert(newItems.map(item => ({ url: item.url })))
       .select();
       
-    if (!error && data) {
-      // Optioneel: voeg direct data toe, of roep fetchGallery() aan.
-      // fetchGallery is robuuster om de officiële ID's uit de database over te nemen
+    if (error) {
+      alert("Error: Database upload exceeded limits or failed. Max 1MB allowed without bucket. Upload fewer files at once.\n" + error.message);
+    } else if (data) {
       fetchGallery();
     }
   };

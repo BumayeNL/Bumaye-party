@@ -64,6 +64,7 @@ export const EVENTS: Event[] = [
 export interface GalleryItem {
   id: string;
   url: string;
+  display_order?: number;
 }
 
 export const GALLERY: GalleryItem[] = [

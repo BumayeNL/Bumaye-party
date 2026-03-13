@@ -32,6 +32,7 @@ create policy "Alleen authenticated users mogen events aanpassen"
 create table if not exists public.gallery (
   id uuid primary key default gen_random_uuid(),
   url text not null,
+  display_order integer default 0,
   created_at timestamptz default now()
 );
 

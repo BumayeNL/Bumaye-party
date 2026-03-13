@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowRight, Play, Instagram, Menu, X, Plus, Trash2, Camera, Check, AlertCircle, Save, LogOut, ChevronLeft, ChevronRight, Globe, Lock, Music2, Share2, Youtube, ExternalLink, Ticket, Calendar, MapPin, Users, Mail, Send, Clock, Settings, Edit2, Database, RefreshCw } from 'lucide-react';
+import { ArrowRight, Play, Instagram, Menu, X, Plus, Trash2, Camera, Check, AlertCircle, Save, LogOut, ChevronLeft, ChevronRight, Globe, Lock, Music2, Share2, Youtube, ExternalLink, Ticket, Calendar, MapPin, Users, Mail, Send, Clock, Settings, Edit2, Database, RefreshCw, ChevronUp, ChevronDown } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 import bannerImage from './assets/bumaye-banner.png';
 import { EVENTS as INITIAL_EVENTS, GALLERY, type Event, type GalleryItem } from './constants';
@@ -60,7 +60,7 @@ const TicketModal = ({ url, isOpen, onClose }: { url: string; isOpen: boolean; o
   );
 };
 
-const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gallery, onGalleryAdd, onGalleryRemove, logoUrl, onLogoUpload }: { 
+const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gallery = [], onGalleryAdd, onGalleryRemove, onGalleryReorder, logoUrl, onLogoUpload }: { 
   events: Event[];
   onAdd: (e: Omit<Event, 'id'>) => Promise<void>;
   onUpdate: (id: string, e: Omit<Event, 'id'>) => Promise<void>;
@@ -70,6 +70,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
   gallery?: GalleryItem[];
   onGalleryAdd?: (files: File[], url: string) => Promise<void>;
   onGalleryRemove?: (id: string) => Promise<void>;
+  onGalleryReorder?: (id: string, direction: 'up' | 'down') => Promise<void>;
   logoUrl?: string;
   onLogoUpload?: (file: File) => Promise<void>;
 }) => {
@@ -401,19 +402,41 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                 </button>
               </div>
               <div className="grid grid-cols-4 md:grid-cols-6 gap-4 mt-6">
-                {gallery.map((item) => (
+                {gallery.map((item, index) => (
                   <div key={item.id} className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-black/5 border border-black/5 group">
                     {item.url.startsWith('data:video') || item.url.endsWith('.mp4') ? (
                       <video src={item.url} className="w-full h-full object-cover" />
                     ) : (
                       <img src={item.url} alt="" className="w-full h-full object-cover" />
                     )}
-                    <button
-                      onClick={() => handleGalleryRemoveClick(item.id)}
-                      className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1.5 hover:bg-red-700 opacity-0 group-hover:opacity-100 transition-opacity"
-                    >
-                      <Trash2 size={14} />
-                    </button>
+                    
+                    {/* Reorder & Remove Controls */}
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2">
+                       <div className="flex gap-2">
+                        <button
+                          onClick={() => onGalleryReorder?.(item.id, 'up')}
+                          disabled={index === 0}
+                          className="bg-white/20 hover:bg-white/40 text-white rounded-lg p-2 disabled:opacity-20"
+                          title="Move Up"
+                        >
+                          <ChevronUp size={16} />
+                        </button>
+                        <button
+                          onClick={() => onGalleryReorder?.(item.id, 'down')}
+                          disabled={index === gallery.length - 1}
+                          className="bg-white/20 hover:bg-white/40 text-white rounded-lg p-2 disabled:opacity-20"
+                          title="Move Down"
+                        >
+                          <ChevronDown size={16} />
+                        </button>
+                      </div>
+                      <button
+                        onClick={() => handleGalleryRemoveClick(item.id)}
+                        className="bg-red-500 text-white rounded-lg px-3 py-1.5 hover:bg-red-600 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest mt-2"
+                      >
+                        <Trash2 size={12} /> Delete
+                      </button>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -1094,7 +1117,7 @@ export default function App() {
     const { data, error } = await supabase
       .from('gallery')
       .select('*')
-      .order('created_at', { ascending: false });
+      .order('display_order', { ascending: true });
 
     if (!error && data) {
       setGallery(data);
@@ -1191,31 +1214,74 @@ export default function App() {
   };
 
   const handleAppGalleryAdd = async (files: File[], url: string) => {
-    const newItems: GalleryItem[] = [];
+    const newItems: Partial<GalleryItem>[] = [];
+    const maxOrder = gallery.length > 0 ? Math.max(...gallery.map(g => g.display_order || 0)) : 0;
     
+    let currentOrder = maxOrder + 1;
     for (const file of files) {
-      newItems.push({ id: Math.random().toString(36).substring(2, 9), url: await compressImage(file) });
+      newItems.push({ 
+        id: Math.random().toString(36).substring(2, 9), 
+        url: await compressImage(file),
+        display_order: currentOrder++
+      });
     }
     
     if (url) {
-      newItems.push({ id: Math.random().toString(36).substring(2, 9), url });
+      newItems.push({ 
+        id: Math.random().toString(36).substring(2, 9), 
+        url,
+        display_order: currentOrder++
+      });
     }
 
     if (!isSupabaseConfigured) {
-      setGallery([...gallery, ...newItems]);
+      setGallery([...gallery, ...newItems as GalleryItem[]]);
       return;
     }
 
     // Insert into supabase
     const { data, error } = await supabase
       .from('gallery')
-      .insert(newItems.map(item => ({ url: item.url })))
+      .insert(newItems.map(item => ({ url: item.url, display_order: item.display_order })))
       .select();
       
     if (error) {
       alert("Error: Database upload exceeded limits or failed. Max 1MB allowed without bucket. Upload fewer files at once.\n" + error.message);
     } else if (data) {
-      setGallery([data[0], ...gallery]);
+      setGallery([...gallery, ...data]);
+    }
+  };
+
+  const handleAppGalleryReorder = async (id: string, direction: 'up' | 'down') => {
+    const index = gallery.findIndex(g => g.id === id);
+    if (index === -1) return;
+    if (direction === 'up' && index === 0) return;
+    if (direction === 'down' && index === gallery.length - 1) return;
+
+    const newIndex = direction === 'up' ? index - 1 : index + 1;
+    const newGallery = [...gallery];
+    const itemA = newGallery[index];
+    const itemB = newGallery[newIndex];
+
+    // Swap locally
+    newGallery[index] = itemB;
+    newGallery[newIndex] = itemA;
+
+    // Swap display orders
+    const orderA = itemA.display_order || 0;
+    const orderB = itemB.display_order || 0;
+    
+    itemA.display_order = orderB;
+    itemB.display_order = orderA;
+
+    setGallery(newGallery);
+
+    if (isSupabaseConfigured) {
+      // Update both in database
+      await Promise.all([
+        supabase.from('gallery').update({ display_order: orderB }).eq('id', itemA.id),
+        supabase.from('gallery').update({ display_order: orderA }).eq('id', itemB.id)
+      ]);
     }
   };
 
@@ -1335,6 +1401,7 @@ export default function App() {
           gallery={gallery}
           onGalleryAdd={handleAppGalleryAdd}
           onGalleryRemove={handleAppGalleryRemove}
+          onGalleryReorder={handleAppGalleryReorder}
           logoUrl={logoUrl}
           onLogoUpload={handleLogoUpload}
         />

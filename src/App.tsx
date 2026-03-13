@@ -714,15 +714,6 @@ const Hero = ({ gallery, firstEvent }: { gallery: GalleryItem[], firstEvent?: Ev
         )}
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div 
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-30"
-      >
-        <span className="font-mono text-[10px] uppercase tracking-[0.4em] vertical-text">Scroll</span>
-        <div className="w-[1px] h-12 bg-gradient-to-b from-white to-transparent" />
-      </motion.div>
     </section>
   );
 };
@@ -961,22 +952,6 @@ const AboutSection = () => {
               <p>
                 Our mission is to create a safe, high-energy space where music lovers can connect, dance, and experience the best of Afrobeats, Dancehall, and Urban culture.
               </p>
-            </div>
-            <div className="grid grid-cols-2 gap-10 mt-16">
-              <div className="space-y-4">
-                <div className="w-14 h-14 bg-bumaye-orange/10 rounded-2xl flex items-center justify-center text-bumaye-orange">
-                  <Music2 size={28} />
-                </div>
-                <h4 className="font-display text-2xl uppercase tracking-tighter">CURATED SOUNDS</h4>
-                <p className="text-sm text-bumaye-black/50">Hand-picked DJs and artists from across the globe.</p>
-              </div>
-              <div className="space-y-4">
-                <div className="w-14 h-14 bg-bumaye-orange/10 rounded-2xl flex items-center justify-center text-bumaye-orange">
-                  <Camera size={28} />
-                </div>
-                <h4 className="font-display text-2xl uppercase tracking-tighter">IMMERSIVE MEDIA</h4>
-                <p className="text-sm text-bumaye-black/50">Capturing every moment with premium visual production.</p>
-              </div>
             </div>
           </div>
         </div>

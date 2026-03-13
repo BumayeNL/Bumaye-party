@@ -5,32 +5,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { 
-  Instagram, 
-  Ticket, 
-  Calendar, 
-  MapPin, 
-  ArrowRight, 
-  Menu, 
-  X, 
-  Music2, 
-  Users, 
-  Camera,
-  Play,
-  Mail,
-  Send,
-  ChevronRight,
-  Plus,
-  Trash2,
-  Clock,
-  ExternalLink,
-  Settings,
-  Edit2,
-  Database,
-  RefreshCw
-} from 'lucide-react';
+import { ArrowRight, Play, Instagram, Menu, X, Plus, Trash2, Camera, Check, AlertCircle, Save, LogOut, ChevronLeft, ChevronRight, Globe, Lock, Music2, Share2, Youtube, ExternalLink, Ticket, Calendar, MapPin, Users, Mail, Send, Clock, Settings, Edit2, Database, RefreshCw } from 'lucide-react';
+import { createClient } from '@supabase/supabase-js';
+import bannerImage from './assets/bumaye-banner.png';
 import { EVENTS as INITIAL_EVENTS, GALLERY, type Event, type GalleryItem } from './constants';
 import { supabase, isSupabaseConfigured } from './lib/supabase';
+
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 
 // --- Components ---
 
@@ -582,25 +563,25 @@ const Hero = ({ gallery, firstEvent }: { gallery: GalleryItem[], firstEvent?: Ev
             <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white">Next Event: Rotterdam • July 25</span>
           </div>
           
-          <div className="relative mb-12">
+          <div className="relative mb-8 md:mb-12">
             <motion.div
-              initial={{ x: -20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="inline-block relative"
+              className="relative inline-block"
             >
-              <div className="bg-bumaye-pink text-white px-8 md:px-12 py-4 md:py-6 rounded-2xl shadow-[0_10px_40px_rgba(251,27,129,0.25)] transform -rotate-1 border-4 border-white">
-                <h1 className="font-display text-[14vw] md:text-[10vw] leading-none tracking-tighter uppercase select-none italic text-white drop-shadow-[0_4px_0_rgba(0,0,0,0.1)]">
-                  BUMAYE!
-                </h1>
-              </div>
+              <img 
+                src={bannerImage} 
+                alt="BUMAYE!" 
+                className="w-[85vw] md:w-[50vw] max-w-[800px] h-auto drop-shadow-[0_20px_50px_rgba(251,27,129,0.4)] transform -rotate-1 select-none pointer-events-none"
+              />
             </motion.div>
 
             <motion.div 
               initial={{ y: 10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.6 }}
-              className="mt-8 font-display text-[3.5vw] md:text-[2.2vw] tracking-[0.15em] uppercase text-white drop-shadow-lg flex items-center justify-center gap-4 flex-wrap"
+              className="mt-6 md:mt-10 font-display text-[4vw] md:text-[2.2vw] tracking-[0.15em] uppercase text-white drop-shadow-lg flex items-center justify-center gap-2 md:gap-4 flex-wrap"
             >
               <span>HIPHOP</span>
               <span className="text-white/40">X</span>
@@ -1038,14 +1019,16 @@ export default function App() {
     );
   };
 
-  // Helper function to compress images
+  // Helper function to compress images and handle transparency
   const compressImage = (file: File): Promise<string> => new Promise((resolve) => {
-    if (!file.type.startsWith('image/')) {
+    // Skip processing for SVG or if transparency is absolutely critical and we don't want to risk it
+    if (file.type === 'image/svg+xml') {
       const reader = new FileReader();
       reader.onloadend = () => resolve(reader.result as string);
       reader.readAsDataURL(file);
       return;
     }
+
     const reader = new FileReader();
     reader.onload = (e) => {
       const img = new Image();
@@ -1063,12 +1046,22 @@ export default function App() {
         canvas.width = width;
         canvas.height = height;
         const ctx = canvas.getContext('2d');
-        if (ctx) ctx.drawImage(img, 0, 0, width, height);
+        if (ctx) {
+          // Ensure canvas is clear for transparency
+          ctx.clearRect(0, 0, width, height);
+          ctx.drawImage(img, 0, 0, width, height);
+        }
         
-        // Preserve transparency for PNGs
-        const mimeType = file.type === 'image/png' ? 'image/png' : 'image/jpeg';
-        const quality = file.type === 'image/png' ? 1.0 : 0.6;
-        resolve(canvas.toDataURL(mimeType, quality));
+        // Preserve transparency for PNGs by using image/png
+        const isPng = file.type === 'image/png';
+        const mimeType = isPng ? 'image/png' : 'image/jpeg';
+        const quality = isPng ? 1.0 : 0.6; // High quality for PNG to keep details
+        
+        const dataUrl = canvas.toDataURL(mimeType, quality);
+        
+        // Final sanity check: if the compressed version is somehow way larger (rare), maybe return original
+        // For now, we trust the transparency fix
+        resolve(dataUrl);
       };
       img.src = e.target?.result as string;
     };

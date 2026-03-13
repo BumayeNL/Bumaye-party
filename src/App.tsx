@@ -425,16 +425,21 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                     </div>
 
                     {/* Remove Control */}
-                    <div className="absolute top-2 right-2 z-10">
+                    <div className="absolute top-2 right-2 z-[60]">
                       <button
-                        onPointerDown={(e) => e.stopPropagation()}
+                        onPointerDown={(e) => {
+                          e.stopPropagation();
+                          e.preventDefault();
+                        }}
                         onClick={(e) => {
                           e.stopPropagation();
+                          e.preventDefault();
                           handleGalleryRemoveClick(item.id);
                         }}
-                        className="bg-red-500 text-white rounded-full p-1.5 hover:bg-red-600 shadow-lg"
+                        className="bg-red-500 text-white rounded-full p-2 hover:bg-red-600 shadow-xl transition-all hover:scale-110 relative pointer-events-auto"
+                        title="Delete Image"
                       >
-                        <Trash2 size={12} />
+                        <Trash2 size={14} className="pointer-events-none" />
                       </button>
                     </div>
                   </Reorder.Item>
@@ -1119,6 +1124,19 @@ export default function App() {
       .select('*')
       .order('display_order', { ascending: true, nullsFirst: false });
 
+    if (error && error.message.includes('display_order')) {
+      // Fallback: fetch without ordering if display_order is missing
+      const fallback = await supabase
+        .from('gallery')
+        .select('*')
+        .order('created_at', { ascending: false });
+      
+      if (!fallback.error && fallback.data) {
+        setGallery(fallback.data);
+      }
+      return;
+    }
+
     if (error) {
       console.error('Error fetching gallery:', error);
       return;
@@ -1245,15 +1263,23 @@ export default function App() {
     }
 
     // Insert into supabase
-    const { data, error } = await supabase
+    let insertResult = await supabase
       .from('gallery')
       .insert(newItems.map(item => ({ url: item.url, display_order: item.display_order })))
       .select();
       
-    if (error) {
-      alert("Error: Database upload exceeded limits or failed. Max 1MB allowed without bucket. Upload fewer files at once.\n" + error.message);
-    } else if (data) {
-      setGallery([...gallery, ...data]);
+    if (insertResult.error && insertResult.error.message.includes('display_order')) {
+      // Fallback: try inserting without display_order if the column doesn't exist yet
+      insertResult = await supabase
+        .from('gallery')
+        .insert(newItems.map(item => ({ url: item.url })))
+        .select();
+    }
+
+    if (insertResult.error) {
+      alert("Error: Database upload failed. " + insertResult.error.message);
+    } else if (insertResult.data) {
+      setGallery([...gallery, ...insertResult.data]);
     }
   };
 

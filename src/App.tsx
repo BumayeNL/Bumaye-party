@@ -1006,11 +1006,11 @@ const ContactSection = () => {
 
 const AboutSection = ({ imageUrl }: { imageUrl?: string }) => {
   return (
-    <section id="about" className="py-20 px-6 bg-white text-bumaye-black rounded-[4rem] mx-4 my-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-24 items-center">
-          <div className="relative group max-w-md mx-auto lg:max-w-none">
-            <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl">
+    <section id="about" className="py-12 px-6 bg-white text-bumaye-black rounded-[3rem] mx-4 my-6">
+      <div className="max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center">
+          <div className="relative group max-w-[320px] mx-auto lg:max-w-none">
+            <div className="aspect-[4/5] rounded-[2rem] overflow-hidden shadow-xl border border-black/5">
               <img
                 src={imageUrl || "https://images.unsplash.com/photo-1545128485-c400e7702796?auto=format&fit=crop&q=80&w=800"}
                 alt="Bumaye Crowd"
@@ -1020,10 +1020,10 @@ const AboutSection = ({ imageUrl }: { imageUrl?: string }) => {
             </div>
           </div>
 
-          <div>
-            <span className="font-mono text-bumaye-orange text-xs tracking-[0.4em] uppercase mb-4 block">The Movement</span>
-            <h2 className="font-display text-5xl sm:text-6xl md:text-7xl uppercase mb-8 leading-[0.9] tracking-tighter">WHAT IS<br />BUMAYE?</h2>
-            <div className="space-y-6 text-lg leading-relaxed text-bumaye-black/70 font-light">
+          <div className="text-center lg:text-left">
+            <span className="font-mono text-bumaye-orange text-[10px] uppercase tracking-[0.4em] mb-3 block">The Movement</span>
+            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl uppercase mb-6 leading-[0.9] tracking-tighter">WHAT IS<br />BUMAYE?</h2>
+            <div className="space-y-4 text-base md:text-lg leading-relaxed text-bumaye-black/70 font-light max-w-md mx-auto lg:mx-0">
               <p>
                 Bumaye is more than an event — it's a feeling.
                 A space where good energy, love and freedom hit different. Where you walk in as a stranger and leave as family.

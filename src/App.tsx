@@ -587,10 +587,10 @@ const Hero = ({ gallery, firstEvent }: { gallery: GalleryItem[], firstEvent?: Ev
             <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/80">Next Event: Rotterdam • July 25</span>
           </div>
           
-          <h1 className="font-display text-[12vw] md:text-[9vw] leading-[0.85] tracking-tighter uppercase mb-8 select-none">
+          <h1 className="font-display text-[12vw] md:text-[9vw] leading-[0.8] tracking-tighter uppercase mb-6 select-none">
             BUMAYE<br />
-            <span className="text-stroke opacity-50 text-[5vw] md:text-[3.5vw] tracking-normal mt-4 block leading-tight">
-              AFROBEATS • DANCEHALL<br/>HIPHOP • R&B
+            <span className="text-stroke opacity-50 text-[3.5vw] md:text-[2.5vw] tracking-[0.2em] mt-6 block leading-none">
+              AFROBEATS • DANCEHALL • HIPHOP • R&B
             </span>
           </h1>
         </motion.div>

@@ -624,15 +624,15 @@ const Hero = ({ gallery, firstEvent }: { gallery: GalleryItem[], firstEvent?: Ev
               </a>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-              {gallery.slice(0, 6).map((item, i) => (
+            <div className="flex overflow-x-auto gap-6 hide-scrollbar snap-x snap-mandatory pb-4">
+              {gallery.slice(0, 12).map((item, i) => (
                 <motion.div
                   key={item.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.8 + (i * 0.1) }}
-                  whileHover={{ scale: 1.05, rotate: i % 2 === 0 ? 1 : -1 }}
-                  className="aspect-[3/4] rounded-3xl overflow-hidden bg-white/5 border border-white/10"
+                  whileHover={{ scale: 1.02 }}
+                  className="flex-none w-[280px] md:w-[400px] aspect-[3/4] rounded-[2.5rem] overflow-hidden bg-white/5 border border-white/10 snap-start"
                 >
                   {item.url.startsWith('data:video') || item.url.endsWith('.mp4') ? (
                     <video src={item.url} controls className="w-full h-full object-cover" />

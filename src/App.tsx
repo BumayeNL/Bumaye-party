@@ -712,23 +712,23 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                       <div className="space-y-2">
                         {subscribers.map(sub => (
                           <div key={sub.id} className="flex items-center justify-between p-4 bg-white rounded-2xl">
-                              <p className="text-xs font-mono font-bold">{sub.email}</p>
-                              <div className="flex items-center gap-2">
-                                <button
-                                  onClick={() => handleCopy(sub.email, sub.id)}
-                                  className="p-2 text-black/20 hover:text-bumaye-orange transition-colors"
-                                  title="Copy Email"
-                                >
-                                  {copyStatus === sub.id ? <Check size={14} /> : <Copy size={14} />}
-                                </button>
-                                <button
-                                  onClick={() => onSubscriberDelete?.(sub.id)}
-                                  className="p-2 text-black/10 hover:text-red-500 transition-colors"
-                                >
-                                  <Trash2 size={14} />
-                                </button>
-                              </div>
+                            <p className="text-xs font-mono font-bold">{sub.email}</p>
+                            <div className="flex items-center gap-2">
+                              <button
+                                onClick={() => handleCopy(sub.email, sub.id)}
+                                className="p-2 text-black/20 hover:text-bumaye-orange transition-colors"
+                                title="Copy Email"
+                              >
+                                {copyStatus === sub.id ? <Check size={14} /> : <Copy size={14} />}
+                              </button>
+                              <button
+                                onClick={() => onSubscriberDelete?.(sub.id)}
+                                className="p-2 text-black/10 hover:text-red-500 transition-colors"
+                              >
+                                <Trash2 size={14} />
+                              </button>
                             </div>
+                          </div>
                         ))}
                       </div>
                     )}
@@ -793,7 +793,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                     </div>
                     <div className="pt-8 border-t border-black/5 flex justify-between items-center text-[10px] font-mono text-black/20 uppercase tracking-[0.2em]">
                       <span>Sent on {new Date(selectedMessage.created_at).toLocaleString()}</span>
-                      <button 
+                      <button
                         onClick={() => {
                           onMessageDelete?.(selectedMessage.id);
                           setSelectedMessage(null);
@@ -824,7 +824,7 @@ const Marquee = () => {
       >
         {[...Array(10)].map((_, i) => (
           <span key={i} className="font-display text-4xl sm:text-5xl md:text-6xl text-white mx-4 sm:mx-8 uppercase tracking-tighter">
-            AFRO • DANCEHALL • HIPHOP • R&B • AMAPIANO •
+            • AFRO • DANCEHALL • HIPHOP • R&B • AMAPIANO
           </span>
         ))}
       </motion.div>

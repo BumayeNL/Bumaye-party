@@ -80,13 +80,55 @@ const TicketModal = ({ url, isOpen, onClose }: { url: string; isOpen: boolean; o
 };
 
 const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose }: { 
-  events: Event[]; 
-  onAdd: (e: Omit<Event, 'id'>) => Promise<void>; 
+  events: Event[];
+  onAdd: (e: Omit<Event, 'id'>) => Promise<void>;
   onUpdate: (id: string, e: Omit<Event, 'id'>) => Promise<void>;
   onDelete: (id: string) => Promise<void>;
   onRefresh: () => Promise<void>;
   onClose: () => void;
+  gallery?: string[];
+  setGallery?: (g: string[]) => void;
 }) => {
+    // Gallery manager state
+    const [galleryInput, setGalleryInput] = useState('');
+    const [galleryFile, setGalleryFile] = useState<File | null>(null);
+    const [galleryError, setGalleryError] = useState('');
+
+    // Voeg afbeelding/video toe aan gallery
+    const handleGalleryAdd = () => {
+      if (!galleryInput && !galleryFile) {
+        setGalleryError('Voer een URL in of upload een bestand');
+        return;
+      }
+      let url = galleryInput;
+      if (galleryFile) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          if (typeof reader.result === 'string') {
+            if (setGallery && gallery) setGallery([...gallery, reader.result]);
+          }
+        };
+        reader.readAsDataURL(galleryFile);
+        setGalleryFile(null);
+        setGalleryInput('');
+        setGalleryError('');
+        return;
+      }
+      if (url && setGallery && gallery) {
+        setGallery([...gallery, url]);
+        setGalleryInput('');
+        setGalleryError('');
+      }
+    };
+
+    const handleGalleryFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const file = e.target.files?.[0];
+      setGalleryFile(file || null);
+    };
+
+    const handleGalleryRemove = (idx: number) => {
+      if (setGallery && gallery) setGallery(gallery.filter((_, i) => i !== idx));
+    };
   const [editingId, setEditingId] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -172,61 +214,106 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose }: {
     } catch (error) {
       console.error('Submit error:', error);
     } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleDelete = async (id: string) => {
-    setDeletingId(id);
-    try {
-      await onDelete(id);
-    } catch (error) {
-      console.error('Delete error:', error);
-    } finally {
-      setDeletingId(null);
-    }
-  };
-
-  const handleRefresh = async () => {
-    setIsRefreshing(true);
-    try {
-      await onRefresh();
-    } catch (error) {
-      console.error('Refresh error:', error);
-    } finally {
-      setIsRefreshing(false);
-    }
-  };
-
-  return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-bumaye-black/95 backdrop-blur-md" onClick={onClose} />
-      <div className="relative w-full max-w-4xl max-h-[90vh] bg-white rounded-[2.5rem] overflow-hidden flex flex-col text-bumaye-black">
-        <div className="p-8 border-b border-black/5 flex justify-between items-center">
-          <div className="flex items-center gap-4">
-            <h2 className="font-display text-4xl uppercase tracking-tighter">Event Manager</h2>
-            <div className={`flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-widest ${isSupabaseConfigured ? 'bg-green-100 text-green-600' : 'bg-amber-100 text-amber-600'}`}>
-              <Database size={12} />
-              {isSupabaseConfigured ? 'Supabase Connected' : 'Local Mode'}
+      return (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-bumaye-black/95 backdrop-blur-md" onClick={onClose} />
+          <div className="relative w-full max-w-4xl max-h-[90vh] bg-white rounded-[2.5rem] overflow-hidden flex flex-col text-bumaye-black">
+            <div className="p-8 border-b border-black/5 flex justify-between items-center">
+              <div className="flex items-center gap-4">
+                <h2 className="font-display text-4xl uppercase tracking-tighter">Event Manager</h2>
+                <div className={`flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-widest ${isSupabaseConfigured ? 'bg-green-100 text-green-600' : 'bg-amber-100 text-amber-600'}`}>
+                  <Database size={12} />
+                  {isSupabaseConfigured ? 'Supabase Connected' : 'Local Mode'}
+                </div>
+              </div>
+              <div className="flex items-center gap-4">
+                <button 
+                  onClick={handleRefresh}
+                  disabled={isRefreshing}
+                  className="flex items-center gap-2 px-4 py-2 bg-black/5 hover:bg-black/10 rounded-xl transition-all font-mono text-[10px] uppercase tracking-widest disabled:opacity-50"
+                >
+                  <RefreshCw size={14} className={isRefreshing ? 'animate-spin' : ''} />
+                  {isRefreshing ? 'Syncing...' : 'Sync Now'}
+                </button>
+                <button onClick={onClose} className="p-2 hover:bg-black/5 rounded-full transition-colors"><X size={24} /></button>
+              </div>
             </div>
-          </div>
-          <div className="flex items-center gap-4">
-            <button 
-              onClick={handleRefresh}
-              disabled={isRefreshing}
-              className="flex items-center gap-2 px-4 py-2 bg-black/5 hover:bg-black/10 rounded-xl transition-all font-mono text-[10px] uppercase tracking-widest disabled:opacity-50"
-            >
-              <RefreshCw size={14} className={isRefreshing ? 'animate-spin' : ''} />
-              {isRefreshing ? 'Syncing...' : 'Sync Now'}
-            </button>
-            <button onClick={onClose} className="p-2 hover:bg-black/5 rounded-full transition-colors"><X size={24} /></button>
+
+            <div className="flex-1 overflow-y-auto p-8 grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div>
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="font-mono text-[10px] uppercase tracking-[0.3em] text-black/40">
+                    {editingId ? 'Edit Event' : 'Add New Event'}
+                  </h3>
+                  {editingId && (
+                    <button 
+                      onClick={handleCancelEdit}
+                      className="text-[10px] font-mono uppercase tracking-widest text-bumaye-orange hover:underline"
+                    >
+                      Cancel Edit
+                    </button>
+                  )}
+                </div>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  ...existing code...
+                </form>
+              </div>
+
+              <div>
+                <h3 className="font-mono text-[10px] uppercase tracking-[0.3em] text-black/40 mb-6">Existing Events</h3>
+                <div className="space-y-4">
+                  ...existing code...
+                </div>
+              </div>
+            </div>
+
+            {/* Gallery Manager */}
+            {gallery && setGallery && (
+              <div className="border-t border-black/10 p-8">
+                <h2 className="font-display text-3xl mb-6 uppercase tracking-tighter">Gallery Manager</h2>
+                <div className="flex gap-4 mb-4">
+                  <input
+                    type="text"
+                    placeholder="Afbeelding/video URL"
+                    value={galleryInput}
+                    onChange={e => setGalleryInput(e.target.value)}
+                    className="flex-1 bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
+                  />
+                  <label className="cursor-pointer bg-black/5 border border-black/10 rounded-xl px-4 py-3 hover:bg-black/10 transition-colors flex items-center justify-center">
+                    <Camera size={20} />
+                    <input type="file" className="hidden" accept="image/*,video/*" onChange={handleGalleryFile} />
+                  </label>
+                  <button
+                    onClick={handleGalleryAdd}
+                    className="bg-bumaye-orange text-white px-6 py-3 rounded-xl font-bold hover:bg-bumaye-black transition-all"
+                  >
+                    Toevoegen
+                  </button>
+                </div>
+                {galleryError && <div className="text-red-500 text-xs mb-2">{galleryError}</div>}
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mt-6">
+                  {gallery.map((item, idx) => (
+                    <div key={idx} className="relative aspect-[3/4] rounded-3xl overflow-hidden bg-white/5 border border-white/10">
+                      {item.startsWith('data:video') || item.endsWith('.mp4') ? (
+                        <video src={item} controls className="w-full h-full object-cover" />
+                      ) : (
+                        <img src={item} alt={`Gallery ${idx}`} className="w-full h-full object-cover" />
+                      )}
+                      <button
+                        onClick={() => handleGalleryRemove(idx)}
+                        className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2 hover:bg-red-700"
+                        title="Verwijder"
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
-        
-        <div className="flex-1 overflow-y-auto p-8 grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div>
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="font-mono text-[10px] uppercase tracking-[0.3em] text-black/40">
+      );
                 {editingId ? 'Edit Event' : 'Add New Event'}
               </h3>
               {editingId && (
@@ -885,6 +972,41 @@ export default function App() {
   const [events, setEvents] = useState<Event[]>(INITIAL_EVENTS);
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [ticketUrl, setTicketUrl] = useState<string | null>(null);
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+  const [loginError, setLoginError] = useState(false);
+  const [gallery, setGallery] = useState<string[]>(GALLERY);
+
+  // Admin wachtwoord (voor demo, zet dit in env of backend voor productie!)
+  const ADMIN_PASSWORD = 'bumaye2026';
+
+  // Eenvoudige login prompt
+  const AdminLogin = ({ onLogin, onClose, error }: { onLogin: (pw: string) => void; onClose: () => void; error?: boolean }) => {
+    const [pw, setPw] = useState('');
+    return (
+      <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
+        <div className="absolute inset-0 bg-bumaye-black/95 backdrop-blur-md" onClick={onClose} />
+        <div className="relative w-full max-w-xs bg-white rounded-2xl p-8 flex flex-col gap-4 items-center">
+          <h2 className="font-display text-2xl mb-2">Admin Login</h2>
+          <input
+            type="password"
+            placeholder="Wachtwoord"
+            value={pw}
+            onChange={e => setPw(e.target.value)}
+            className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
+          />
+          {error && <div className="text-red-500 text-xs">Onjuist wachtwoord</div>}
+          <button
+            onClick={() => onLogin(pw)}
+            className="w-full bg-bumaye-orange text-white py-3 rounded-xl font-bold hover:bg-bumaye-black transition-all"
+          >
+            Login
+          </button>
+          <button onClick={onClose} className="text-xs text-bumaye-orange mt-2 hover:underline">Annuleren</button>
+        </div>
+      </div>
+    );
+  };
 
   useEffect(() => {
     fetchEvents();
@@ -994,8 +1116,14 @@ export default function App() {
             <p className="max-w-xl text-white/40 font-light leading-relaxed text-xl mb-12">
               We focus on one massive experience at a time. Quality over quantity. This is what's coming next to the dancefloor.
             </p>
-            <button 
-              onClick={() => setIsAdminOpen(true)}
+            <button
+              onClick={() => {
+                if (isAdminLoggedIn) {
+                  setIsAdminOpen(true);
+                } else {
+                  setShowLogin(true);
+                }
+              }}
               className="absolute top-0 right-0 p-4 glass rounded-full hover:bg-bumaye-orange transition-all text-white/20 hover:text-white"
               title="Admin Panel"
             >
@@ -1018,9 +1146,9 @@ export default function App() {
       <section id="gallery" className="py-32 px-6">
         <div className="max-w-7xl mx-auto mb-20 flex flex-col md:flex-row justify-between items-center gap-8">
           <h2 className="font-display text-7xl md:text-9xl uppercase tracking-tighter">THE VIBE</h2>
-          <a 
-            href="https://www.instagram.com/bumaye.nl" 
-            target="_blank" 
+          <a
+            href="https://www.instagram.com/bumaye.nl"
+            target="_blank"
             rel="noreferrer"
             className="group flex items-center gap-4 font-mono text-xs uppercase tracking-[0.4em] hover:text-bumaye-orange transition-colors"
           >
@@ -1029,18 +1157,22 @@ export default function App() {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {GALLERY.map((img, i) => (
-            <motion.div 
+          {gallery.map((img, i) => (
+            <motion.div
               key={i}
               whileHover={{ scale: 1.05, rotate: i % 2 === 0 ? 1 : -1 }}
               className="aspect-[3/4] rounded-3xl overflow-hidden bg-white/5 border border-white/10"
             >
-              <img 
-                src={img} 
-                alt={`Gallery ${i}`} 
-                className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
-              />
+              {img.startsWith('data:video') || img.endsWith('.mp4') ? (
+                <video src={img} controls className="w-full h-full object-cover" />
+              ) : (
+                <img
+                  src={img}
+                  alt={`Gallery ${i}`}
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+              )}
             </motion.div>
           ))}
         </div>
@@ -1050,20 +1182,41 @@ export default function App() {
       <ContactSection />
       <Footer />
 
-      <TicketModal 
-        url={ticketUrl || ''} 
-        isOpen={!!ticketUrl} 
-        onClose={() => setTicketUrl(null)} 
+      <TicketModal
+        url={ticketUrl || ''}
+        isOpen={!!ticketUrl}
+        onClose={() => setTicketUrl(null)}
       />
 
-      {isAdminOpen && (
-        <AdminPanel 
-          events={events} 
-          onAdd={handleAddEvent} 
+      {/* Admin login modal */}
+      {showLogin && (
+        <AdminLogin
+          onLogin={(pw) => {
+            if (pw === ADMIN_PASSWORD) {
+              setIsAdminLoggedIn(true);
+              setShowLogin(false);
+              setLoginError(false);
+              setIsAdminOpen(true);
+            } else {
+              setLoginError(true);
+            }
+          }}
+          onClose={() => { setShowLogin(false); setLoginError(false); }}
+          error={loginError}
+        />
+      )}
+
+      {/* Admin panel alleen als ingelogd */}
+      {isAdminOpen && isAdminLoggedIn && (
+        <AdminPanel
+          events={events}
+          onAdd={handleAddEvent}
           onUpdate={handleUpdateEvent}
-          onDelete={handleDeleteEvent} 
+          onDelete={handleDeleteEvent}
           onRefresh={fetchEvents}
-          onClose={() => setIsAdminOpen(false)} 
+          onClose={() => setIsAdminOpen(false)}
+          gallery={gallery}
+          setGallery={setGallery}
         />
       )}
     </div>

@@ -882,8 +882,7 @@ const Footer = () => {
 };
 
 export default function App() {
-  // Gebruik lege array als fallback, want mock data is verwijderd
-  const [events, setEvents] = useState<Event[]>([]);
+  const [events, setEvents] = useState<Event[]>(INITIAL_EVENTS);
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [ticketUrl, setTicketUrl] = useState<string | null>(null);
 
@@ -1028,28 +1027,23 @@ export default function App() {
             Follow @bumaye.nl <ArrowRight className="group-hover:translate-x-2 transition-transform" />
           </a>
         </div>
-        {GALLERY.length > 0 ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {GALLERY.map((img, i) => (
-              <motion.div 
-                key={i}
-                whileHover={{ scale: 1.05, rotate: i % 2 === 0 ? 1 : -1 }}
-                className="aspect-[3/4] rounded-3xl overflow-hidden bg-white/5 border border-white/10"
-              >
-                <img 
-                  src={img} 
-                  alt={`Gallery ${i}`} 
-                  className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
-                />
-              </motion.div>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-32 glass rounded-[3rem] border border-dashed border-white/10">
-            <p className="font-mono text-white/20 uppercase tracking-widest">No gallery images yet</p>
-          </div>
-        )}
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          {GALLERY.map((img, i) => (
+            <motion.div 
+              key={i}
+              whileHover={{ scale: 1.05, rotate: i % 2 === 0 ? 1 : -1 }}
+              className="aspect-[3/4] rounded-3xl overflow-hidden bg-white/5 border border-white/10"
+            >
+              <img 
+                src={img} 
+                alt={`Gallery ${i}`} 
+                className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+              />
+            </motion.div>
+          ))}
+        </div>
       </section>
 
       <Newsletter />

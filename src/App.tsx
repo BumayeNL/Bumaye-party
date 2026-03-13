@@ -822,9 +822,9 @@ const Marquee = () => {
         transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
         className="inline-block"
       >
-        {[...Array(10)].map((_, i) => (
-          <span key={i} className="font-display text-4xl sm:text-5xl md:text-6xl text-white mx-4 sm:mx-8 uppercase tracking-tighter">
-            • AFRO • DANCEHALL • HIPHOP • R&B • AMAPIANO
+        {[...Array(15)].map((_, i) => (
+          <span key={i} className="font-display text-4xl sm:text-5xl md:text-6xl text-white uppercase tracking-tighter">
+            AFRO • DANCEHALL • HIPHOP • R&B • AMAPIANO •&nbsp;
           </span>
         ))}
       </motion.div>

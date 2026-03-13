@@ -13,10 +13,22 @@ import { supabase, isSupabaseConfigured } from './lib/supabase';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 
+// --- Helpers ---
+
+// Helper function to ensure absolute URLs
+const ensureAbsoluteUrl = (url: string) => {
+  if (!url) return '';
+  if (url.startsWith('http://') || url.startsWith('https://')) return url;
+  if (url.startsWith('//')) return `https:${url}`;
+  return `https://${url}`;
+};
+
 // --- Components ---
 
 const TicketModal = ({ url, isOpen, onClose }: { url: string; isOpen: boolean; onClose: () => void }) => {
   if (!isOpen) return null;
+
+  const absoluteUrl = ensureAbsoluteUrl(url);
 
   return (
     <AnimatePresence>
@@ -43,14 +55,14 @@ const TicketModal = ({ url, isOpen, onClose }: { url: string; isOpen: boolean; o
           </div>
           <div className="w-full h-full pt-12">
             <iframe 
-              src={url} 
+              src={absoluteUrl} 
               className="w-full h-full border-none"
               title="Ticket Shop"
             />
           </div>
           <div className="absolute bottom-0 left-0 w-full p-4 bg-white border-t border-black/5 flex justify-between items-center">
             <p className="text-[10px] font-mono uppercase tracking-widest text-black/40">Secure Checkout via Ticket Provider</p>
-            <a href={url} target="_blank" rel="noreferrer" className="text-[10px] font-mono uppercase tracking-widest text-bumaye-orange flex items-center gap-1 hover:underline">
+            <a href={absoluteUrl} target="_blank" rel="noreferrer" className="text-[10px] font-mono uppercase tracking-widest text-bumaye-orange flex items-center gap-1 hover:underline">
               Open in new tab <ExternalLink size={12} />
             </a>
           </div>
@@ -1059,7 +1071,7 @@ export default function App() {
     );
   };
 
-  // Helper function to compress images and handle transparency
+// Helper function to compress images and handle transparency
   const compressImage = (file: File): Promise<string> => new Promise((resolve) => {
     // Skip processing for SVG or if transparency is absolutely critical and we don't want to risk it
     if (file.type === 'image/svg+xml') {

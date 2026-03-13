@@ -226,10 +226,10 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4">
       <div className="absolute inset-0 bg-bumaye-black/95 backdrop-blur-md" onClick={onClose} />
-      <div className="relative z-10 w-full max-w-4xl max-h-[90vh] bg-white rounded-[2.5rem] overflow-hidden flex flex-col text-bumaye-black">
-        <div className="p-8 border-b border-black/5 flex justify-between items-center">
+      <div className="relative z-10 w-full max-w-4xl max-h-[95vh] sm:max-h-[90vh] bg-white rounded-3xl sm:rounded-[2.5rem] overflow-hidden flex flex-col text-bumaye-black">
+        <div className="p-4 sm:p-8 border-b border-black/5 flex flex-col sm:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-4">
             <h2 className="font-display text-4xl uppercase tracking-tighter">Admin Panel</h2>
             <div className={`flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-widest ${isSupabaseConfigured ? 'bg-green-100 text-green-600' : 'bg-amber-100 text-amber-600'}`}>
@@ -496,7 +496,7 @@ const Marquee = () => {
         className="inline-block"
       >
         {[...Array(10)].map((_, i) => (
-          <span key={i} className="font-display text-4xl md:text-6xl text-white mx-8 uppercase tracking-tighter">
+          <span key={i} className="font-display text-4xl sm:text-5xl md:text-6xl text-white mx-4 sm:mx-8 uppercase tracking-tighter">
             AFROBEATS • DANCEHALL • HIPHOP • R&B
           </span>
         ))}
@@ -549,19 +549,55 @@ const Navbar = ({ logoUrl }: { logoUrl?: string }) => {
       <AnimatePresence>
         {isOpen && (
           <motion.div 
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            className="fixed inset-0 bg-bumaye-black z-40 p-10 flex flex-col justify-center gap-8 font-display text-5xl uppercase"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-bumaye-black/95 backdrop-blur-2xl z-50 flex flex-col items-center justify-center text-center p-6 sm:p-10"
           >
-            <button className="absolute top-8 right-8 text-white" onClick={() => setIsOpen(false)}><X size={40} /></button>
-            <a href="#events" onClick={() => setIsOpen(false)} className="hover:text-bumaye-orange transition-colors">Events</a>
-            <a href="#about" onClick={() => setIsOpen(false)} className="hover:text-bumaye-orange transition-colors">About</a>
-            <a href="#gallery" onClick={() => setIsOpen(false)} className="hover:text-bumaye-orange transition-colors">Gallery</a>
-            <a href="#contact" onClick={() => setIsOpen(false)} className="hover:text-bumaye-orange transition-colors">Contact</a>
-            <div className="flex gap-6 mt-8">
-              <a href="https://www.instagram.com/bumaye.nl" className="text-bumaye-orange p-4 glass rounded-full"><Instagram size={32} /></a>
+            <button 
+              className="absolute top-8 right-8 text-white/40 hover:text-bumaye-orange transition-colors" 
+              onClick={() => setIsOpen(false)}
+            >
+              <X size={40} />
+            </button>
+            
+            <div className="flex flex-col gap-6 sm:gap-8 font-display text-4xl sm:text-6xl uppercase tracking-tighter">
+              {['Events', 'About', 'Gallery', 'Contact'].map((item, i) => (
+                <motion.a
+                  key={item}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  href={`#${item.toLowerCase()}`}
+                  onClick={() => setIsOpen(false)}
+                  className="hover:text-bumaye-orange transition-colors"
+                >
+                  {item}
+                </motion.a>
+              ))}
             </div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="flex flex-col items-center gap-8 mt-12 sm:mt-16 w-full max-w-xs"
+            >
+              <button className="w-full bg-bumaye-orange text-white py-5 rounded-3xl font-bold text-xl hover:scale-105 transition-transform shadow-2xl shadow-bumaye-orange/40">
+                TICKETS KOPEN
+              </button>
+              
+              <div className="flex gap-6">
+                <a 
+                  href="https://www.instagram.com/bumaye.nl" 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="p-5 glass rounded-full text-bumaye-orange hover:bg-bumaye-orange hover:text-white transition-all"
+                >
+                  <Instagram size={32} />
+                </a>
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -609,7 +645,7 @@ const Hero = ({ gallery, firstEvent }: { gallery: GalleryItem[], firstEvent?: Ev
               initial={{ y: 10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.6 }}
-              className="mt-6 md:mt-10 font-display text-[4vw] md:text-[2.2vw] tracking-[0.15em] uppercase text-white drop-shadow-lg flex items-center justify-center gap-2 md:gap-4 flex-wrap"
+              className="mt-6 md:mt-10 font-display text-lg sm:text-xl md:text-[2.2vw] tracking-[0.15em] uppercase text-white drop-shadow-lg flex items-center justify-center gap-2 md:gap-4 flex-wrap"
             >
               <span>HIPHOP</span>
               <span className="text-white/40">X</span>
@@ -638,9 +674,9 @@ const Hero = ({ gallery, firstEvent }: { gallery: GalleryItem[], firstEvent?: Ev
 
         {/* Hero Gallery Section */}
         {gallery && gallery.length > 0 && (
-          <div className="mt-40 w-full text-left">
-            <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-8">
-              <h2 className="font-display text-4xl md:text-6xl uppercase tracking-tighter text-white drop-shadow-md">THE VIBE</h2>
+          <div className="mt-20 md:mt-40 w-full text-left">
+            <div className="flex flex-col md:flex-row justify-between items-end gap-6 md:gap-8 mb-8">
+              <h2 className="font-display text-3xl sm:text-4xl md:text-6xl uppercase tracking-tighter text-white drop-shadow-md">THE VIBE</h2>
               <a
                 href="https://www.instagram.com/bumaye.nl"
                 target="_blank"
@@ -699,7 +735,7 @@ const FeaturedEvent: React.FC<{ event: Event; onBook: (url: string) => void }> =
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="relative w-full max-w-6xl mx-auto bg-white/5 rounded-[3rem] overflow-hidden border border-white/10"
+      className="relative w-full max-w-6xl mx-auto bg-white/5 rounded-[2rem] sm:rounded-[3rem] overflow-hidden border border-white/10"
     >
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <div className="aspect-square lg:aspect-auto relative overflow-hidden">
@@ -717,8 +753,8 @@ const FeaturedEvent: React.FC<{ event: Event; onBook: (url: string) => void }> =
           </div>
         </div>
 
-        <div className="p-10 md:p-16 flex flex-col justify-center">
-          <div className="flex items-center gap-6 mb-8">
+    <div className="p-8 md:p-16 flex flex-col justify-center">
+      <div className="flex items-center gap-4 sm:gap-6 mb-6 md:mb-8">
             <div className="flex items-center gap-2 text-bumaye-orange font-mono text-xs uppercase tracking-widest">
               <Calendar size={16} />
               {event.date}
@@ -837,7 +873,7 @@ const ContactSection = () => {
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20">
         <div>
           <span className="font-mono text-bumaye-orange text-xs tracking-widest uppercase mb-4 block">Get in Touch</span>
-          <h2 className="font-display text-7xl uppercase mb-8 leading-none">WANT TO<br />COLLABORATE?</h2>
+          <h2 className="font-display text-5xl sm:text-7xl uppercase mb-8 leading-none">WANT TO<br />COLLABORATE?</h2>
           <p className="text-white/60 text-xl mb-12 leading-relaxed">
             Whether you're a DJ, promoter, or brand looking to partner with the hottest Afrobeats event in the NL, we'd love to hear from you.
           </p>
@@ -917,7 +953,7 @@ const AboutSection = () => {
 
           <div>
             <span className="font-mono text-bumaye-orange text-xs tracking-[0.4em] uppercase mb-6 block">The Movement</span>
-            <h2 className="font-display text-7xl md:text-8xl uppercase mb-10 leading-[0.9] tracking-tighter">WHAT IS<br />BUMAYE?</h2>
+            <h2 className="font-display text-6xl sm:text-7xl md:text-8xl uppercase mb-10 leading-[0.9] tracking-tighter">WHAT IS<br />BUMAYE?</h2>
             <div className="space-y-8 text-xl leading-relaxed text-bumaye-black/70">
               <p>
                 Bumaye isn't just an event; it's a celebration of the African diaspora's global influence on music and dance. We bring the soul of Lagos, the heat of Kingston, and the pulse of London to the heart of the Netherlands.
@@ -952,7 +988,7 @@ const AboutSection = () => {
 const Footer = () => {
   return (
     <footer className="bg-bumaye-black border-t border-white/10 pt-32 pb-10 px-6 relative overflow-hidden">
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full text-center pointer-events-none opacity-[0.03] select-none">
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full text-center pointer-events-none opacity-[0.03] select-none hidden sm:block">
         <span className="font-display text-[30vw] leading-none uppercase tracking-tighter">BUMAYE</span>
       </div>
 

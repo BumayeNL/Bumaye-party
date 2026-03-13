@@ -27,3 +27,21 @@ create policy "Alleen authenticated users mogen events aanpassen"
   on public.events for all
   using (true)
   with check (true);
+
+-- Bumaye Gallery tabel
+create table if not exists public.gallery (
+  id uuid primary key default gen_random_uuid(),
+  url text not null,
+  created_at timestamptz default now()
+);
+
+alter table public.gallery enable row level security;
+
+create policy "Gallery is publiek leesbaar"
+  on public.gallery for select
+  using (true);
+
+create policy "Alleen authenticated users mogen gallery aanpassen"
+  on public.gallery for all
+  using (true)
+  with check (true);

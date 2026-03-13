@@ -29,7 +29,7 @@ import {
   Database,
   RefreshCw
 } from 'lucide-react';
-import { EVENTS as INITIAL_EVENTS, GALLERY, type Event } from './constants';
+import { EVENTS as INITIAL_EVENTS, GALLERY, type Event, type GalleryItem } from './constants';
 import { supabase, isSupabaseConfigured } from './lib/supabase';
 
 // --- Components ---
@@ -79,55 +79,49 @@ const TicketModal = ({ url, isOpen, onClose }: { url: string; isOpen: boolean; o
   );
 };
 
-const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gallery, setGallery }: { 
+const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gallery, onGalleryAdd, onGalleryRemove }: { 
   events: Event[];
   onAdd: (e: Omit<Event, 'id'>) => Promise<void>;
   onUpdate: (id: string, e: Omit<Event, 'id'>) => Promise<void>;
   onDelete: (id: string) => Promise<void>;
   onRefresh: () => Promise<void>;
   onClose: () => void;
-  gallery?: string[];
-  setGallery?: (g: string[]) => void;
+  gallery?: GalleryItem[];
+  onGalleryAdd?: (files: File[], url: string) => Promise<void>;
+  onGalleryRemove?: (id: string) => Promise<void>;
 }) => {
     // Gallery manager state
     const [galleryInput, setGalleryInput] = useState('');
-    const [galleryFile, setGalleryFile] = useState<File | null>(null);
+    const [galleryFiles, setGalleryFiles] = useState<File[]>([]);
     const [galleryError, setGalleryError] = useState('');
+    const [isGalleryUploading, setIsGalleryUploading] = useState(false);
 
-    // Voeg afbeelding/video toe aan gallery
-    const handleGalleryAdd = () => {
-      if (!galleryInput && !galleryFile) {
-        setGalleryError('Voer een URL in of upload een bestand');
+    const handleGalleryAddSubmit = async () => {
+      if (!galleryInput && galleryFiles.length === 0) {
+        setGalleryError('Voer een URL in of selecteer bestanden');
         return;
       }
-      let url = galleryInput;
-      if (galleryFile) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          if (typeof reader.result === 'string') {
-            if (setGallery && gallery) setGallery([...gallery, reader.result]);
-          }
-        };
-        reader.readAsDataURL(galleryFile);
-        setGalleryFile(null);
-        setGalleryInput('');
-        setGalleryError('');
-        return;
+      setIsGalleryUploading(true);
+      if (onGalleryAdd) {
+        await onGalleryAdd(galleryFiles, galleryInput);
       }
-      if (url && setGallery && gallery) {
-        setGallery([...gallery, url]);
-        setGalleryInput('');
-        setGalleryError('');
-      }
+      setGalleryFiles([]);
+      setGalleryInput('');
+      setGalleryError('');
+      setIsGalleryUploading(false);
     };
 
     const handleGalleryFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const file = e.target.files?.[0];
-      setGalleryFile(file || null);
+      const files = e.target.files;
+      if (files && files.length > 0) {
+        setGalleryFiles(Array.from(files));
+      } else {
+        setGalleryFiles([]);
+      }
     };
 
-    const handleGalleryRemove = (idx: number) => {
-      if (setGallery && gallery) setGallery(gallery.filter((_, i) => i !== idx));
+    const handleGalleryRemoveClick = async (id: string) => {
+      if (onGalleryRemove) await onGalleryRemove(id);
     };
   const [editingId, setEditingId] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -439,7 +433,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
         </div>
 
         {/* Gallery Manager */}
-        {gallery && setGallery && (
+        {gallery && onGalleryAdd && onGalleryRemove && (
           <div className="border-t border-black/10 p-8">
             <h2 className="font-display text-3xl mb-6 uppercase tracking-tighter">Gallery Manager</h2>
             <div className="flex gap-4 mb-4">
@@ -450,29 +444,33 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                 onChange={e => setGalleryInput(e.target.value)}
                 className="flex-1 bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
               />
-              <label className="cursor-pointer bg-black/5 border border-black/10 rounded-xl px-4 py-3 hover:bg-black/10 transition-colors flex items-center justify-center">
+              <label className="cursor-pointer bg-black/5 border border-black/10 rounded-xl px-4 py-3 hover:bg-black/10 transition-colors flex items-center justify-center relative">
                 <Camera size={20} />
-                <input type="file" className="hidden" accept="image/*,video/*" onChange={handleGalleryFile} />
+                {galleryFiles.length > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-bumaye-orange text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center">{galleryFiles.length}</span>
+                )}
+                <input type="file" multiple className="hidden" accept="image/*,video/*" onChange={handleGalleryFile} />
               </label>
               <button
-                onClick={handleGalleryAdd}
-                className="bg-bumaye-orange text-white px-6 py-3 rounded-xl font-bold hover:bg-bumaye-black transition-all"
+                onClick={handleGalleryAddSubmit}
+                disabled={isGalleryUploading}
+                className="bg-bumaye-orange text-white px-6 py-3 rounded-xl font-bold hover:bg-bumaye-black transition-all disabled:opacity-50"
               >
-                Toevoegen
+                {isGalleryUploading ? 'Uploading...' : 'Toevoegen'}
               </button>
             </div>
             {galleryError && <div className="text-red-500 text-xs mb-2">{galleryError}</div>}
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mt-6">
-              {gallery.map((item, idx) => (
-                <div key={idx} className="relative aspect-[3/4] rounded-3xl overflow-hidden bg-white/5 border border-white/10">
-                  {item.startsWith('data:video') || item.endsWith('.mp4') ? (
-                    <video src={item} controls className="w-full h-full object-cover" />
+              {gallery.map((item) => (
+                <div key={item.id} className="relative aspect-[3/4] rounded-3xl overflow-hidden bg-white/5 border border-white/10 group">
+                  {item.url.startsWith('data:video') || item.url.endsWith('.mp4') ? (
+                    <video src={item.url} controls className="w-full h-full object-cover" />
                   ) : (
-                    <img src={item} alt={`Gallery ${idx}`} className="w-full h-full object-cover" />
+                    <img src={item.url} alt={`Gallery ${item.id}`} className="w-full h-full object-cover" />
                   )}
                   <button
-                    onClick={() => handleGalleryRemove(idx)}
-                    className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2 hover:bg-red-700"
+                    onClick={() => handleGalleryRemoveClick(item.id)}
+                    className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2 hover:bg-red-700 opacity-0 group-hover:opacity-100 transition-opacity"
                     title="Verwijder"
                   >
                     <Trash2 size={16} />
@@ -975,7 +973,7 @@ export default function App() {
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [loginError, setLoginError] = useState(false);
-  const [gallery, setGallery] = useState<string[]>(GALLERY);
+  const [gallery, setGallery] = useState<GalleryItem[]>(GALLERY);
 
   // Admin wachtwoord (voor demo, zet dit in env of backend voor productie!)
   const ADMIN_PASSWORD = 'bumaye2026';
@@ -1010,7 +1008,21 @@ export default function App() {
 
   useEffect(() => {
     fetchEvents();
+    fetchGallery();
   }, []);
+
+  const fetchGallery = async () => {
+    if (!isSupabaseConfigured) return;
+
+    const { data, error } = await supabase
+      .from('gallery')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (!error && data) {
+      setGallery(data);
+    }
+  };
 
   const fetchEvents = async () => {
     if (!isSupabaseConfigured) return;
@@ -1101,6 +1113,53 @@ export default function App() {
     }
   };
 
+  const handleAppGalleryAdd = async (files: File[], url: string) => {
+    const newItems: GalleryItem[] = [];
+    
+    // Convert files to Data URLs or Upload to Storage (Using Data URL for simplicity)
+    const readFile = (file: File): Promise<string> => new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result as string);
+      reader.readAsDataURL(file);
+    });
+
+    for (const file of files) {
+      newItems.push({ id: Math.random().toString(36).substring(2, 9), url: await readFile(file) });
+    }
+    
+    if (url) {
+      newItems.push({ id: Math.random().toString(36).substring(2, 9), url });
+    }
+
+    if (!isSupabaseConfigured) {
+      setGallery([...gallery, ...newItems]);
+      return;
+    }
+
+    // Insert into supabase
+    const { data, error } = await supabase
+      .from('gallery')
+      .insert(newItems.map(item => ({ url: item.url })))
+      .select();
+      
+    if (!error && data) {
+      // Optioneel: voeg direct data toe, of roep fetchGallery() aan.
+      // fetchGallery is robuuster om de officiële ID's uit de database over te nemen
+      fetchGallery();
+    }
+  };
+
+  const handleAppGalleryRemove = async (id: string) => {
+    if (!isSupabaseConfigured) {
+      setGallery(gallery.filter(g => g.id !== id));
+      return;
+    }
+    const { error } = await supabase.from('gallery').delete().eq('id', id);
+    if (!error) {
+      setGallery(gallery.filter(g => g.id !== id));
+    }
+  };
+
   return (
     <div className="min-h-screen selection:bg-bumaye-orange selection:text-white">
       <Navbar />
@@ -1111,7 +1170,7 @@ export default function App() {
           <div className="flex flex-col items-center text-center mb-24 relative">
             <span className="font-mono text-bumaye-orange text-xs tracking-[0.6em] uppercase mb-6 block">The Main Event</span>
             <h2 className="font-display text-8xl md:text-[12rem] uppercase leading-[0.75] tracking-tighter mb-8">
-              NEXT<br />VIBE
+              NEXT UP
             </h2>
             <p className="max-w-xl text-white/40 font-light leading-relaxed text-xl mb-12">
               We focus on one massive experience at a time. Quality over quantity. This is what's coming next to the dancefloor.
@@ -1157,18 +1216,18 @@ export default function App() {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {gallery.map((img, i) => (
+          {gallery.map((item, i) => (
             <motion.div
-              key={i}
+              key={item.id}
               whileHover={{ scale: 1.05, rotate: i % 2 === 0 ? 1 : -1 }}
               className="aspect-[3/4] rounded-3xl overflow-hidden bg-white/5 border border-white/10"
             >
-              {img.startsWith('data:video') || img.endsWith('.mp4') ? (
-                <video src={img} controls className="w-full h-full object-cover" />
+              {item.url.startsWith('data:video') || item.url.endsWith('.mp4') ? (
+                <video src={item.url} controls className="w-full h-full object-cover" />
               ) : (
                 <img
-                  src={img}
-                  alt={`Gallery ${i}`}
+                  src={item.url}
+                  alt={`Gallery ${item.id}`}
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
                 />
@@ -1216,7 +1275,8 @@ export default function App() {
           onRefresh={fetchEvents}
           onClose={() => setIsAdminOpen(false)}
           gallery={gallery}
-          setGallery={setGallery}
+          onGalleryAdd={handleAppGalleryAdd}
+          onGalleryRemove={handleAppGalleryRemove}
         />
       )}
     </div>

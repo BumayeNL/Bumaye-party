@@ -631,8 +631,8 @@ const Hero = ({ gallery, firstEvent }: { gallery: GalleryItem[], firstEvent?: Ev
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.8 + (i * 0.1) }}
-                  whileHover={{ scale: 1.02 }}
-                  className="flex-none w-[280px] md:w-[400px] aspect-[3/4] rounded-[2.5rem] overflow-hidden bg-white/5 border border-white/10 snap-start"
+                  whileHover={{ scale: 1.05 }}
+                  className="flex-none w-[180px] md:w-[240px] aspect-[3/4] rounded-[2rem] overflow-hidden bg-white/5 border border-white/10 snap-start"
                 >
                   {item.url.startsWith('data:video') || item.url.endsWith('.mp4') ? (
                     <video src={item.url} controls className="w-full h-full object-cover" />

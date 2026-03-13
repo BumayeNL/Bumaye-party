@@ -105,7 +105,7 @@ const TicketModal = ({ url, isOpen, onClose }: { url: string; isOpen: boolean; o
   );
 };
 
-const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gallery = [], onGalleryAdd, onGalleryRemove, onGalleryReorder, logoUrl, onLogoUpload }: {
+const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gallery = [], onGalleryAdd, onGalleryRemove, onGalleryReorder, logoUrl, onLogoUpload, aboutImageUrl, onAboutImageUpload }: {
   events: Event[];
   onAdd: (e: Omit<Event, 'id'>) => Promise<void>;
   onUpdate: (id: string, e: Omit<Event, 'id'>) => Promise<void>;
@@ -118,6 +118,8 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
   onGalleryReorder?: (newGallery: GalleryItem[]) => void;
   logoUrl?: string;
   onLogoUpload?: (file: File) => Promise<void>;
+  aboutImageUrl?: string;
+  onAboutImageUpload?: (file: File) => Promise<void>;
 }) => {
   // Gallery manager state
   const [galleryInput, setGalleryInput] = useState('');
@@ -522,6 +524,38 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                 <p className="mt-4 text-[10px] font-mono text-black/40 leading-relaxed uppercase tracking-[0.2em]">
                   Recommended: PNG or SVG with transparent background.<br />
                   Maintain a horizontal ratio. Max height: 60px.
+                </p>
+              </div>
+
+              {/* About Image Setting */}
+              <div>
+                <label className="font-mono text-[10px] uppercase tracking-widest text-black/40 mb-2 block">About Section Image</label>
+                <div className="flex items-center gap-6">
+                  <div className="h-24 w-20 bg-black/5 rounded-2xl overflow-hidden border border-black/5">
+                    {aboutImageUrl ? (
+                      <img src={aboutImageUrl} alt="Current About" className="w-full h-full object-cover" />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center bg-black/5 text-black/20 font-mono text-[8px] text-center p-2">NO IMAGE</div>
+                    )}
+                  </div>
+                  <div className="relative group">
+                    <input 
+                      type="file" 
+                      accept="image/*" 
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) onAboutImageUpload(file);
+                      }}
+                      className="absolute inset-0 opacity-0 cursor-pointer w-full h-full z-10" 
+                    />
+                    <button className="bg-bumaye-black text-white px-8 py-3 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-bumaye-orange transition-all flex items-center gap-3">
+                      <Camera size={18} /> {aboutImageUrl ? 'Change Image' : 'Upload Image'}
+                    </button>
+                  </div>
+                </div>
+                <p className="mt-4 text-[10px] font-mono text-black/40 leading-relaxed uppercase tracking-[0.2em]">
+                  This image appears in the "What is Bumaye?" section.<br />
+                  Recommended: Vertical 4:5 ratio image.
                 </p>
               </div>
             </div>
@@ -970,15 +1004,15 @@ const ContactSection = () => {
   );
 };
 
-const AboutSection = () => {
+const AboutSection = ({ imageUrl }: { imageUrl?: string }) => {
   return (
-    <section id="about" className="py-32 px-6 bg-white text-bumaye-black rounded-[4rem] mx-4 my-8">
+    <section id="about" className="py-20 px-6 bg-white text-bumaye-black rounded-[4rem] mx-4 my-8">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center mb-32">
-          <div className="relative group">
-            <div className="aspect-[4/5] rounded-[3rem] overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-24 items-center">
+          <div className="relative group max-w-md mx-auto lg:max-w-none">
+            <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl">
               <img
-                src="https://images.unsplash.com/photo-1545128485-c400e7702796?auto=format&fit=crop&q=80&w=800"
+                src={imageUrl || "https://images.unsplash.com/photo-1545128485-c400e7702796?auto=format&fit=crop&q=80&w=800"}
                 alt="Bumaye Crowd"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
                 referrerPolicy="no-referrer"
@@ -987,9 +1021,9 @@ const AboutSection = () => {
           </div>
 
           <div>
-            <span className="font-mono text-bumaye-orange text-xs tracking-[0.4em] uppercase mb-6 block">The Movement</span>
-            <h2 className="font-display text-6xl sm:text-7xl md:text-8xl uppercase mb-10 leading-[0.9] tracking-tighter">WHAT IS<br />BUMAYE?</h2>
-            <div className="space-y-8 text-xl leading-relaxed text-bumaye-black/70">
+            <span className="font-mono text-bumaye-orange text-xs tracking-[0.4em] uppercase mb-4 block">The Movement</span>
+            <h2 className="font-display text-5xl sm:text-6xl md:text-7xl uppercase mb-8 leading-[0.9] tracking-tighter">WHAT IS<br />BUMAYE?</h2>
+            <div className="space-y-6 text-lg leading-relaxed text-bumaye-black/70 font-light">
               <p>
                 Bumaye isn't just an event; it's a celebration of the African diaspora's global influence on music and dance. We bring the soul of Lagos, the heat of Kingston, and the pulse of London to the heart of the Netherlands.
               </p>
@@ -1071,6 +1105,7 @@ export default function App() {
   const [loginError, setLoginError] = useState(false);
   const [gallery, setGallery] = useState<GalleryItem[]>(GALLERY);
   const [logoUrl, setLogoUrl] = useState<string>('');
+  const [aboutImageUrl, setAboutImageUrl] = useState<string>('');
 
   // Handle booking click - check if URL is embeddable or needs new tab
   const handleBook = (url: string) => {
@@ -1176,6 +1211,7 @@ export default function App() {
       const settingsMap: Record<string, string> = {};
       data.forEach((s: any) => { settingsMap[s.key] = s.value; });
       if (settingsMap.logo_url) setLogoUrl(settingsMap.logo_url);
+      if (settingsMap.about_image_url) setAboutImageUrl(settingsMap.about_image_url);
     }
   };
 
@@ -1400,6 +1436,28 @@ export default function App() {
     setLogoUrl(compressedDataUrl);
   };
 
+  const handleAboutImageUpload = async (file: File) => {
+    const compressedDataUrl = await compressImage(file);
+
+    if (!isSupabaseConfigured) {
+      setAboutImageUrl(compressedDataUrl);
+      return;
+    }
+
+    const { error } = await supabase
+      .from('settings')
+      .upsert({ key: 'about_image_url', value: compressedDataUrl })
+      .select();
+
+    if (error) {
+      console.error('Error uploading about image:', error);
+      alert('Er is iets misgegaan bij het uploaden van de afbeelding.');
+      return;
+    }
+
+    setAboutImageUrl(compressedDataUrl);
+  };
+
   const handleAppGalleryRemove = async (id: string) => {
     if (!isSupabaseConfigured) {
       setGallery(gallery.filter(g => g.id !== id));
@@ -1438,7 +1496,7 @@ export default function App() {
         </div>
       </section>
 
-      <AboutSection />
+      <AboutSection imageUrl={aboutImageUrl} />
 
       <Newsletter />
       <ContactSection />
@@ -1489,6 +1547,8 @@ export default function App() {
           onGalleryReorder={handleAppGalleryReorder}
           logoUrl={logoUrl}
           onLogoUpload={handleLogoUpload}
+          aboutImageUrl={aboutImageUrl}
+          onAboutImageUpload={handleAboutImageUpload}
         />
       )}
     </div>

@@ -985,7 +985,7 @@ const AboutSection = () => {
   );
 };
 
-const Footer = () => {
+const Footer = ({ onAdminClick }: { onAdminClick: () => void }) => {
   return (
     <footer className="bg-bumaye-black border-t border-white/10 pt-32 pb-10 px-6 relative overflow-hidden">
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full text-center pointer-events-none opacity-[0.03] select-none hidden sm:block">
@@ -1035,6 +1035,7 @@ const Footer = () => {
             <a href="#" className="hover:text-white transition-colors">Instagram</a>
             <a href="#" className="hover:text-white transition-colors">TikTok</a>
             <a href="#" className="hover:text-white transition-colors">Spotify</a>
+            <button onClick={onAdminClick} className="hover:text-white transition-colors opacity-50 lowercase">admin</button>
           </div>
         </div>
       </div>
@@ -1399,19 +1400,6 @@ export default function App() {
             <p className="max-w-xl text-white/40 font-light leading-relaxed text-xl mb-12">
               We focus on one massive experience at a time. Quality over quantity. This is what's coming next to the dancefloor.
             </p>
-            <button
-              onClick={() => {
-                if (isAdminLoggedIn) {
-                  setIsAdminOpen(true);
-                } else {
-                  setShowLogin(true);
-                }
-              }}
-              className="absolute top-0 right-0 p-4 glass rounded-full hover:bg-bumaye-orange transition-all text-white/20 hover:text-white"
-              title="Admin Panel"
-            >
-              <Settings size={20} />
-            </button>
           </div>
 
           {events.length > 0 ? (
@@ -1428,7 +1416,13 @@ export default function App() {
 
       <Newsletter />
       <ContactSection />
-      <Footer />
+      <Footer onAdminClick={() => {
+        if (isAdminLoggedIn) {
+          setIsAdminOpen(true);
+        } else {
+          setShowLogin(true);
+        }
+      }} />
 
       <TicketModal
         url={ticketUrl || ''}

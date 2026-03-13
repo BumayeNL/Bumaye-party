@@ -487,7 +487,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
 
 const Marquee = () => {
   return (
-    <div className="bg-bumaye-orange py-4 overflow-hidden whitespace-nowrap border-y border-black/10">
+    <div className="bg-bumaye-orange py-4 overflow-hidden whitespace-nowrap border-y border-black/10 mt-20">
       <motion.div 
         animate={{ x: [0, -1000] }}
         transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
@@ -495,7 +495,7 @@ const Marquee = () => {
       >
         {[...Array(10)].map((_, i) => (
           <span key={i} className="font-display text-4xl md:text-6xl text-white mx-8 uppercase tracking-tighter">
-            BUMAYE • AFROBEATS • DANCEHALL • URBAN • BUMAYE •
+            AFROBEATS • DANCEHALL • HIPHOP • R&B •
           </span>
         ))}
       </motion.div>
@@ -566,7 +566,7 @@ const Navbar = () => {
   );
 };
 
-const Hero = ({ gallery }: { gallery: GalleryItem[] }) => {
+const Hero = ({ gallery, firstEvent }: { gallery: GalleryItem[], firstEvent?: Event }) => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Background Elements */}
@@ -601,9 +601,9 @@ const Hero = ({ gallery }: { gallery: GalleryItem[] }) => {
           transition={{ delay: 0.5, duration: 0.8 }}
           className="flex flex-col md:flex-row items-center justify-center gap-6"
         >
-          <button className="group bg-bumaye-orange text-white px-12 py-5 rounded-full font-bold text-lg flex items-center gap-3 hover:bg-white hover:text-bumaye-black transition-all shadow-2xl shadow-bumaye-orange/30">
+          <a href={firstEvent ? firstEvent.ticketUrl : "#"} target={firstEvent ? "_blank" : "_self"} rel="noreferrer" className="group bg-bumaye-orange text-white px-12 py-5 rounded-full font-bold text-lg flex items-center gap-3 hover:bg-white hover:text-bumaye-black transition-all shadow-2xl shadow-bumaye-orange/30">
             GET TICKETS <ArrowRight className="group-hover:translate-x-2 transition-transform" />
-          </button>
+          </a>
           <button className="group glass text-white px-12 py-5 rounded-full font-bold text-lg flex items-center gap-3 hover:bg-white/10 transition-all">
             WATCH TEASER <Play size={20} className="fill-current" />
           </button>
@@ -611,7 +611,7 @@ const Hero = ({ gallery }: { gallery: GalleryItem[] }) => {
 
         {/* Hero Gallery Section */}
         {gallery && gallery.length > 0 && (
-          <div className="mt-24 w-full text-left">
+          <div className="mt-40 w-full text-left">
             <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-8">
               <h2 className="font-display text-4xl md:text-6xl uppercase tracking-tighter">THE VIBE</h2>
               <a
@@ -1232,7 +1232,7 @@ export default function App() {
   return (
     <div className="min-h-screen selection:bg-bumaye-orange selection:text-white">
       <Navbar />
-      <Hero gallery={gallery} />
+      <Hero gallery={gallery} firstEvent={events[0]} />
       <Marquee />
       <section id="events" className="py-32 px-6">
         <div className="max-w-7xl mx-auto">

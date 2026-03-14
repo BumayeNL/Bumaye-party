@@ -947,7 +947,7 @@ const Hero = ({ gallery, firstEvent }: { gallery: GalleryItem[], firstEvent?: Ev
         <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-bumaye-black via-bumaye-black/60 to-transparent" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10 text-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -968,7 +968,7 @@ const Hero = ({ gallery, firstEvent }: { gallery: GalleryItem[], firstEvent?: Ev
               <img
                 src={bannerImage}
                 alt="BUMAYE!"
-                className="w-[70vw] md:w-[50vw] max-w-[800px] h-auto drop-shadow-[0_20px_50px_rgba(251,27,129,0.4)] transform -rotate-1 select-none pointer-events-none"
+                className="w-[80vw] md:w-[50vw] max-w-[800px] h-auto drop-shadow-[0_20px_50px_rgba(251,27,129,0.4)] transform -rotate-1 select-none pointer-events-none mb-4"
               />
             </motion.div>
 
@@ -1005,7 +1005,7 @@ const Hero = ({ gallery, firstEvent }: { gallery: GalleryItem[], firstEvent?: Ev
 
         {/* Hero Gallery Section */}
         {gallery && gallery.length > 0 && (
-          <div className="mt-20 md:mt-40 w-full text-left">
+          <div className="mt-16 md:mt-40 w-full text-left">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 md:gap-8 mb-8">
               <h2 className="font-display text-3xl sm:text-4xl md:text-6xl uppercase tracking-tighter text-white drop-shadow-md">THE VIBE</h2>
               <a
@@ -1075,7 +1075,7 @@ const FeaturedEvent: React.FC<{ event: Event; onBook: (url: string) => void }> =
           </div>
         </div>
 
-        <div className="p-8 md:p-16 flex flex-col justify-center">
+        <div className="p-6 md:p-16 flex flex-col justify-center">
           <div className="flex items-center gap-4 sm:gap-6 mb-6 md:mb-8">
             <div className="flex items-center gap-2 text-bumaye-orange font-mono text-xs uppercase tracking-widest">
               <Calendar size={16} />
@@ -1190,10 +1190,10 @@ const Newsletter = () => {
   };
 
   return (
-    <section className="py-20 px-6">
-      <div className="max-w-5xl mx-auto glass rounded-[2.5rem] p-12 md:p-16 text-center relative overflow-hidden">
+    <section className="py-16 md:py-20 px-4 md:px-6">
+      <div className="max-w-5xl mx-auto glass rounded-[2rem] md:rounded-[2.5rem] p-10 md:p-16 text-center relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-bumaye-orange/5 -z-10" />
-        <Mail className="mx-auto mb-6 text-bumaye-orange" size={40} />
+        <Mail className="mx-auto mb-6 text-bumaye-orange" size={32} />
         <h2 className="font-display text-4xl md:text-6xl uppercase mb-4 leading-none">JOIN THE TRIBE</h2>
         <p className="text-white/40 max-w-lg mx-auto mb-10 text-base">
           Subscribe to get early access to tickets, exclusive line-up reveals, and special discounts.
@@ -1261,8 +1261,8 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-32 px-6">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20">
+    <section id="contact" className="py-16 md:py-32 px-4 md:px-6">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20">
         <div>
           <span className="font-mono text-bumaye-orange text-xs tracking-widest uppercase mb-4 block">Get in Touch</span>
           <h2 className="font-display text-5xl sm:text-7xl uppercase mb-8 leading-none">WANT TO<br />COLLABORATE?</h2>
@@ -1292,7 +1292,7 @@ const ContactSection = () => {
           </div>
         </div>
 
-        <div className="glass rounded-[3.5rem] p-10 md:p-12 relative overflow-hidden">
+        <div className="glass rounded-[2.5rem] md:rounded-[3.5rem] p-8 md:p-12 relative overflow-hidden">
           {status === 'success' && (
             <div className="absolute inset-0 z-10 bg-bumaye-black/90 backdrop-blur-xl flex flex-col items-center justify-center text-center p-8">
               <div className="w-20 h-20 bg-bumaye-orange/20 rounded-full flex items-center justify-center mb-6">
@@ -1378,10 +1378,10 @@ const ContactSection = () => {
 
 const AboutSection = ({ imageUrl }: { imageUrl?: string }) => {
   return (
-    <section id="about" className="py-8 md:py-12 px-6 bg-white text-bumaye-black rounded-[2.5rem] sm:rounded-[3rem] mx-4 my-6">
+    <section id="about" className="py-8 md:py-12 px-4 md:px-6 bg-white text-bumaye-black rounded-[2rem] sm:rounded-[3rem] mx-4 my-6">
       <div className="max-w-5xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center">
-          <div className="relative group max-w-[280px] md:max-w-[320px] mx-auto lg:max-w-none">
+          <div className="relative group w-full mx-auto lg:max-w-none">
             <div className="aspect-[4/5] rounded-[2rem] overflow-hidden shadow-xl border border-black/5">
               <img
                 src={imageUrl || "https://images.unsplash.com/photo-1545128485-c400e7702796?auto=format&fit=crop&q=80&w=800"}
@@ -1895,11 +1895,11 @@ export default function App() {
       <Navbar logoUrl={logoUrl} />
       <Hero gallery={gallery} firstEvent={events[0]} />
       <Marquee />
-      <section id="events" className="py-32 px-6">
+      <section id="events" className="py-16 md:py-32 px-4 md:px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col items-center text-center mb-24 relative">
+          <div className="flex flex-col items-center text-center mb-12 md:mb-24 relative">
             <span className="font-mono text-bumaye-orange text-xs tracking-[0.6em] uppercase mb-6 block">The Main Event</span>
-            <h2 className="font-display text-8xl md:text-[12rem] uppercase leading-[0.75] tracking-tighter mb-8">
+            <h2 className="font-display text-6xl md:text-[12rem] uppercase leading-[0.75] tracking-tighter mb-8">
               NEXT UP
             </h2>
             <p className="max-w-xl text-white/40 font-light leading-relaxed text-xl mb-12">

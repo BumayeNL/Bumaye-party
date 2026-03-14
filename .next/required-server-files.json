@@ -210,6 +210,9 @@
       "turbopackFileSystemCacheForDev": true,
       "turbopackFileSystemCacheForBuild": false,
       "turbopackInferModuleSideEffects": false,
+      "turbo": {
+        "root": "./"
+      },
       "optimizePackageImports": [
         "lucide-react",
         "date-fns",

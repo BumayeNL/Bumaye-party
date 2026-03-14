@@ -25,9 +25,12 @@ export const Hero = ({ gallery, firstEvent }: { gallery: GalleryItem[], firstEve
             </div>
             <div className="relative mb-8 md:mb-12">
               <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.3 }} className="relative inline-block">
-                <img src="/assets/bumaye-banner.png" alt="BUMAYE!" className="w-[60vw] md:w-[45vw] max-w-[700px] h-auto drop-shadow-[0_20px_50px_rgba(251,27,129,0.4)] transform -rotate-1 select-none pointer-events-none mb-6" />
+                <img src="/assets/bumaye-banner.png" alt="BUMAYE!" className="w-[60vw] md:w-[45vw] max-w-[700px] h-auto drop-shadow-[0_20px_50px_rgba(251,27,129,0.4)] transform -rotate-1 select-none pointer-events-none mb-4" />
               </motion.div>
-              <motion.div initial={{ y: 10, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.6 }} className="mt-4 md:mt-10 font-display text-xl sm:text-3xl md:text-[2.2vw] tracking-[0.2em] uppercase text-white drop-shadow-lg flex items-center justify-center gap-3 md:gap-4 flex-wrap">
+              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="text-white/50 text-sm md:text-lg italic tracking-wide mb-6 md:mb-8">
+                Where genres blend &amp; nations fuse
+              </motion.p>
+              <motion.div initial={{ y: 10, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.6 }} className="font-display text-[3.8vw] sm:text-xl md:text-[2.2vw] tracking-[0.15em] sm:tracking-[0.2em] uppercase text-white drop-shadow-lg flex items-center justify-center gap-1.5 sm:gap-3 md:gap-4 whitespace-nowrap">
                 <span>HIPHOP</span><span className="text-white/40">X</span><span>R&B</span><span className="text-white/40">X</span><span>AFRO</span><span className="text-white/40">X</span><span>DANCEHALL</span>
               </motion.div>
             </div>

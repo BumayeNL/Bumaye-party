@@ -425,7 +425,7 @@ const Hero = ({ gallery, firstEvent })=>{
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                                             src: "/assets/bumaye-banner.png",
                                             alt: "BUMAYE!",
-                                            className: "w-[60vw] md:w-[45vw] max-w-[700px] h-auto drop-shadow-[0_20px_50px_rgba(251,27,129,0.4)] transform -rotate-1 select-none pointer-events-none mb-6"
+                                            className: "w-[60vw] md:w-[45vw] max-w-[700px] h-auto drop-shadow-[0_20px_50px_rgba(251,27,129,0.4)] transform -rotate-1 select-none pointer-events-none mb-4"
                                         }, void 0, false, {
                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/Hero.tsx",
                                             lineNumber: 28,
@@ -434,6 +434,23 @@ const Hero = ({ gallery, firstEvent })=>{
                                     }, void 0, false, {
                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/Hero.tsx",
                                         lineNumber: 27,
+                                        columnNumber: 15
+                                    }, ("TURBOPACK compile-time value", void 0)),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].p, {
+                                        initial: {
+                                            opacity: 0
+                                        },
+                                        animate: {
+                                            opacity: 1
+                                        },
+                                        transition: {
+                                            delay: 0.5
+                                        },
+                                        className: "text-white/50 text-sm md:text-lg italic tracking-wide mb-6 md:mb-8",
+                                        children: "Where genres blend & nations fuse"
+                                    }, void 0, false, {
+                                        fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/Hero.tsx",
+                                        lineNumber: 30,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -448,13 +465,13 @@ const Hero = ({ gallery, firstEvent })=>{
                                         transition: {
                                             delay: 0.6
                                         },
-                                        className: "mt-4 md:mt-10 font-display text-xl sm:text-3xl md:text-[2.2vw] tracking-[0.2em] uppercase text-white drop-shadow-lg flex items-center justify-center gap-3 md:gap-4 flex-wrap",
+                                        className: "font-display text-[3.8vw] sm:text-xl md:text-[2.2vw] tracking-[0.15em] sm:tracking-[0.2em] uppercase text-white drop-shadow-lg flex items-center justify-center gap-1.5 sm:gap-3 md:gap-4 whitespace-nowrap",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: "HIPHOP"
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/Hero.tsx",
-                                                lineNumber: 31,
+                                                lineNumber: 34,
                                                 columnNumber: 17
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -462,14 +479,14 @@ const Hero = ({ gallery, firstEvent })=>{
                                                 children: "X"
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/Hero.tsx",
-                                                lineNumber: 31,
+                                                lineNumber: 34,
                                                 columnNumber: 36
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: "R&B"
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/Hero.tsx",
-                                                lineNumber: 31,
+                                                lineNumber: 34,
                                                 columnNumber: 76
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -477,14 +494,14 @@ const Hero = ({ gallery, firstEvent })=>{
                                                 children: "X"
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/Hero.tsx",
-                                                lineNumber: 31,
+                                                lineNumber: 34,
                                                 columnNumber: 92
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: "AFRO"
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/Hero.tsx",
-                                                lineNumber: 31,
+                                                lineNumber: 34,
                                                 columnNumber: 132
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -492,20 +509,20 @@ const Hero = ({ gallery, firstEvent })=>{
                                                 children: "X"
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/Hero.tsx",
-                                                lineNumber: 31,
+                                                lineNumber: 34,
                                                 columnNumber: 149
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: "DANCEHALL"
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/Hero.tsx",
-                                                lineNumber: 31,
+                                                lineNumber: 34,
                                                 columnNumber: 189
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/Hero.tsx",
-                                        lineNumber: 30,
+                                        lineNumber: 33,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
@@ -540,13 +557,13 @@ const Hero = ({ gallery, firstEvent })=>{
                                                 className: "group-hover:translate-x-2 transition-transform"
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/Hero.tsx",
-                                                lineNumber: 36,
+                                                lineNumber: 39,
                                                 columnNumber: 29
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/Hero.tsx",
-                                        lineNumber: 35,
+                                        lineNumber: 38,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -558,19 +575,19 @@ const Hero = ({ gallery, firstEvent })=>{
                                                 className: "fill-current"
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/Hero.tsx",
-                                                lineNumber: 39,
+                                                lineNumber: 42,
                                                 columnNumber: 30
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/Hero.tsx",
-                                        lineNumber: 38,
+                                        lineNumber: 41,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/Hero.tsx",
-                                lineNumber: 34,
+                                lineNumber: 37,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
@@ -603,7 +620,7 @@ const Hero = ({ gallery, firstEvent })=>{
                                     children: "THE VIBE"
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/Hero.tsx",
-                                    lineNumber: 51,
+                                    lineNumber: 54,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -618,19 +635,19 @@ const Hero = ({ gallery, firstEvent })=>{
                                             className: "group-hover:translate-x-2 transition-transform"
                                         }, void 0, false, {
                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/Hero.tsx",
-                                            lineNumber: 53,
+                                            lineNumber: 56,
                                             columnNumber: 35
                                         }, ("TURBOPACK compile-time value", void 0))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/Hero.tsx",
-                                    lineNumber: 52,
+                                    lineNumber: 55,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/Hero.tsx",
-                            lineNumber: 50,
+                            lineNumber: 53,
                             columnNumber: 13
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -660,7 +677,7 @@ const Hero = ({ gallery, firstEvent })=>{
                                         className: "w-full h-full object-cover"
                                     }, void 0, false, {
                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/Hero.tsx",
-                                        lineNumber: 59,
+                                        lineNumber: 62,
                                         columnNumber: 48
                                     }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                                         src: item.url,
@@ -671,28 +688,28 @@ const Hero = ({ gallery, firstEvent })=>{
                                         decoding: "async"
                                     }, void 0, false, {
                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/Hero.tsx",
-                                        lineNumber: 59,
+                                        lineNumber: 62,
                                         columnNumber: 123
                                     }, ("TURBOPACK compile-time value", void 0))
                                 }, item.id, false, {
                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/Hero.tsx",
-                                    lineNumber: 58,
+                                    lineNumber: 61,
                                     columnNumber: 17
                                 }, ("TURBOPACK compile-time value", void 0)))
                         }, void 0, false, {
                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/Hero.tsx",
-                            lineNumber: 56,
+                            lineNumber: 59,
                             columnNumber: 13
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/Hero.tsx",
-                    lineNumber: 49,
+                    lineNumber: 52,
                     columnNumber: 11
                 }, ("TURBOPACK compile-time value", void 0))
             }, void 0, false, {
                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/Hero.tsx",
-                lineNumber: 48,
+                lineNumber: 51,
                 columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0))
         ]

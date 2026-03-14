@@ -843,6 +843,18 @@ const Navbar = ({ logoUrl }: { logoUrl?: string }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Scroll lock when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
   return (
     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-bumaye-black/90 backdrop-blur-xl py-4 border-b border-white/5' : 'bg-transparent py-6'}`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
@@ -868,7 +880,7 @@ const Navbar = ({ logoUrl }: { logoUrl?: string }) => {
           </button>
         </div>
 
-        <button className="md:hidden text-white p-2 glass rounded-lg" onClick={() => setIsOpen(!isOpen)}>
+        <button className="md:hidden text-white p-2 glass rounded-lg relative z-[110]" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
@@ -880,7 +892,7 @@ const Navbar = ({ logoUrl }: { logoUrl?: string }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-bumaye-black/95 backdrop-blur-2xl z-50 flex flex-col items-center justify-center text-center p-6 sm:p-10"
+            className="fixed inset-0 bg-bumaye-black/98 backdrop-blur-3xl z-[100] flex flex-col items-center justify-center text-center p-6 sm:p-10"
           >
             <button
               className="absolute top-8 right-8 text-white/40 hover:text-bumaye-orange transition-colors"
@@ -936,13 +948,11 @@ const Navbar = ({ logoUrl }: { logoUrl?: string }) => {
 const Hero = ({ gallery, firstEvent }: { gallery: GalleryItem[], firstEvent?: Event }) => {
   return (
     <section 
-      className="relative min-h-[95vh] md:min-h-screen flex flex-col items-center justify-center pt-24 md:pt-32 pb-20 bg-cover bg-center"
+      className="relative min-h-[95vh] md:min-h-screen flex flex-col items-center justify-center pt-24 md:pt-32 pb-20 bg-bumaye-black bg-cover bg-center"
       style={{ backgroundImage: `url(${heroBannerNew})` }}
     >
       {/* Background Elements */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-noise mix-blend-overlay opacity-10" />
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_0%,rgba(0,0,0,0.3),transparent_70%)]" />
         {/* Smooth transition to next section */}
         <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-bumaye-black via-bumaye-black/60 to-transparent" />
       </div>

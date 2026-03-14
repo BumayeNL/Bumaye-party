@@ -259,7 +259,7 @@ export default function App() {
           <div className="flex flex-col items-center text-center mb-12 md:mb-24">
             <span className="font-mono text-bumaye-orange text-xs tracking-[0.6em] uppercase mb-6 block">The Main Event</span>
             <h2 className="font-display text-7xl md:text-[12rem] uppercase leading-[0.75] tracking-tighter mb-8 px-4">NEXT UP</h2>
-            <p className="max-w-xl text-white/40 font-light leading-relaxed text-xl mb-12">where genres blend & nations fuse.</p>
+            <p className="max-w-xl text-white/40 font-light leading-relaxed text-xl mb-12">Don't miss the next edition.</p>
           </div>
           {events.length > 0 ? <FeaturedEvent event={events[0]} onBook={handleBook} /> : (
             <div className="text-center py-32 glass rounded-[3rem] border border-dashed border-white/10">

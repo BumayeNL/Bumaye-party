@@ -4754,7 +4754,7 @@ function App() {
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                     className: "max-w-xl text-white/40 font-light leading-relaxed text-xl mb-12",
-                                    children: "where genres blend & nations fuse."
+                                    children: "Don't miss the next edition."
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/MainApp.tsx",
                                     lineNumber: 262,

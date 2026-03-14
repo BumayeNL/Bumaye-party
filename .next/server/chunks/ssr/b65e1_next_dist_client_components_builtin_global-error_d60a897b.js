@@ -1,0 +1,3 @@
+module.exports=[55200,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(66157);a.n(d("[project]/Documents/Bumaye website/Bumaye-party-1/node_modules/next/dist/client/components/builtin/global-error.js <module evaluation>"))},4451,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(66157);a.n(d("[project]/Documents/Bumaye website/Bumaye-party-1/node_modules/next/dist/client/components/builtin/global-error.js"))},2158,a=>{"use strict";a.i(55200);var b=a.i(4451);a.n(b)}];
+
+//# sourceMappingURL=b65e1_next_dist_client_components_builtin_global-error_d60a897b.js.map

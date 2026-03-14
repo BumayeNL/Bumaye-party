@@ -1,0 +1,13 @@
+var R=require("../../chunks/ssr/[turbopack]_runtime.js")("server/app/_not-found/page.js")
+R.c("server/chunks/ssr/Documents_Bumaye website_Bumaye-party-1_967f97ba._.js")
+R.c("server/chunks/ssr/[root-of-the-server]__7b1b9cb1._.js")
+R.c("server/chunks/ssr/b65e1_next_dist_esm_build_templates_app-page_33b03dd2.js")
+R.c("server/chunks/ssr/[root-of-the-server]__7f7789ab._.js")
+R.c("server/chunks/ssr/[root-of-the-server]__2e0fc47a._.js")
+R.c("server/chunks/ssr/[root-of-the-server]__84528fd1._.js")
+R.c("server/chunks/ssr/Documents_Bumaye website_Bumaye-party-1_src_app_layout_tsx_cdf2ea82._.js")
+R.c("server/chunks/ssr/b65e1_next_dist_client_components_ebf8ebf3._.js")
+R.c("server/chunks/ssr/b65e1_next_dist_client_components_builtin_forbidden_0ac5d259.js")
+R.c("server/chunks/ssr/f1c90_Bumaye-party-1__next-internal_server_app__not-found_page_actions_83d7ed83.js")
+R.m(45636)
+module.exports=R.m(45636).exports

@@ -1,0 +1,3 @@
+module.exports=[80171,a=>{"use strict";var b=a.i(83301);function c({children:a}){return(0,b.jsx)("html",{lang:"en",children:(0,b.jsx)("body",{className:"antialiased",children:a})})}a.s(["default",()=>c,"metadata",0,{title:"BUMAYE! | HIPHOP • R&B • AFRO • DANCEHALL",description:"Bumaye is more than an event — it's a feeling. Join the movement."}])}];
+
+//# sourceMappingURL=Documents_Bumaye%20website_Bumaye-party-1_src_app_layout_tsx_cdf2ea82._.js.map

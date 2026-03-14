@@ -295,35 +295,47 @@ export const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClo
                     rows={3}
                   />
                   <div className="grid grid-cols-2 gap-4">
-                    <input
-                      placeholder="Date (e.g. March 27, 2026)"
-                      value={newEvent.date}
-                      onChange={e => setNewEvent({ ...newEvent, date: e.target.value })}
-                      className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
-                      required
-                    />
-                    <input
-                      placeholder="Time (e.g. 23:00 - 05:00)"
-                      value={newEvent.time}
-                      onChange={e => setNewEvent({ ...newEvent, time: e.target.value })}
-                      className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
-                    />
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-mono text-black/40 uppercase ml-2">Date</label>
+                      <input
+                        type="date"
+                        value={newEvent.date}
+                        onChange={e => setNewEvent({ ...newEvent, date: e.target.value })}
+                        className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
+                        required
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-mono text-black/40 uppercase ml-2">Time</label>
+                      <input
+                        type="time"
+                        value={newEvent.time}
+                        onChange={e => setNewEvent({ ...newEvent, time: e.target.value })}
+                        className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
+                      />
+                    </div>
                   </div>
                   <div className="grid grid-cols-2 gap-4">
-                    <input
-                      placeholder="Location"
-                      value={newEvent.location}
-                      onChange={e => setNewEvent({ ...newEvent, location: e.target.value })}
-                      className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
-                      required
-                    />
-                    <input
-                      placeholder="City"
-                      value={newEvent.city}
-                      onChange={e => setNewEvent({ ...newEvent, city: e.target.value })}
-                      className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
-                      required
-                    />
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-mono text-black/40 uppercase ml-2">Venue / Location</label>
+                      <input
+                        placeholder="e.g. Club AIR"
+                        value={newEvent.location}
+                        onChange={e => setNewEvent({ ...newEvent, location: e.target.value })}
+                        className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
+                        required
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-mono text-black/40 uppercase ml-2">City</label>
+                      <input
+                        placeholder="e.g. Amsterdam"
+                        value={newEvent.city}
+                        onChange={e => setNewEvent({ ...newEvent, city: e.target.value })}
+                        className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
+                        required
+                      />
+                    </div>
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">

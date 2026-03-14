@@ -936,7 +936,7 @@ const Navbar = ({ logoUrl }: { logoUrl?: string }) => {
 const Hero = ({ gallery, firstEvent }: { gallery: GalleryItem[], firstEvent?: Event }) => {
   return (
     <section 
-      className="relative min-h-[90vh] md:min-h-screen flex flex-col items-center justify-start md:justify-center pt-24 md:pt-32 pb-20 bg-cover bg-center"
+      className="relative min-h-[95vh] md:min-h-screen flex flex-col items-center justify-center pt-24 md:pt-32 pb-20 bg-cover bg-center"
       style={{ backgroundImage: `url(${heroBannerNew})` }}
     >
       {/* Background Elements */}
@@ -968,7 +968,7 @@ const Hero = ({ gallery, firstEvent }: { gallery: GalleryItem[], firstEvent?: Ev
               <img
                 src={bannerImage}
                 alt="BUMAYE!"
-                className="w-[80vw] md:w-[50vw] max-w-[800px] h-auto drop-shadow-[0_20px_50px_rgba(251,27,129,0.4)] transform -rotate-1 select-none pointer-events-none mb-4"
+                className="w-[85vw] md:w-[50vw] max-w-[800px] h-auto drop-shadow-[0_20px_50px_rgba(251,27,129,0.4)] transform -rotate-1 select-none pointer-events-none mb-6"
               />
             </motion.div>
 
@@ -976,7 +976,7 @@ const Hero = ({ gallery, firstEvent }: { gallery: GalleryItem[], firstEvent?: Ev
               initial={{ y: 10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.6 }}
-              className="mt-6 md:mt-10 font-display text-lg sm:text-xl md:text-[2.2vw] tracking-[0.15em] uppercase text-white drop-shadow-lg flex items-center justify-center gap-2 md:gap-4 flex-wrap"
+              className="mt-8 md:mt-10 font-display text-2xl sm:text-3xl md:text-[2.2vw] tracking-[0.2em] uppercase text-white drop-shadow-lg flex items-center justify-center gap-3 md:gap-4 flex-wrap"
             >
               <span>HIPHOP</span>
               <span className="text-white/40">X</span>
@@ -1005,7 +1005,7 @@ const Hero = ({ gallery, firstEvent }: { gallery: GalleryItem[], firstEvent?: Ev
 
         {/* Hero Gallery Section */}
         {gallery && gallery.length > 0 && (
-          <div className="mt-16 md:mt-40 w-full text-left">
+          <div className="mt-24 md:mt-40 w-full text-left">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 md:gap-8 mb-8">
               <h2 className="font-display text-3xl sm:text-4xl md:text-6xl uppercase tracking-tighter text-white drop-shadow-md">THE VIBE</h2>
               <a
@@ -1899,7 +1899,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col items-center text-center mb-12 md:mb-24 relative">
             <span className="font-mono text-bumaye-orange text-xs tracking-[0.6em] uppercase mb-6 block">The Main Event</span>
-            <h2 className="font-display text-6xl md:text-[12rem] uppercase leading-[0.75] tracking-tighter mb-8">
+            <h2 className="font-display text-7xl md:text-[12rem] uppercase leading-[0.75] tracking-tighter mb-8 px-4">
               NEXT UP
             </h2>
             <p className="max-w-xl text-white/40 font-light leading-relaxed text-xl mb-12">

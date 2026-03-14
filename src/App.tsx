@@ -819,7 +819,7 @@ const Marquee = () => {
   return (
     <div className="bg-bumaye-orange py-4 overflow-hidden whitespace-nowrap border-y border-black/10 mt-20">
       <motion.div
-        animate={{ x: [0, -1000] }}
+        animate={{ x: ["0%", "-50%"] }}
         transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
         className="inline-block"
       >
@@ -1891,7 +1891,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen selection:bg-bumaye-orange selection:text-white">
+    <div className="min-h-screen selection:bg-bumaye-orange selection:text-white overflow-x-hidden">
       <Navbar logoUrl={logoUrl} />
       <Hero gallery={gallery} firstEvent={events[0]} />
       <Marquee />

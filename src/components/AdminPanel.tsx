@@ -110,6 +110,8 @@ export const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClo
     date: '',
     time: '',
     location: '',
+    address: '',
+    zipcode: '',
     city: '',
     ticketUrl: '',
     image: '',
@@ -126,6 +128,8 @@ export const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClo
       date: event.date,
       time: event.time || '',
       location: event.location,
+      address: event.address || '',
+      zipcode: event.zipcode || '',
       city: event.city,
       ticketUrl: event.ticketUrl,
       image: event.image,
@@ -143,6 +147,8 @@ export const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClo
       date: '',
       time: '',
       location: '',
+      address: '',
+      zipcode: '',
       city: '',
       ticketUrl: '',
       image: '',
@@ -207,6 +213,8 @@ export const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClo
         date: '',
         time: '',
         location: '',
+        address: '',
+        zipcode: '',
         city: '',
         ticketUrl: '',
         image: '',
@@ -338,6 +346,26 @@ export const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClo
                         onChange={e => setNewEvent({ ...newEvent, city: e.target.value })}
                         className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
                         required
+                      />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-mono text-black/40 uppercase ml-2">Street & House Number</label>
+                      <input
+                        placeholder="e.g. Amstel 1"
+                        value={newEvent.address}
+                        onChange={e => setNewEvent({ ...newEvent, address: e.target.value })}
+                        className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-mono text-black/40 uppercase ml-2">Zipcode</label>
+                      <input
+                        placeholder="e.g. 1011 PN"
+                        value={newEvent.zipcode}
+                        onChange={e => setNewEvent({ ...newEvent, zipcode: e.target.value })}
+                        className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
                       />
                     </div>
                   </div>

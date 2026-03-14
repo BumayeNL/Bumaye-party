@@ -961,19 +961,40 @@ const FeaturedEvent = ({ event, onBook })=>{
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center gap-3 text-white/60 text-lg uppercase tracking-widest mb-10",
+                                className: "flex flex-col gap-2 mb-10",
                                 children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$map$2d$pin$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MapPin$3e$__["MapPin"], {
-                                        size: 20,
-                                        className: "text-bumaye-orange"
-                                    }, void 0, false, {
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-center gap-3 text-white/60 text-lg uppercase tracking-widest",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$map$2d$pin$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MapPin$3e$__["MapPin"], {
+                                                size: 20,
+                                                className: "text-bumaye-orange"
+                                            }, void 0, false, {
+                                                fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/FeaturedEvent.tsx",
+                                                lineNumber: 45,
+                                                columnNumber: 102
+                                            }, ("TURBOPACK compile-time value", void 0)),
+                                            event.location,
+                                            " • ",
+                                            event.city
+                                        ]
+                                    }, void 0, true, {
                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/FeaturedEvent.tsx",
-                                        lineNumber: 44,
-                                        columnNumber: 106
+                                        lineNumber: 45,
+                                        columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0)),
-                                    event.location,
-                                    " • ",
-                                    event.city
+                                    (event.address || event.zipcode) && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-center gap-3 text-white/40 text-sm uppercase tracking-widest ml-8",
+                                        children: [
+                                            event.address,
+                                            event.address && event.zipcode ? ', ' : '',
+                                            event.zipcode
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/FeaturedEvent.tsx",
+                                        lineNumber: 47,
+                                        columnNumber: 15
+                                    }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/FeaturedEvent.tsx",
@@ -985,7 +1006,7 @@ const FeaturedEvent = ({ event, onBook })=>{
                                 children: event.description
                             }, void 0, false, {
                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/FeaturedEvent.tsx",
-                                lineNumber: 45,
+                                lineNumber: 52,
                                 columnNumber: 33
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -999,14 +1020,14 @@ const FeaturedEvent = ({ event, onBook })=>{
                                                 size: 24
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/FeaturedEvent.tsx",
-                                                lineNumber: 48,
+                                                lineNumber: 55,
                                                 columnNumber: 15
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             event.status === 'sold-out' ? 'JOIN WAITLIST' : 'SECURE TICKETS'
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/FeaturedEvent.tsx",
-                                        lineNumber: 47,
+                                        lineNumber: 54,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     hasFlyer && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1017,20 +1038,20 @@ const FeaturedEvent = ({ event, onBook })=>{
                                                 size: 20
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/FeaturedEvent.tsx",
-                                                lineNumber: 52,
+                                                lineNumber: 59,
                                                 columnNumber: 17
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             "VIEW FLYER"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/FeaturedEvent.tsx",
-                                        lineNumber: 51,
+                                        lineNumber: 58,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/FeaturedEvent.tsx",
-                                lineNumber: 46,
+                                lineNumber: 53,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
@@ -1063,7 +1084,7 @@ const FeaturedEvent = ({ event, onBook })=>{
                             onClick: ()=>setShowFlyer(false)
                         }, void 0, false, {
                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/FeaturedEvent.tsx",
-                            lineNumber: 63,
+                            lineNumber: 70,
                             columnNumber: 13
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -1088,12 +1109,12 @@ const FeaturedEvent = ({ event, onBook })=>{
                                         size: 24
                                     }, void 0, false, {
                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/FeaturedEvent.tsx",
-                                        lineNumber: 74,
+                                        lineNumber: 81,
                                         columnNumber: 200
                                     }, ("TURBOPACK compile-time value", void 0))
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/FeaturedEvent.tsx",
-                                    lineNumber: 74,
+                                    lineNumber: 81,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
@@ -1103,24 +1124,24 @@ const FeaturedEvent = ({ event, onBook })=>{
                                     referrerPolicy: "no-referrer"
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/FeaturedEvent.tsx",
-                                    lineNumber: 75,
+                                    lineNumber: 82,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/FeaturedEvent.tsx",
-                            lineNumber: 64,
+                            lineNumber: 71,
                             columnNumber: 13
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/FeaturedEvent.tsx",
-                    lineNumber: 62,
+                    lineNumber: 69,
                     columnNumber: 11
                 }, ("TURBOPACK compile-time value", void 0))
             }, void 0, false, {
                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/FeaturedEvent.tsx",
-                lineNumber: 60,
+                lineNumber: 67,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0))
         ]
@@ -2263,6 +2284,8 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
         date: '',
         time: '',
         location: '',
+        address: '',
+        zipcode: '',
         city: '',
         ticketUrl: '',
         image: '',
@@ -2278,6 +2301,8 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
             date: event.date,
             time: event.time || '',
             location: event.location,
+            address: event.address || '',
+            zipcode: event.zipcode || '',
             city: event.city,
             ticketUrl: event.ticketUrl,
             image: event.image,
@@ -2294,6 +2319,8 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
             date: '',
             time: '',
             location: '',
+            address: '',
+            zipcode: '',
             city: '',
             ticketUrl: '',
             image: '',
@@ -2356,6 +2383,8 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                 date: '',
                 time: '',
                 location: '',
+                address: '',
+                zipcode: '',
                 city: '',
                 ticketUrl: '',
                 image: '',
@@ -2377,7 +2406,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                 onClick: onClose
             }, void 0, false, {
                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                lineNumber: 226,
+                lineNumber: 234,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2394,7 +2423,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                         children: "Admin Panel"
                                     }, void 0, false, {
                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                        lineNumber: 230,
+                                        lineNumber: 238,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2404,20 +2433,20 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                 size: 12
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                lineNumber: 232,
+                                                lineNumber: 240,
                                                 columnNumber: 15
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$src$2f$lib$2f$supabase$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["isSupabaseConfigured"] ? 'Supabase Connected' : 'Local Mode'
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                        lineNumber: 231,
+                                        lineNumber: 239,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                lineNumber: 229,
+                                lineNumber: 237,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2433,14 +2462,14 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                 className: isRefreshing ? 'animate-spin' : ''
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                lineNumber: 242,
+                                                lineNumber: 250,
                                                 columnNumber: 15
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             isRefreshing ? 'Syncing...' : 'Sync Now'
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                        lineNumber: 237,
+                                        lineNumber: 245,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2450,24 +2479,24 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                             size: 24
                                         }, void 0, false, {
                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                            lineNumber: 245,
+                                            lineNumber: 253,
                                             columnNumber: 103
                                         }, ("TURBOPACK compile-time value", void 0))
                                     }, void 0, false, {
                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                        lineNumber: 245,
+                                        lineNumber: 253,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                lineNumber: 236,
+                                lineNumber: 244,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                        lineNumber: 228,
+                        lineNumber: 236,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2480,7 +2509,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                     size: 14
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                    lineNumber: 251,
+                                    lineNumber: 259,
                                     columnNumber: 52
                                 }, ("TURBOPACK compile-time value", void 0))
                             },
@@ -2491,7 +2520,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                     size: 14
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                    lineNumber: 252,
+                                    lineNumber: 260,
                                     columnNumber: 54
                                 }, ("TURBOPACK compile-time value", void 0))
                             },
@@ -2502,7 +2531,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                     size: 14
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                    lineNumber: 253,
+                                    lineNumber: 261,
                                     columnNumber: 56
                                 }, ("TURBOPACK compile-time value", void 0))
                             },
@@ -2513,7 +2542,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                     size: 14
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                    lineNumber: 254,
+                                    lineNumber: 262,
                                     columnNumber: 50
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 count: subscribers.length + contactMessages.filter((m)=>!m.is_read).length
@@ -2530,18 +2559,18 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                         children: tab.count
                                     }, void 0, false, {
                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                        lineNumber: 263,
+                                        lineNumber: 271,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, tab.id, true, {
                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                lineNumber: 256,
+                                lineNumber: 264,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0)))
                     }, void 0, false, {
                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                        lineNumber: 249,
+                        lineNumber: 257,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2560,7 +2589,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                         children: editingId ? 'Edit Event' : 'Add New Event'
                                                     }, void 0, false, {
                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                        lineNumber: 274,
+                                                        lineNumber: 282,
                                                         columnNumber: 19
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     editingId && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2569,13 +2598,13 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                         children: "Cancel Edit"
                                                     }, void 0, false, {
                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                        lineNumber: 278,
+                                                        lineNumber: 286,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                lineNumber: 273,
+                                                lineNumber: 281,
                                                 columnNumber: 17
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -2593,7 +2622,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                         required: true
                                                     }, void 0, false, {
                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                        lineNumber: 287,
+                                                        lineNumber: 295,
                                                         columnNumber: 19
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -2607,7 +2636,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                         rows: 3
                                                     }, void 0, false, {
                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                        lineNumber: 294,
+                                                        lineNumber: 302,
                                                         columnNumber: 19
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2621,7 +2650,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                         children: "Date"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                        lineNumber: 303,
+                                                                        lineNumber: 311,
                                                                         columnNumber: 23
                                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2635,13 +2664,13 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                         required: true
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                        lineNumber: 304,
+                                                                        lineNumber: 312,
                                                                         columnNumber: 23
                                                                     }, ("TURBOPACK compile-time value", void 0))
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 302,
+                                                                lineNumber: 310,
                                                                 columnNumber: 21
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2652,7 +2681,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                         children: "Time"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                        lineNumber: 313,
+                                                                        lineNumber: 321,
                                                                         columnNumber: 23
                                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2665,19 +2694,19 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                         className: "w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                        lineNumber: 314,
+                                                                        lineNumber: 322,
                                                                         columnNumber: 23
                                                                     }, ("TURBOPACK compile-time value", void 0))
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 312,
+                                                                lineNumber: 320,
                                                                 columnNumber: 21
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                        lineNumber: 301,
+                                                        lineNumber: 309,
                                                         columnNumber: 19
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2691,7 +2720,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                         children: "Venue / Location"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                        lineNumber: 324,
+                                                                        lineNumber: 332,
                                                                         columnNumber: 23
                                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2705,13 +2734,13 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                         required: true
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                        lineNumber: 325,
+                                                                        lineNumber: 333,
                                                                         columnNumber: 23
                                                                     }, ("TURBOPACK compile-time value", void 0))
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 323,
+                                                                lineNumber: 331,
                                                                 columnNumber: 21
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2722,7 +2751,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                         children: "City"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                        lineNumber: 334,
+                                                                        lineNumber: 342,
                                                                         columnNumber: 23
                                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2736,19 +2765,88 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                         required: true
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                        lineNumber: 335,
+                                                                        lineNumber: 343,
                                                                         columnNumber: 23
                                                                     }, ("TURBOPACK compile-time value", void 0))
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 333,
+                                                                lineNumber: 341,
                                                                 columnNumber: 21
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                        lineNumber: 322,
+                                                        lineNumber: 330,
+                                                        columnNumber: 19
+                                                    }, ("TURBOPACK compile-time value", void 0)),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "grid grid-cols-2 gap-4",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "space-y-1",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                                        className: "text-[10px] font-mono text-black/40 uppercase ml-2",
+                                                                        children: "Street & House Number"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
+                                                                        lineNumber: 354,
+                                                                        columnNumber: 23
+                                                                    }, ("TURBOPACK compile-time value", void 0)),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                                        placeholder: "e.g. Amstel 1",
+                                                                        value: newEvent.address,
+                                                                        onChange: (e)=>setNewEvent({
+                                                                                ...newEvent,
+                                                                                address: e.target.value
+                                                                            }),
+                                                                        className: "w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
+                                                                        lineNumber: 355,
+                                                                        columnNumber: 23
+                                                                    }, ("TURBOPACK compile-time value", void 0))
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
+                                                                lineNumber: 353,
+                                                                columnNumber: 21
+                                                            }, ("TURBOPACK compile-time value", void 0)),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "space-y-1",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                                        className: "text-[10px] font-mono text-black/40 uppercase ml-2",
+                                                                        children: "Zipcode"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
+                                                                        lineNumber: 363,
+                                                                        columnNumber: 23
+                                                                    }, ("TURBOPACK compile-time value", void 0)),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                                        placeholder: "e.g. 1011 PN",
+                                                                        value: newEvent.zipcode,
+                                                                        onChange: (e)=>setNewEvent({
+                                                                                ...newEvent,
+                                                                                zipcode: e.target.value
+                                                                            }),
+                                                                        className: "w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
+                                                                        lineNumber: 364,
+                                                                        columnNumber: 23
+                                                                    }, ("TURBOPACK compile-time value", void 0))
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
+                                                                lineNumber: 362,
+                                                                columnNumber: 21
+                                                            }, ("TURBOPACK compile-time value", void 0))
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
+                                                        lineNumber: 352,
                                                         columnNumber: 19
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2759,7 +2857,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                 children: "Event Image"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 345,
+                                                                lineNumber: 373,
                                                                 columnNumber: 21
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2770,7 +2868,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                 id: "event-img"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 346,
+                                                                lineNumber: 374,
                                                                 columnNumber: 21
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -2781,7 +2879,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                         size: 16
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                        lineNumber: 348,
+                                                                        lineNumber: 376,
                                                                         columnNumber: 23
                                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                                     " ",
@@ -2789,13 +2887,13 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 347,
+                                                                lineNumber: 375,
                                                                 columnNumber: 21
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                        lineNumber: 344,
+                                                        lineNumber: 372,
                                                         columnNumber: 19
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2809,7 +2907,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                         children: "🖥️ Banner Flyer (Desktop)"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                        lineNumber: 353,
+                                                                        lineNumber: 381,
                                                                         columnNumber: 23
                                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2820,7 +2918,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                         id: "event-flyer-desktop"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                        lineNumber: 354,
+                                                                        lineNumber: 382,
                                                                         columnNumber: 23
                                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -2831,7 +2929,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                                 size: 16
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                                lineNumber: 356,
+                                                                                lineNumber: 384,
                                                                                 columnNumber: 25
                                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                                             " ",
@@ -2839,7 +2937,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                        lineNumber: 355,
+                                                                        lineNumber: 383,
                                                                         columnNumber: 23
                                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2847,13 +2945,13 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                         children: "Breed formaat (bijv. 1920×823)"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                        lineNumber: 358,
+                                                                        lineNumber: 386,
                                                                         columnNumber: 23
                                                                     }, ("TURBOPACK compile-time value", void 0))
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 352,
+                                                                lineNumber: 380,
                                                                 columnNumber: 21
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2864,7 +2962,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                         children: "📱 TikTok Flyer (Mobiel)"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                        lineNumber: 361,
+                                                                        lineNumber: 389,
                                                                         columnNumber: 23
                                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2875,7 +2973,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                         id: "event-flyer-mobile"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                        lineNumber: 362,
+                                                                        lineNumber: 390,
                                                                         columnNumber: 23
                                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -2886,7 +2984,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                                 size: 16
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                                lineNumber: 364,
+                                                                                lineNumber: 392,
                                                                                 columnNumber: 25
                                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                                             " ",
@@ -2894,7 +2992,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                        lineNumber: 363,
+                                                                        lineNumber: 391,
                                                                         columnNumber: 23
                                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2902,19 +3000,19 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                         children: "Verticaal formaat (bijv. 1080×1920)"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                        lineNumber: 366,
+                                                                        lineNumber: 394,
                                                                         columnNumber: 23
                                                                     }, ("TURBOPACK compile-time value", void 0))
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 360,
+                                                                lineNumber: 388,
                                                                 columnNumber: 21
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                        lineNumber: 351,
+                                                        lineNumber: 379,
                                                         columnNumber: 19
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2928,7 +3026,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                         required: true
                                                     }, void 0, false, {
                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                        lineNumber: 369,
+                                                        lineNumber: 397,
                                                         columnNumber: 19
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2939,38 +3037,38 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                 className: "w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 381,
+                                                                lineNumber: 409,
                                                                 columnNumber: 23
                                                             }, ("TURBOPACK compile-time value", void 0)) : editingId ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$pen$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Edit2$3e$__["Edit2"], {
                                                                 size: 20
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 383,
+                                                                lineNumber: 411,
                                                                 columnNumber: 35
                                                             }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Plus$3e$__["Plus"], {
                                                                 size: 20
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 383,
+                                                                lineNumber: 411,
                                                                 columnNumber: 57
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             isUploadingImage ? 'UPLOADING...' : isSubmitting ? 'SAVING...' : editingId ? 'UPDATE EVENT' : 'CREATE EVENT'
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                        lineNumber: 376,
+                                                        lineNumber: 404,
                                                         columnNumber: 19
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                lineNumber: 286,
+                                                lineNumber: 294,
                                                 columnNumber: 17
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                        lineNumber: 272,
+                                        lineNumber: 280,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2980,7 +3078,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                 children: "Existing Events"
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                lineNumber: 391,
+                                                lineNumber: 419,
                                                 columnNumber: 17
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2999,12 +3097,12 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                             className: "w-full h-full object-cover"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                            lineNumber: 397,
+                                                                            lineNumber: 425,
                                                                             columnNumber: 27
                                                                         }, ("TURBOPACK compile-time value", void 0))
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                        lineNumber: 396,
+                                                                        lineNumber: 424,
                                                                         columnNumber: 25
                                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3014,7 +3112,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                                 children: event.title
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                                lineNumber: 400,
+                                                                                lineNumber: 428,
                                                                                 columnNumber: 27
                                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3026,19 +3124,19 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                                 ]
                                                                             }, void 0, true, {
                                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                                lineNumber: 401,
+                                                                                lineNumber: 429,
                                                                                 columnNumber: 27
                                                                             }, ("TURBOPACK compile-time value", void 0))
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                        lineNumber: 399,
+                                                                        lineNumber: 427,
                                                                         columnNumber: 25
                                                                     }, ("TURBOPACK compile-time value", void 0))
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 395,
+                                                                lineNumber: 423,
                                                                 columnNumber: 23
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3052,12 +3150,12 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                             size: 18
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                            lineNumber: 410,
+                                                                            lineNumber: 438,
                                                                             columnNumber: 27
                                                                         }, ("TURBOPACK compile-time value", void 0))
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                        lineNumber: 405,
+                                                                        lineNumber: 433,
                                                                         columnNumber: 25
                                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -3069,47 +3167,47 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                             className: "w-4 h-4 border-2 border-red-500/30 border-t-red-500 rounded-full animate-spin"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                            lineNumber: 419,
+                                                                            lineNumber: 447,
                                                                             columnNumber: 29
                                                                         }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2$3e$__["Trash2"], {
                                                                             size: 18
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                            lineNumber: 421,
+                                                                            lineNumber: 449,
                                                                             columnNumber: 29
                                                                         }, ("TURBOPACK compile-time value", void 0))
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                        lineNumber: 412,
+                                                                        lineNumber: 440,
                                                                         columnNumber: 25
                                                                     }, ("TURBOPACK compile-time value", void 0))
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 404,
+                                                                lineNumber: 432,
                                                                 columnNumber: 23
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         ]
                                                     }, event.id, true, {
                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                        lineNumber: 394,
+                                                        lineNumber: 422,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0)))
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                lineNumber: 392,
+                                                lineNumber: 420,
                                                 columnNumber: 17
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                        lineNumber: 390,
+                                        lineNumber: 418,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                lineNumber: 271,
+                                lineNumber: 279,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0)),
                             activeTab === 'gallery' && gallery && onGalleryAdd && onGalleryRemove && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3120,7 +3218,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                         children: "Gallery Manager"
                                     }, void 0, false, {
                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                        lineNumber: 434,
+                                        lineNumber: 462,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3134,7 +3232,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                 className: "flex-1 bg-black/5 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-bumaye-orange"
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                lineNumber: 436,
+                                                lineNumber: 464,
                                                 columnNumber: 17
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -3144,7 +3242,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                         size: 20
                                                     }, void 0, false, {
                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                        lineNumber: 444,
+                                                        lineNumber: 472,
                                                         columnNumber: 19
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     galleryFiles.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3152,7 +3250,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                         children: galleryFiles.length
                                                     }, void 0, false, {
                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                        lineNumber: 446,
+                                                        lineNumber: 474,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -3163,13 +3261,13 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                         onChange: handleGalleryFile
                                                     }, void 0, false, {
                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                        lineNumber: 448,
+                                                        lineNumber: 476,
                                                         columnNumber: 19
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                lineNumber: 443,
+                                                lineNumber: 471,
                                                 columnNumber: 17
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -3179,13 +3277,13 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                 children: isGalleryUploading ? 'Uploading...' : 'Toevoegen'
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                lineNumber: 450,
+                                                lineNumber: 478,
                                                 columnNumber: 17
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                        lineNumber: 435,
+                                        lineNumber: 463,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$Reorder$2f$namespace$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__Reorder$3e$__["Reorder"].Group, {
@@ -3202,7 +3300,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                         className: "w-full h-full object-cover pointer-events-none"
                                                     }, void 0, false, {
                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                        lineNumber: 471,
+                                                        lineNumber: 499,
                                                         columnNumber: 23
                                                     }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                                                         src: item.url,
@@ -3210,7 +3308,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                         className: "w-full h-full object-cover pointer-events-none"
                                                     }, void 0, false, {
                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                        lineNumber: 473,
+                                                        lineNumber: 501,
                                                         columnNumber: 23
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3220,12 +3318,12 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                             size: 24
                                                         }, void 0, false, {
                                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                            lineNumber: 478,
+                                                            lineNumber: 506,
                                                             columnNumber: 23
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     }, void 0, false, {
                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                        lineNumber: 477,
+                                                        lineNumber: 505,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3247,34 +3345,34 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                 className: "pointer-events-none"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 496,
+                                                                lineNumber: 524,
                                                                 columnNumber: 25
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         }, void 0, false, {
                                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                            lineNumber: 483,
+                                                            lineNumber: 511,
                                                             columnNumber: 23
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     }, void 0, false, {
                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                        lineNumber: 482,
+                                                        lineNumber: 510,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 ]
                                             }, item.id, true, {
                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                lineNumber: 465,
+                                                lineNumber: 493,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0)))
                                     }, void 0, false, {
                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                        lineNumber: 458,
+                                        lineNumber: 486,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                lineNumber: 433,
+                                lineNumber: 461,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0)),
                             activeTab === 'branding' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3286,7 +3384,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                             children: "Branding Settings"
                                         }, void 0, false, {
                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                            lineNumber: 508,
+                                            lineNumber: 536,
                                             columnNumber: 17
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3297,7 +3395,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                     children: "Site Logo"
                                                 }, void 0, false, {
                                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                    lineNumber: 511,
+                                                    lineNumber: 539,
                                                     columnNumber: 19
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3311,19 +3409,19 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                 className: "h-full object-contain"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 515,
+                                                                lineNumber: 543,
                                                                 columnNumber: 25
                                                             }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                 className: "text-[10px] font-mono text-black/20",
                                                                 children: "NO LOGO"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 517,
+                                                                lineNumber: 545,
                                                                 columnNumber: 25
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         }, void 0, false, {
                                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                            lineNumber: 513,
+                                                            lineNumber: 541,
                                                             columnNumber: 21
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3336,7 +3434,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                     className: "absolute inset-0 opacity-0 cursor-pointer w-full h-full z-10"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                    lineNumber: 521,
+                                                                    lineNumber: 549,
                                                                     columnNumber: 23
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -3346,7 +3444,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                             size: 18
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                            lineNumber: 528,
+                                                                            lineNumber: 556,
                                                                             columnNumber: 25
                                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                                         " ",
@@ -3354,19 +3452,19 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                    lineNumber: 527,
+                                                                    lineNumber: 555,
                                                                     columnNumber: 23
                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                            lineNumber: 520,
+                                                            lineNumber: 548,
                                                             columnNumber: 21
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                    lineNumber: 512,
+                                                    lineNumber: 540,
                                                     columnNumber: 19
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3375,20 +3473,20 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                         "Recommended: PNG or SVG with transparent background.",
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                            lineNumber: 533,
+                                                            lineNumber: 561,
                                                             columnNumber: 73
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         "Maintain a horizontal ratio. Max height: 60px."
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                    lineNumber: 532,
+                                                    lineNumber: 560,
                                                     columnNumber: 19
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                            lineNumber: 510,
+                                            lineNumber: 538,
                                             columnNumber: 17
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3398,7 +3496,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                     children: "About Section Image"
                                                 }, void 0, false, {
                                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                    lineNumber: 540,
+                                                    lineNumber: 568,
                                                     columnNumber: 19
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3412,19 +3510,19 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                 className: "w-full h-full object-cover"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 544,
+                                                                lineNumber: 572,
                                                                 columnNumber: 25
                                                             }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                 className: "w-full h-full flex items-center justify-center bg-black/5 text-black/20 font-mono text-[8px] text-center p-2",
                                                                 children: "NO IMAGE"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 546,
+                                                                lineNumber: 574,
                                                                 columnNumber: 25
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         }, void 0, false, {
                                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                            lineNumber: 542,
+                                                            lineNumber: 570,
                                                             columnNumber: 21
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3440,7 +3538,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                     className: "absolute inset-0 opacity-0 cursor-pointer w-full h-full z-10"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                    lineNumber: 550,
+                                                                    lineNumber: 578,
                                                                     columnNumber: 23
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -3450,7 +3548,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                             size: 18
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                            lineNumber: 560,
+                                                                            lineNumber: 588,
                                                                             columnNumber: 25
                                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                                         " ",
@@ -3458,19 +3556,19 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                    lineNumber: 559,
+                                                                    lineNumber: 587,
                                                                     columnNumber: 23
                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                            lineNumber: 549,
+                                                            lineNumber: 577,
                                                             columnNumber: 21
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                    lineNumber: 541,
+                                                    lineNumber: 569,
                                                     columnNumber: 19
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3479,31 +3577,31 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                         'This image appears in the "What is Bumaye?" section.',
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                            lineNumber: 565,
+                                                            lineNumber: 593,
                                                             columnNumber: 73
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         "Recommended: Vertical 4:5 ratio image."
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                    lineNumber: 564,
+                                                    lineNumber: 592,
                                                     columnNumber: 19
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                            lineNumber: 539,
+                                            lineNumber: 567,
                                             columnNumber: 17
                                         }, ("TURBOPACK compile-time value", void 0))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                    lineNumber: 507,
+                                    lineNumber: 535,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                lineNumber: 506,
+                                lineNumber: 534,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0)),
                             activeTab === 'inbox' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3518,7 +3616,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                     children: "Messages"
                                                 }, void 0, false, {
                                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                    lineNumber: 578,
+                                                    lineNumber: 606,
                                                     columnNumber: 19
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3531,7 +3629,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                 size: 32
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 582,
+                                                                lineNumber: 610,
                                                                 columnNumber: 25
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3539,13 +3637,13 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                 children: "No messages yet"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 583,
+                                                                lineNumber: 611,
                                                                 columnNumber: 25
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                        lineNumber: 581,
+                                                        lineNumber: 609,
                                                         columnNumber: 23
                                                     }, ("TURBOPACK compile-time value", void 0)) : contactMessages.map((msg)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             className: `p-6 rounded-3xl border transition-all cursor-pointer group/msg ${msg.is_read ? 'bg-black/5 border-transparent' : 'bg-white border-bumaye-orange shadow-lg'}`,
@@ -3562,7 +3660,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                                     className: `w-2 h-2 rounded-full ${msg.is_read ? 'bg-black/10' : 'bg-bumaye-orange'}`
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                                    lineNumber: 595,
+                                                                                    lineNumber: 623,
                                                                                     columnNumber: 31
                                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3572,7 +3670,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                                             children: msg.name
                                                                                         }, void 0, false, {
                                                                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                                            lineNumber: 597,
+                                                                                            lineNumber: 625,
                                                                                             columnNumber: 33
                                                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3583,7 +3681,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                                                     children: msg.email
                                                                                                 }, void 0, false, {
                                                                                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                                                    lineNumber: 599,
+                                                                                                    lineNumber: 627,
                                                                                                     columnNumber: 35
                                                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -3597,36 +3695,36 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                                                         size: 10
                                                                                                     }, void 0, false, {
                                                                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                                                        lineNumber: 608,
+                                                                                                        lineNumber: 636,
                                                                                                         columnNumber: 62
                                                                                                     }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$copy$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Copy$3e$__["Copy"], {
                                                                                                         size: 10
                                                                                                     }, void 0, false, {
                                                                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                                                        lineNumber: 608,
+                                                                                                        lineNumber: 636,
                                                                                                         columnNumber: 84
                                                                                                     }, ("TURBOPACK compile-time value", void 0))
                                                                                                 }, void 0, false, {
                                                                                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                                                    lineNumber: 600,
+                                                                                                    lineNumber: 628,
                                                                                                     columnNumber: 35
                                                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                                                             ]
                                                                                         }, void 0, true, {
                                                                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                                            lineNumber: 598,
+                                                                                            lineNumber: 626,
                                                                                             columnNumber: 33
                                                                                         }, ("TURBOPACK compile-time value", void 0))
                                                                                     ]
                                                                                 }, void 0, true, {
                                                                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                                    lineNumber: 596,
+                                                                                    lineNumber: 624,
                                                                                     columnNumber: 31
                                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                            lineNumber: 594,
+                                                                            lineNumber: 622,
                                                                             columnNumber: 29
                                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -3639,18 +3737,18 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                                 size: 16
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                                lineNumber: 620,
+                                                                                lineNumber: 648,
                                                                                 columnNumber: 31
                                                                             }, ("TURBOPACK compile-time value", void 0))
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                            lineNumber: 613,
+                                                                            lineNumber: 641,
                                                                             columnNumber: 29
                                                                         }, ("TURBOPACK compile-time value", void 0))
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                    lineNumber: 593,
+                                                                    lineNumber: 621,
                                                                     columnNumber: 27
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3664,7 +3762,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                            lineNumber: 624,
+                                                                            lineNumber: 652,
                                                                             columnNumber: 29
                                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3672,13 +3770,13 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                             children: msg.message
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                            lineNumber: 625,
+                                                                            lineNumber: 653,
                                                                             columnNumber: 29
                                                                         }, ("TURBOPACK compile-time value", void 0))
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                    lineNumber: 623,
+                                                                    lineNumber: 651,
                                                                     columnNumber: 27
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3689,7 +3787,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                             children: "Read Message →"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                            lineNumber: 628,
+                                                                            lineNumber: 656,
                                                                             columnNumber: 29
                                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3697,30 +3795,30 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                             children: new Date(msg.created_at).toLocaleString()
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                            lineNumber: 629,
+                                                                            lineNumber: 657,
                                                                             columnNumber: 29
                                                                         }, ("TURBOPACK compile-time value", void 0))
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                    lineNumber: 627,
+                                                                    lineNumber: 655,
                                                                     columnNumber: 27
                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                             ]
                                                         }, msg.id, true, {
                                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                            lineNumber: 587,
+                                                            lineNumber: 615,
                                                             columnNumber: 25
                                                         }, ("TURBOPACK compile-time value", void 0)))
                                                 }, void 0, false, {
                                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                    lineNumber: 579,
+                                                    lineNumber: 607,
                                                     columnNumber: 19
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                            lineNumber: 577,
+                                            lineNumber: 605,
                                             columnNumber: 17
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3733,7 +3831,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                             children: "Subscribers"
                                                         }, void 0, false, {
                                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                            lineNumber: 642,
+                                                            lineNumber: 670,
                                                             columnNumber: 21
                                                         }, ("TURBOPACK compile-time value", void 0)),
                                                         subscribers && subscribers.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -3744,20 +3842,20 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                     size: 14
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                    lineNumber: 648,
+                                                                    lineNumber: 676,
                                                                     columnNumber: 25
                                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                                 " Export CSV"
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                            lineNumber: 644,
+                                                            lineNumber: 672,
                                                             columnNumber: 23
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                    lineNumber: 641,
+                                                    lineNumber: 669,
                                                     columnNumber: 19
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3770,7 +3868,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                 size: 32
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 655,
+                                                                lineNumber: 683,
                                                                 columnNumber: 25
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3778,13 +3876,13 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                 children: "No subscribers yet"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 656,
+                                                                lineNumber: 684,
                                                                 columnNumber: 25
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                        lineNumber: 654,
+                                                        lineNumber: 682,
                                                         columnNumber: 23
                                                     }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                         className: "space-y-2",
@@ -3796,7 +3894,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                         children: sub.email
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                        lineNumber: 662,
+                                                                        lineNumber: 690,
                                                                         columnNumber: 29
                                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3810,18 +3908,18 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                                     size: 14
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                                    lineNumber: 669,
+                                                                                    lineNumber: 697,
                                                                                     columnNumber: 58
                                                                                 }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$copy$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Copy$3e$__["Copy"], {
                                                                                     size: 14
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                                    lineNumber: 669,
+                                                                                    lineNumber: 697,
                                                                                     columnNumber: 80
                                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                                lineNumber: 664,
+                                                                                lineNumber: 692,
                                                                                 columnNumber: 31
                                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -3831,57 +3929,57 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                                     size: 14
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                                    lineNumber: 675,
+                                                                                    lineNumber: 703,
                                                                                     columnNumber: 33
                                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                                lineNumber: 671,
+                                                                                lineNumber: 699,
                                                                                 columnNumber: 31
                                                                             }, ("TURBOPACK compile-time value", void 0))
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                        lineNumber: 663,
+                                                                        lineNumber: 691,
                                                                         columnNumber: 29
                                                                     }, ("TURBOPACK compile-time value", void 0))
                                                                 ]
                                                             }, sub.id, true, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 661,
+                                                                lineNumber: 689,
                                                                 columnNumber: 27
                                                             }, ("TURBOPACK compile-time value", void 0)))
                                                     }, void 0, false, {
                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                        lineNumber: 659,
+                                                        lineNumber: 687,
                                                         columnNumber: 23
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 }, void 0, false, {
                                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                    lineNumber: 652,
+                                                    lineNumber: 680,
                                                     columnNumber: 19
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                            lineNumber: 640,
+                                            lineNumber: 668,
                                             columnNumber: 17
                                         }, ("TURBOPACK compile-time value", void 0))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                    lineNumber: 575,
+                                    lineNumber: 603,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                lineNumber: 574,
+                                lineNumber: 602,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                        lineNumber: 269,
+                        lineNumber: 277,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
@@ -3902,7 +4000,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                     onClick: ()=>setSelectedMessage(null)
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                    lineNumber: 693,
+                                    lineNumber: 721,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -3932,7 +4030,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                 children: "Information"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 709,
+                                                                lineNumber: 737,
                                                                 columnNumber: 23
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
@@ -3940,7 +4038,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                 children: selectedMessage.name
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 710,
+                                                                lineNumber: 738,
                                                                 columnNumber: 23
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3951,7 +4049,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                         children: selectedMessage.email
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                        lineNumber: 712,
+                                                                        lineNumber: 740,
                                                                         columnNumber: 25
                                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -3962,32 +4060,32 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                                 size: 14
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                                lineNumber: 717,
+                                                                                lineNumber: 745,
                                                                                 columnNumber: 59
                                                                             }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$copy$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Copy$3e$__["Copy"], {
                                                                                 size: 14
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                                lineNumber: 717,
+                                                                                lineNumber: 745,
                                                                                 columnNumber: 81
                                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                                             copyStatus === 'modal-email' ? 'Copied' : 'Copy Email'
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                        lineNumber: 713,
+                                                                        lineNumber: 741,
                                                                         columnNumber: 25
                                                                     }, ("TURBOPACK compile-time value", void 0))
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 711,
+                                                                lineNumber: 739,
                                                                 columnNumber: 23
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                        lineNumber: 708,
+                                                        lineNumber: 736,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -3997,18 +4095,18 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                             size: 24
                                                         }, void 0, false, {
                                                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                            lineNumber: 726,
+                                                            lineNumber: 754,
                                                             columnNumber: 23
                                                         }, ("TURBOPACK compile-time value", void 0))
                                                     }, void 0, false, {
                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                        lineNumber: 722,
+                                                        lineNumber: 750,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                lineNumber: 707,
+                                                lineNumber: 735,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4021,7 +4119,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                 children: "Subject"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 732,
+                                                                lineNumber: 760,
                                                                 columnNumber: 23
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4029,13 +4127,13 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                 children: selectedMessage.subject
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 733,
+                                                                lineNumber: 761,
                                                                 columnNumber: 23
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                        lineNumber: 731,
+                                                        lineNumber: 759,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4045,7 +4143,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                 children: "Message"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 736,
+                                                                lineNumber: 764,
                                                                 columnNumber: 23
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4055,18 +4153,18 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                     children: selectedMessage.message
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                    lineNumber: 738,
+                                                                    lineNumber: 766,
                                                                     columnNumber: 25
                                                                 }, ("TURBOPACK compile-time value", void 0))
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 737,
+                                                                lineNumber: 765,
                                                                 columnNumber: 23
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                        lineNumber: 735,
+                                                        lineNumber: 763,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4079,7 +4177,7 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 742,
+                                                                lineNumber: 770,
                                                                 columnNumber: 23
                                                             }, ("TURBOPACK compile-time value", void 0)),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$Bumaye__website$2f$Bumaye$2d$party$2d$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -4091,57 +4189,57 @@ const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClose, gal
                                                                 children: "Delete Message"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                                lineNumber: 743,
+                                                                lineNumber: 771,
                                                                 columnNumber: 23
                                                             }, ("TURBOPACK compile-time value", void 0))
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                        lineNumber: 741,
+                                                        lineNumber: 769,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                                lineNumber: 730,
+                                                lineNumber: 758,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                        lineNumber: 706,
+                                        lineNumber: 734,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0))
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                                    lineNumber: 700,
+                                    lineNumber: 728,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                            lineNumber: 692,
+                            lineNumber: 720,
                             columnNumber: 13
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                        lineNumber: 690,
+                        lineNumber: 718,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-                lineNumber: 227,
+                lineNumber: 235,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/Documents/Bumaye website/Bumaye-party-1/src/components/AdminPanel.tsx",
-        lineNumber: 225,
+        lineNumber: 233,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
-_s(AdminPanel, "t0ipRApAwjvq/6Y+YbPTPpqWTWs=");
+_s(AdminPanel, "BljfZ0p9uZdmuZNLUQy/sgJ2hK0=");
 _c = AdminPanel;
 var _c;
 __turbopack_context__.k.register(_c, "AdminPanel");

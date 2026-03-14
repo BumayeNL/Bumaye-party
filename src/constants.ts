@@ -10,6 +10,8 @@ export interface Event {
   date: string;
   time?: string;
   location: string;
+  address?: string;
+  zipcode?: string;
   city: string;
   ticketUrl: string;
   image: string;

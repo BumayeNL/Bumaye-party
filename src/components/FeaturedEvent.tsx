@@ -41,7 +41,14 @@ export const FeaturedEvent: React.FC<{ event: Event; onBook: (url: string) => vo
             {event.time && <div className="flex items-center gap-2 text-white/40 font-mono text-xs uppercase tracking-widest"><Clock size={16} />{event.time}</div>}
           </div>
           <h2 className="font-display text-6xl md:text-8xl uppercase mb-6 leading-[0.85] tracking-tighter">{event.title}</h2>
-          <div className="flex items-center gap-3 text-white/60 text-lg uppercase tracking-widest mb-10"><MapPin size={20} className="text-bumaye-orange" />{event.location} • {event.city}</div>
+          <div className="flex flex-col gap-2 mb-10">
+            <div className="flex items-center gap-3 text-white/60 text-lg uppercase tracking-widest"><MapPin size={20} className="text-bumaye-orange" />{event.location} • {event.city}</div>
+            {(event.address || event.zipcode) && (
+              <div className="flex items-center gap-3 text-white/40 text-sm uppercase tracking-widest ml-8">
+                {event.address}{event.address && event.zipcode ? ', ' : ''}{event.zipcode}
+              </div>
+            )}
+          </div>
           {event.description && <p className="text-white/40 text-lg mb-12 leading-relaxed max-w-md">{event.description}</p>}
           <div className="flex flex-col sm:flex-row gap-4">
             <button onClick={() => event.status !== 'sold-out' && onBook(event.ticketUrl)} className={`flex-1 py-6 rounded-2xl font-bold flex items-center justify-center gap-3 transition-all text-lg ${event.status === 'sold-out' ? 'bg-white/5 text-white/20 cursor-not-allowed' : 'bg-white text-bumaye-black hover:bg-bumaye-orange hover:text-white'}`}>

@@ -14,6 +14,7 @@ export interface Event {
   ticketUrl: string;
   image: string;
   flyerUrl?: string;
+  flyerMobileUrl?: string;
   status: 'upcoming' | 'sold-out' | 'past';
 }
 

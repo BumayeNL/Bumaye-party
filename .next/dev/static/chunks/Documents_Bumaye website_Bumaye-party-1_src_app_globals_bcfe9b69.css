@@ -683,6 +683,10 @@
     aspect-ratio: 4 / 5;
   }
 
+  .aspect-\[9\/16\] {
+    aspect-ratio: 9 / 16;
+  }
+
   .aspect-\[21\/9\] {
     aspect-ratio: 21 / 9;
   }
@@ -831,6 +835,10 @@
     max-width: var(--container-7xl);
   }
 
+  .max-w-\[85vw\] {
+    max-width: 85vw;
+  }
+
   .max-w-\[700px\] {
     max-width: 700px;
   }
@@ -918,6 +926,10 @@
 
   .cursor-pointer {
     cursor: pointer;
+  }
+
+  .resize {
+    resize: both;
   }
 
   .resize-none {
@@ -1756,6 +1768,16 @@
     }
   }
 
+  .text-black\/30 {
+    color: #0000004d;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .text-black\/30 {
+      color: color-mix(in oklab, var(--color-black) 30%, transparent);
+    }
+  }
+
   .text-black\/40 {
     color: #0006;
   }
@@ -2318,6 +2340,18 @@
   }
 
   @media (min-width: 48rem) {
+    .md\:top-8 {
+      top: calc(var(--spacing) * 8);
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .md\:right-8 {
+      right: calc(var(--spacing) * 8);
+    }
+  }
+
+  @media (min-width: 48rem) {
     .md\:col-span-2 {
       grid-column: span 2 / span 2;
     }
@@ -2461,6 +2495,12 @@
   @media (min-width: 48rem) {
     .md\:rounded-\[3\.5rem\] {
       border-radius: 3.5rem;
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .md\:rounded-\[3rem\] {
+      border-radius: 3rem;
     }
   }
 

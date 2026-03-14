@@ -114,6 +114,7 @@ export const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClo
     ticketUrl: '',
     image: '',
     flyerUrl: '',
+    flyerMobileUrl: '',
     status: 'upcoming'
   });
 
@@ -129,6 +130,7 @@ export const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClo
       ticketUrl: event.ticketUrl,
       image: event.image,
       flyerUrl: event.flyerUrl || '',
+      flyerMobileUrl: event.flyerMobileUrl || '',
       status: event.status
     });
   };
@@ -145,13 +147,14 @@ export const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClo
       ticketUrl: '',
       image: '',
       flyerUrl: '',
+      flyerMobileUrl: '',
       status: 'upcoming'
     });
   };
 
   const [isUploadingImage, setIsUploadingImage] = useState(false);
 
-  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>, field: 'image' | 'flyerUrl') => {
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>, field: 'image' | 'flyerUrl' | 'flyerMobileUrl') => {
     const file = e.target.files?.[0];
     if (file && onImageUpload) {
       setIsUploadingImage(true);
@@ -208,6 +211,7 @@ export const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClo
         ticketUrl: '',
         image: '',
         flyerUrl: '',
+        flyerMobileUrl: '',
         status: 'upcoming'
       });
     } catch (error) {
@@ -337,20 +341,29 @@ export const AdminPanel = ({ events, onAdd, onUpdate, onDelete, onRefresh, onClo
                       />
                     </div>
                   </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-mono text-black/40 uppercase ml-2">Event Image</label>
+                    <input type="file" accept="image/*" onChange={e => handleFileUpload(e, 'image')} className="hidden" id="event-img" />
+                    <label htmlFor="event-img" className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 cursor-pointer hover:bg-black/10 transition-all flex items-center gap-2 text-xs">
+                      <Camera size={16} /> {newEvent.image ? 'CHANGE IMAGE' : 'UPLOAD IMAGE'}
+                    </label>
+                  </div>
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <label className="text-[10px] font-mono text-black/40 uppercase ml-2">Main Image</label>
-                      <input type="file" accept="image/*" onChange={e => handleFileUpload(e, 'image')} className="hidden" id="event-img" />
-                      <label htmlFor="event-img" className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 cursor-pointer hover:bg-black/10 transition-all flex items-center gap-2 text-xs">
-                        <Camera size={16} /> {newEvent.image ? 'CHANGE IMAGE' : 'UPLOAD IMAGE'}
+                      <label className="text-[10px] font-mono text-black/40 uppercase ml-2">🖥️ Banner Flyer (Desktop)</label>
+                      <input type="file" accept="image/*" onChange={e => handleFileUpload(e, 'flyerUrl')} className="hidden" id="event-flyer-desktop" />
+                      <label htmlFor="event-flyer-desktop" className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 cursor-pointer hover:bg-black/10 transition-all flex items-center gap-2 text-xs">
+                        <Camera size={16} /> {newEvent.flyerUrl ? '✓ UPLOADED' : 'UPLOAD 21:9'}
                       </label>
+                      <p className="text-[8px] font-mono text-black/30 ml-2">Breed formaat (bijv. 1920×823)</p>
                     </div>
                     <div className="space-y-2">
-                      <label className="text-[10px] font-mono text-black/40 uppercase ml-2">Flyer (Optional)</label>
-                      <input type="file" accept="image/*" onChange={e => handleFileUpload(e, 'flyerUrl')} className="hidden" id="event-flyer" />
-                      <label htmlFor="event-flyer" className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 cursor-pointer hover:bg-black/10 transition-all flex items-center gap-2 text-xs">
-                        <Camera size={16} /> {newEvent.flyerUrl ? 'CHANGE FLYER' : 'UPLOAD FLYER'}
+                      <label className="text-[10px] font-mono text-black/40 uppercase ml-2">📱 TikTok Flyer (Mobiel)</label>
+                      <input type="file" accept="image/*" onChange={e => handleFileUpload(e, 'flyerMobileUrl')} className="hidden" id="event-flyer-mobile" />
+                      <label htmlFor="event-flyer-mobile" className="w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3 cursor-pointer hover:bg-black/10 transition-all flex items-center gap-2 text-xs">
+                        <Camera size={16} /> {newEvent.flyerMobileUrl ? '✓ UPLOADED' : 'UPLOAD 9:16'}
                       </label>
+                      <p className="text-[8px] font-mono text-black/30 ml-2">Verticaal formaat (bijv. 1080×1920)</p>
                     </div>
                   </div>
                   <input

@@ -824,7 +824,7 @@ const Marquee = () => {
         className="inline-block"
       >
         {[...Array(15)].map((_, i) => (
-          <span key={i} className="font-display text-4xl sm:text-5xl md:text-6xl text-white uppercase tracking-tighter">
+          <span key={i} className="font-display text-3xl sm:text-5xl md:text-6xl text-white uppercase tracking-tighter">
             AFRO • DANCEHALL • HIPHOP • R&B • AMAPIANO •&nbsp;
           </span>
         ))}
@@ -936,7 +936,7 @@ const Navbar = ({ logoUrl }: { logoUrl?: string }) => {
 const Hero = ({ gallery, firstEvent }: { gallery: GalleryItem[], firstEvent?: Event }) => {
   return (
     <section 
-      className="relative min-h-screen flex flex-col items-center justify-start md:justify-center pt-32 pb-20 bg-cover bg-center"
+      className="relative min-h-[90vh] md:min-h-screen flex flex-col items-center justify-start md:justify-center pt-24 md:pt-32 pb-20 bg-cover bg-center"
       style={{ backgroundImage: `url(${heroBannerNew})` }}
     >
       {/* Background Elements */}
@@ -968,7 +968,7 @@ const Hero = ({ gallery, firstEvent }: { gallery: GalleryItem[], firstEvent?: Ev
               <img
                 src={bannerImage}
                 alt="BUMAYE!"
-                className="w-[85vw] md:w-[50vw] max-w-[800px] h-auto drop-shadow-[0_20px_50px_rgba(251,27,129,0.4)] transform -rotate-1 select-none pointer-events-none"
+                className="w-[70vw] md:w-[50vw] max-w-[800px] h-auto drop-shadow-[0_20px_50px_rgba(251,27,129,0.4)] transform -rotate-1 select-none pointer-events-none"
               />
             </motion.div>
 
@@ -1378,10 +1378,10 @@ const ContactSection = () => {
 
 const AboutSection = ({ imageUrl }: { imageUrl?: string }) => {
   return (
-    <section id="about" className="py-12 px-6 bg-white text-bumaye-black rounded-[3rem] mx-4 my-6">
+    <section id="about" className="py-8 md:py-12 px-6 bg-white text-bumaye-black rounded-[2.5rem] sm:rounded-[3rem] mx-4 my-6">
       <div className="max-w-5xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center">
-          <div className="relative group max-w-[320px] mx-auto lg:max-w-none">
+          <div className="relative group max-w-[280px] md:max-w-[320px] mx-auto lg:max-w-none">
             <div className="aspect-[4/5] rounded-[2rem] overflow-hidden shadow-xl border border-black/5">
               <img
                 src={imageUrl || "https://images.unsplash.com/photo-1545128485-c400e7702796?auto=format&fit=crop&q=80&w=800"}

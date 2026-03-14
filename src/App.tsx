@@ -820,7 +820,7 @@ const Marquee = () => {
     <div className="bg-bumaye-orange py-4 overflow-hidden whitespace-nowrap border-y border-black/10 mt-20">
       <motion.div
         animate={{ x: ["0%", "-50%"] }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
         className="inline-block"
       >
         {[...Array(15)].map((_, i) => (

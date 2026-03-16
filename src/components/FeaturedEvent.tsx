@@ -2,11 +2,12 @@
 
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { Calendar, Clock, MapPin, Ticket, Camera, X } from 'lucide-react';
+import { Calendar, Clock, MapPin, Ticket, Camera, X, ChevronDown } from 'lucide-react';
 import { type Event } from '../constants';
 
 export const FeaturedEvent: React.FC<{ event: Event; onBook: (url: string) => void }> = ({ event, onBook }) => {
   const [showFlyer, setShowFlyer] = useState(false);
+  const [showDescription, setShowDescription] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -49,7 +50,15 @@ export const FeaturedEvent: React.FC<{ event: Event; onBook: (url: string) => vo
               </div>
             )}
           </div>
-          {event.description && <p className="text-white/40 text-lg mb-12 leading-relaxed max-w-md whitespace-pre-wrap">{event.description}</p>}
+          {event.description && (
+            <button
+              onClick={() => setShowDescription(true)}
+              className="flex items-center gap-2 text-white/40 hover:text-white/70 text-sm font-mono uppercase tracking-widest mb-10 transition-colors group w-fit"
+            >
+              <ChevronDown size={16} className="group-hover:translate-y-0.5 transition-transform" />
+              Meer weergeven
+            </button>
+          )}
           <div className="flex flex-col sm:flex-row gap-4">
             <button onClick={() => event.status !== 'sold-out' && onBook(event.ticketUrl)} className={`flex-1 py-6 rounded-2xl font-bold flex items-center justify-center gap-3 transition-all text-lg ${event.status === 'sold-out' ? 'bg-white/5 text-white/20 cursor-not-allowed' : 'bg-white text-bumaye-black hover:bg-bumaye-orange hover:text-white'}`}>
               <Ticket size={24} />{event.status === 'sold-out' ? 'JOIN WAITLIST' : 'SECURE TICKETS'}
@@ -63,6 +72,25 @@ export const FeaturedEvent: React.FC<{ event: Event; onBook: (url: string) => vo
         </div>
       </div>
 
+      {/* Description Modal */}
+      <AnimatePresence>
+        {showDescription && event.description && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[110] flex items-center justify-center p-4 md:p-10">
+            <div className="absolute inset-0 bg-bumaye-black/95 backdrop-blur-2xl" onClick={() => setShowDescription(false)} />
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              className="relative bg-bumaye-black rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl border border-white/10 w-full max-w-xl p-10 md:p-14"
+            >
+              <button onClick={() => setShowDescription(false)} className="absolute top-6 right-6 p-3 bg-white/5 hover:bg-bumaye-orange rounded-full transition-colors text-white"><X size={20} /></button>
+              <h3 className="font-display text-3xl uppercase tracking-tight mb-6">{event.title}</h3>
+              <p className="text-white/60 text-base leading-relaxed whitespace-pre-wrap">{event.description}</p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Flyer Modal — responsive format */}
       <AnimatePresence>
         {showFlyer && activeFlyer && (
@@ -74,8 +102,8 @@ export const FeaturedEvent: React.FC<{ event: Event; onBook: (url: string) => vo
               exit={{ scale: 0.9, y: 20 }}
               className={`relative bg-bumaye-black rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl border border-white/10 ${
                 isMobile
-                  ? 'w-full max-w-[85vw] aspect-[9/16]'  /* TikTok format on mobile */
-                  : 'w-full max-w-6xl aspect-[21/9]'       /* Banner format on desktop */
+                  ? 'w-full max-w-[85vw] aspect-[9/16]'
+                  : 'w-full max-w-6xl aspect-[21/9]'
               }`}
             >
               <button onClick={() => setShowFlyer(false)} className="absolute top-4 right-4 md:top-8 md:right-8 z-20 p-3 bg-black/50 hover:bg-bumaye-orange rounded-full transition-colors text-white"><X size={24} /></button>

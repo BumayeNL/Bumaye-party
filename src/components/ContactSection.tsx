@@ -24,7 +24,7 @@ export const ContactSection = () => {
           <h2 className="font-display text-5xl sm:text-7xl uppercase mb-8 leading-none">WANT TO<br />COLLABORATE?</h2>
           <p className="text-white/60 text-xl mb-12 leading-relaxed">Whether you're a DJ, promoter, or brand looking to partner with the hottest Afrobeats event in the NL, we'd love to hear from you.</p>
           <div className="space-y-8">
-            {[{ icon: <Mail size={24} />, label: 'Email Us', value: 'info@bumaye.nl' }, { icon: <Instagram size={24} />, label: 'Follow Us', value: '@bumaye.nl' }].map(item => (
+            {[{ icon: <Mail size={24} />, label: 'Email Us', value: 'bumayeevent@gmail.com' }, { icon: <Instagram size={24} />, label: 'Follow Us', value: '@bumaye.nl' }].map(item => (
               <div key={item.label} className="flex items-center gap-6">
                 <div className="w-14 h-14 glass rounded-2xl flex items-center justify-center text-bumaye-orange">{item.icon}</div>
                 <div>

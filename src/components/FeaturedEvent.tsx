@@ -49,7 +49,7 @@ export const FeaturedEvent: React.FC<{ event: Event; onBook: (url: string) => vo
               </div>
             )}
           </div>
-          {event.description && <p className="text-white/40 text-lg mb-12 leading-relaxed max-w-md">{event.description}</p>}
+          {event.description && <p className="text-white/40 text-lg mb-12 leading-relaxed max-w-md whitespace-pre-wrap">{event.description}</p>}
           <div className="flex flex-col sm:flex-row gap-4">
             <button onClick={() => event.status !== 'sold-out' && onBook(event.ticketUrl)} className={`flex-1 py-6 rounded-2xl font-bold flex items-center justify-center gap-3 transition-all text-lg ${event.status === 'sold-out' ? 'bg-white/5 text-white/20 cursor-not-allowed' : 'bg-white text-bumaye-black hover:bg-bumaye-orange hover:text-white'}`}>
               <Ticket size={24} />{event.status === 'sold-out' ? 'JOIN WAITLIST' : 'SECURE TICKETS'}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Instagram, Send } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import { fbq } from './MetaPixel';
 
 export const ContactSection = () => {
   const [formData, setFormData] = useState({ name: '', email: '', subject: 'General Inquiry', message: '' });
@@ -11,6 +12,7 @@ export const ContactSection = () => {
     setStatus('loading');
     const { error } = await supabase.from('contact_messages').insert([formData]);
     if (error) { setStatus('error'); return; }
+    fbq('track', 'Contact', { content_category: formData.subject });
     setStatus('success');
     setFormData({ name: '', email: '', subject: 'General Inquiry', message: '' });
     setTimeout(() => setStatus('idle'), 5000);

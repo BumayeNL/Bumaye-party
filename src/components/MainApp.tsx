@@ -14,6 +14,7 @@ import { AdminLogin } from './AdminLogin';
 import { TicketModal } from './TicketModal';
 import { EVENTS as INITIAL_EVENTS, GALLERY, type Event, type GalleryItem } from '../constants';
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
+import { fbq } from './MetaPixel';
 
 const ADMIN_PASSWORD = 'bumaye2026';
 
@@ -50,7 +51,11 @@ export default function App() {
 
   useEffect(() => { if (isAdminOpen) fetchInbox(); }, [isAdminOpen]);
 
-  const handleBook = (url: string) => { if (!url) return; setTicketUrl(ensureAbsoluteUrl(url)); };
+  const handleBook = (url: string) => { 
+    if (!url) return; 
+    fbq('track', 'InitiateCheckout', { content_category: 'Event Ticket' });
+    setTicketUrl(ensureAbsoluteUrl(url)); 
+  };
 
   const compressImage = (file: File): Promise<Blob> => new Promise((resolve) => {
     if (file.type === 'image/svg+xml') { resolve(file); return; }

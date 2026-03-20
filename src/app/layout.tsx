@@ -1,5 +1,6 @@
-import React from "react";
+import React, { Suspense } from "react";
 import type { Metadata } from "next";
+import { MetaPixel } from "../components/MetaPixel";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -16,6 +17,9 @@ export default function RootLayout({
     <html lang="en">
       <body className="antialiased">
         {children}
+        <Suspense fallback={null}>
+          <MetaPixel />
+        </Suspense>
       </body>
     </html>
   );

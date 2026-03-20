@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Mail, Send } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import { fbq } from './MetaPixel';
 
 export const Newsletter = () => {
   const [email, setEmail] = useState('');
@@ -13,9 +14,15 @@ export const Newsletter = () => {
     setStatus('loading');
     const { error } = await supabase.from('subscribers').insert([{ email }]);
     if (error) {
-      setStatus(error.code === '23505' ? 'success' : 'error');
+      if (error.code === '23505') {
+        fbq('track', 'Lead', { content_name: 'Newsletter Subscription' });
+        setStatus('success');
+      } else {
+        setStatus('error');
+      }
       return;
     }
+    fbq('track', 'Lead', { content_name: 'Newsletter Subscription' });
     setStatus('success');
     setEmail('');
   };
